@@ -1,0 +1,15 @@
+\begin{thebibliography}{1}
+
+\bibitem{rfc6182}
+{\sc A., F., C., R., M., H., S., B., and J., I.}
+\newblock Architectural guidelines for multipath tcp development.
+\newblock {\em RFC 6182\/} (March 2011).
+
+\bibitem{coudron2013cross}
+{\sc Matthieu, C., Stefano, S., Guy, P., Patrick, R., and Pascal, G.}
+\newblock Cross-layer cooperation to boost multipath tcp performance in cloud
+  networks.
+\newblock In {\em Cloud Networking (CloudNet), 2013 IEEE 2nd International
+  Conference on\/} (2013), IEEE, pp.~58--66.
+
+\end{thebibliography}

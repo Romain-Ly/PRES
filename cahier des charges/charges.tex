@@ -1,0 +1,56 @@
+
+\section{Cahier des charges}
+
+\subsection{Objectifs}
+\label{sec:charges:intro}
+
+Les objectifs du projet sont de 
+\begin{itemize}
+\item mesurer les performances de MPTCP sur différentes topologies de
+  réseaux virtuels.
+\item modifier l'ordonnanceur de MPTCP pour priviliéger une
+  répartition équilibrée sur les différents sous-flots.
+\end{itemize}
+
+\subsection{Contexte}
+\label{sec:charges:contexte}
+
+MPTCP est une extension de TCP qui permet pour une connexion TCP donné
+d'utiliser plusieurs chemins pour l'échange de donnée. La multiplicité
+des sous-flots a pour but d'améliorer le débit et d'augmenter la
+résilience de la connexion\cite{rfc6182}.
+
+L'utilisation de MPTCP ne doit en aucun cas diminuer les performances
+de l'utilisateur en dessous des performances d'une simple connexion
+TCP ou diminuer le débit des autres utilisateurs sur le même
+réseau\cite{coudron2013cross}. Les performances de MPTCP dépendent en partie de
+l'algorithme utilisé pour la répartition des données entre les
+différents sous-flots ouverts. Nous allons mesurer les performances de
+MPTCP dans différents réseaux virtualisés en simulant plusieurs
+utilisateurs et en utilisant dans un premier temps l'algorithme par
+défaut de MPTCP.
+
+L'utilisation exclusive d'un chemin dans une connexion permet la
+possibilité à un attaquant d'écouter la totalité des données échangées
+ou d'utiliser des attaques de type \emph{man in the middle}.  L'emploi
+de MPTCP améliorerait la sécurité si les données transitaient de
+manière équilibré entre les différents sous-flots. Le débit global de
+la connexion serait affecté, les chemins les plus lent vont ralentir
+le débit des chemins plus rapides. Nous allons, dans un premier temps,
+modifier l'ordonnanceur afin de garantir la répartition équitable des
+charges au détriment du débit puis analyser l'influence de cette
+modification sur les performances de MPTCP dans les topologies réseaux
+utilisés précédemmment. Si nous avons le temps, nous réfléchirons à un
+algorithme pouvant garantir un minimum de sécurité et un débit
+suffisant pour qu'il soit supérieur au débit maximum du chemin le plus
+rapide.
+
+\subsection{Méthodes}
+\label{sec:charges:methodes}
+
+
+
+
+\subsection{Perspectives}
+\label{sec:charges:perspectives}
+

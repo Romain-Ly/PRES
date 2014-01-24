@@ -1,11 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  22 JAN 2014 12:07
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2014.1.24)  24 JAN 2014 18:14
 entering extended mode
- restricted \write18 enabled.
  %&-line parsing enabled.
 **\input cahiercharges.tex
-(./cahiercharges.tex (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+(./cahiercharges.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
+(/usr/share/texmf-texlive/tex/latex/base/size12.clo
 File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -20,14 +19,14 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2008/07/08 v3.8m The Babel package
+(/usr/share/texmf-texlive/tex/generic/babel/babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/frenchb.ldf
-Language: frenchb 2010/08/21 v2.5a French support from the babel system
+(/usr/share/texmf-texlive/tex/generic/babel/frenchb.ldf
+Language: frenchb 2009/03/16 v2.3d French support from the babel system
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2008/07/08 v3.8m Babel common definitions
+(/usr/share/texmf-texlive/tex/generic/babel/babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
 )
@@ -37,10 +36,10 @@ Package babel Warning: No hyphenation patterns were loaded for
 (babel)                I will use the patterns loaded for \language=0 instead.
 
 \l@french = a dialect from \language0
-Package babel Info: Making : an active character on input line 234.
-Package babel Info: Making ; an active character on input line 235.
-Package babel Info: Making ! an active character on input line 236.
-Package babel Info: Making ? an active character on input line 237.
+Package babel Info: Making : an active character on input line 120.
+Package babel Info: Making ; an active character on input line 121.
+Package babel Info: Making ! an active character on input line 122.
+Package babel Info: Making ? an active character on input line 123.
 \FB@Mht=\dimen104
 \std@mcc=\count88
 \dec@mcc=\count89
@@ -48,8 +47,8 @@ Package babel Info: Making ? an active character on input line 237.
 *************************************
 * Local config file frenchb.cfg used
 *
-(/usr/share/texlive/texmf-dist/tex/generic/babel/frenchb.cfg))
-(/usr/share/texlive/texmf-dist/tex/generic/babel/english.ldf
+(/usr/share/texmf-texlive/tex/generic/babel/frenchb.cfg))
+(/usr/share/texmf-texlive/tex/generic/babel/english.ldf
 Language: english 2005/03/30 v3.3o English support from the babel system
 \l@british = a dialect from \language\l@english 
 \l@UKenglish = a dialect from \language\l@english 
@@ -57,12 +56,12 @@ Language: english 2005/03/30 v3.3o English support from the babel system
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/share/texmf-texlive/tex/latex/carlisle/scalefnt.sty)
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+(/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip43
 \f@ncyO@elh=\skip44
 \f@ncyO@erh=\skip45
@@ -73,40 +72,33 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \f@ncyO@olf=\skip50
 \f@ncyO@orf=\skip51
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/latin1.def
+(/usr/share/texmf-texlive/tex/latex/base/latin1.def
 File: latin1.def 2008/03/30 v1.1d Input encoding file
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gread@gobject=\count90
 ))
 \Gin@req@height=\dimen106
@@ -115,7 +107,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \epsfxsize=\dimen108
 \epsfysize=\dimen109
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+(/usr/share/texmf-texlive/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count91
 \calc@Bcount=\count92
@@ -128,104 +120,111 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count93
 \calc@Cskip=\skip54
 )
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/boxedminipage/boxedminipage.sty)
-(./cahiercharges.aux)
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/boxedminipage.sty)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2009/10/17 v2.4 Conversion with epstopdf on the fly (HO)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2009/10/17 v2.4 Base part for package epstopdf
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2007/09/30 v1.0 Managing graphics extensions (HO)
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)
+
+Package epstopdf Warning: Shell escape feature is not enabled.
+
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 433.
+(/usr/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2009/10/26 v1.1 Configuration of epstopdf for TeX Live
+)))
+(/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks17
+) (./cahiercharges.aux
+(./charges.aux))
 \openout1 = `cahiercharges.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 94.
-LaTeX Font Info:    ... okay on input line 94.
-LaTeX Info: Redefining \degres on input line 94.
-LaTeX Info: Redefining \dots on input line 94.
-LaTeX Info: Redefining \up on input line 94.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Info: Redefining \degres on input line 95.
+LaTeX Info: Redefining \dots on input line 95.
+LaTeX Info: Redefining \up on input line 95.
 
 
 Package frenchb.ldf Warning: OT1 encoding should not be used for French. 
 (frenchb.ldf)                Add \usepackage[T1]{fontenc} to the preamble
-(frenchb.ldf)                of your document, on input line 94.
+(frenchb.ldf)                of your document, on input line 95.
 
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count94
 \scratchdimen=\dimen112
 \scratchbox=\box26
 \nofMPsegments=\count95
 \nofMParguments=\count96
-\everyMPshowfont=\toks17
+\everyMPshowfont=\toks18
 \MPscratchCnt=\count97
 \MPscratchDim=\dimen113
 \MPnumerator=\count98
-\makeMPintoPDFobject=\count99
-\everyMPtoPDFconversion=\toks18
-) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+\everyMPtoPDFconversion=\toks19
 )
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 123.
+(Font)              <12> on input line 124.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 123.
+(Font)              <8> on input line 124.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 123.
-
-(./cahiercharges.toc)
+(Font)              <6> on input line 124.
+ (./cahiercharges.toc)
 \tf@toc=\write3
 \openout3 = `cahiercharges.toc'.
 
@@ -237,25 +236,28 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-01-22 11:52:21
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-01-22 11:52:38
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             Command: <epstopdf --outfile=UPMC_sorbonne-eps-converted
+-to.pdf UPMC_sorbonne.eps>
 (epstopdf)             \includegraphics on input line 138.
 Package epstopdf Info: Output file is already uptodate.
 <UPMC_sorbonne-eps-converted-to.pdf, id=1, 371.3875pt x 124.465pt>
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 
 <use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-138.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+LaTeX Warning: Reference `fin' on page 1 undefined on input line 138.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./UPMC_sorbonne-eps-converted-to.pdf>]
+\openout2 = `charges.aux'.
+
+ (./charges.tex)
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 57.18336pt.
@@ -263,21 +265,23 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-01-22 11:52:21
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-01-22 11:52:38
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 197.
+(epstopdf)             Command: <epstopdf --outfile=UPMC_sorbonne-eps-converted
+-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 138.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-197.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [2]
+
+LaTeX Warning: Reference `fin' on page 2 undefined on input line 138.
+
+[2
+
+] (./cahiercharges.bbl)
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 57.18336pt.
@@ -285,60 +289,42 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-01-22 11:52:21
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-01-22 11:52:38
+(epstopdf)                    date: 2014-01-22 20:02:48
 (epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 248.
+(epstopdf)             Command: <epstopdf --outfile=UPMC_sorbonne-eps-converted
+-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 141.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-248.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [3]
 
-Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
- Make it at least 57.18336pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
+LaTeX Warning: Reference `fin' on page 3 undefined on input line 141.
 
-Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-01-22 11:52:21
-(epstopdf)                    size: 405180 bytes
-(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-01-22 11:52:38
-(epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 277.
-Package epstopdf Info: Output file is already uptodate.
-File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
-<use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-277.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [4] (./cahiercharges.aux) ) 
+[3
+
+] (./cahiercharges.aux (./charges.aux))
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2593 strings out of 495059
- 36344 string characters out of 3182029
- 99930 words of memory out of 3000000
- 5738 multiletter control sequences out of 15000+200000
- 8801 words of font info for 31 fonts, out of 3000000 for 9000
- 14 hyphenation exceptions out of 8191
- 37i,13n,43p,432b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on cahiercharges.pdf (4 pages, 85806 bytes).
+ 2358 strings out of 495061
+ 32316 string characters out of 1182621
+ 92597 words of memory out of 3000000
+ 5488 multiletter control sequences out of 15000+50000
+ 9148 words of font info for 32 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 41i,13n,43p,295b,298s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts
+/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on cahiercharges.pdf (3 pages, 75838 bytes).
 PDF statistics:
- 40 PDF objects out of 1000 (max. 8388607)
- 27 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
