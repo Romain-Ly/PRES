@@ -1,7 +1,7 @@
 % This file was created with JabRef 2.9b2.
 % Encoding: Cp1252
 
-@INPROCEEDINGS{coudroncross2013,
+@INPROCEEDINGS{coudron2013cross,
   author = {Coudron, M. and Secci, S. and Pujolle, G. and Raad, P. and Gallard,
 	P.},
   title = {Cross-layer cooperation to boost multipath TCP performance in cloud

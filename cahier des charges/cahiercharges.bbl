@@ -1,15 +1,22 @@
 \begin{thebibliography}{1}
 
 \bibitem{rfc6182}
-{\sc A., F., C., R., M., H., S., B., and J., I.}
-\newblock Architectural guidelines for multipath tcp development.
-\newblock {\em RFC 6182\/} (March 2011).
+A.~Ford, C.~Raiciu, M.~Handley, S.~Barre, and J.~Iyengar, ``Architectural
+  guidelines for multipath tcp development,'' {\em RFC 6182}, March 2011.
 
-\bibitem{coudron2013cross}
-{\sc Matthieu, C., Stefano, S., Guy, P., Patrick, R., and Pascal, G.}
-\newblock Cross-layer cooperation to boost multipath tcp performance in cloud
-  networks.
-\newblock In {\em Cloud Networking (CloudNet), 2013 IEEE 2nd International
-  Conference on\/} (2013), IEEE, pp.~58--66.
+\bibitem{rfc6824}
+A.~Ford, C.~Raiciu, M.~Handley, and O.~Bonaventure, ``Tcp extensions for
+  multipath operation with multiple addresses,'' {\em RFC 6824}, January 2013.
+
+\bibitem{coudroncross2013}
+M.~Coudron, S.~Secci, G.~Pujolle, P.~Raad, and P.~Gallard, ``Cross-layer
+  cooperation to boost multipath tcp performance in cloud networks,'' in {\em
+  Cloud Networking (CloudNet), 2013 IEEE 2nd International Conference on},
+  pp.~58--66, IEEE, 2013.
+
+\bibitem{pareto2013}
+R.~Khalili, N.~Gast, M.~Popovic, U.~Upadhya, and J.-Y. Le~Boudec, ``Mptcp is
+  not pareto-optimal: Performance issues and a possible solution,'' {\em
+  Networking, IEEE/ACM Transactions on}, vol.~21, no.~5, pp.~1651--1665, 2013.
 
 \end{thebibliography}

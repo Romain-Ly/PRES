@@ -15,10 +15,13 @@
 \usepackage{calc}
 \usepackage{url}
 \usepackage{boxedminipage}
+
+%%%%%
+%%Rajout
 \usepackage{epstopdf}
 \usepackage{enumerate}
-
-
+\usepackage{cite}
+\renewcommand{\FrenchLabelItem}{\textbullet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Définitions à personnaliser 
@@ -49,8 +52,8 @@
 %%%% Indiquer la référence (numero) et le nom du sujet ci-dessous:
 
 \def\refProjet{9} 
-\def\titreProjetCourt{MPTCP\,perf}
-\def\titreProjetLong{Performances MPTCP sur différentes topologies virtuelles}
+\def\titreProjetCourt{MPTCP\,perf,OpenFlow}
+\def\titreProjetLong{Performances de MPTCP sur différentes topologies virtuelles}
 
 %% Le titre court ne doit pas faire plus d'une vingtaine de caractère
 %% résumez le à quelques mots essenciels
@@ -136,8 +139,12 @@
 
 \tableofcontents
 \include{charges}
+
 \bibliography{./PRES.bib}
-\bibliographystyle{acm}
+\bibliographystyle{ieeetr}
+
+
+\label{fin} %% Ne pas supprimer, nécessaire pour calculer le nombre de pages RL
 \end{document}
 
 
