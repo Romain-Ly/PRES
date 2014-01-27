@@ -32,20 +32,20 @@ différents réseaux virtualisés en utilisant dans un premier temps
 l'algorithme par défaut.
 
 L'utilisation exclusive d'un chemin dans une connexion TCP permet la
-possibilité à un attaquant d'écouter la totalité des données échangées
-ou d'utiliser des attaques de type \emph{man in the middle}.  L'emploi
-de MPTCP améliorerait la sécurité si les données transitaient de
-manière équilibrée entre les différents sous-flots. Le débit global de
-la connexion serait affecté car les chemins les plus lents vont
-ralentir le débit des chemins les plus rapides. Nous allons, dans un
-premier temps, modifier l'ordonnanceur afin de garantir la répartition
-équitable des charges au détriment du débit puis analyser l'influence
-de cette modification sur les performances de MPTCP dans les
-topologies réseaux utilisés précédemmment. Si nous avons le temps,
-nous réfléchirons s'il est possible d'obtenir un algorithme pouvant
-garantir une sécurité et un débit supérieur à celle d'une simple
-connexion TCP pour que cela soit conforme aux objectifs premiers de
-MPTCP. 
+possibilité à un attaquant d'écouter la totalité des données
+échangées, d'utiliser des attaques de type rejeu ou \emph{man in the
+  middle}.  L'emploi de MPTCP améliorerait la sécurité si les données
+transitaient de manière équilibrée entre les différents sous-flots. Le
+débit global de la connexion serait affecté car les chemins les plus
+lents vont ralentir le débit des chemins les plus rapides. Nous
+allons, dans un premier temps, modifier l'ordonnanceur afin de
+garantir la répartition équitable des charges au détriment du débit
+puis analyser l'influence de cette modification sur les performances
+de MPTCP dans les topologies réseaux utilisés précédemmment. Si nous
+avons le temps, nous réfléchirons s'il est possible d'obtenir un
+algorithme pouvant garantir une sécurité et un débit supérieur à celle
+d'une simple connexion TCP pour que cela soit conforme aux objectifs
+premiers de MPTCP.
 
 \subsection{Méthodes}
 \label{sec:charges:methodes}
@@ -80,6 +80,11 @@ Dans un premier temps,
 \item et ensuite mesurer les performances de notre algorithme.
 \end{itemize}
 
-\subsection{Perspectives}
-\label{sec:charges:perspectives}
+\subsection{Répartition}
+\label{sec:charges:repartition}
 
+Nous allons répartir la charge de travail en deux groupes de deux
+personnes. Le premier groupe va édifier les réseaux virtuels ainsi que
+les outils d'analyses. Le deuxième groupe personnes s'occupera du code
+de l'ordonnanceur sans exclure l'aide ou la concertation entre les
+deux groupes.
