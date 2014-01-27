@@ -29,7 +29,7 @@ utilisé pour la répartition des données entre les différents
 sous-flots ouverts \cite{pareto2013}. Pour caractériser les
 performances de l'ordonnanceur de MPTCP, nous allons le tester dans
 différents réseaux virtualisés en utilisant dans un premier temps
-l'algorithme par défaut.
+l'algorithme par défaut implémenté dans MPTCP dans le kernel de linux.
 
 L'utilisation exclusive d'un chemin dans une connexion TCP permet la
 possibilité à un attaquant d'écouter la totalité des données
@@ -37,9 +37,10 @@ possibilité à un attaquant d'écouter la totalité des données
   middle}.  L'emploi de MPTCP améliorerait la sécurité si les données
 transitaient de manière équilibrée entre les différents sous-flots. Le
 débit global de la connexion serait affecté car les chemins les plus
-lents vont ralentir le débit des chemins les plus rapides. Nous
-allons, dans un premier temps, modifier l'ordonnanceur afin de
-garantir la répartition équitable des charges au détriment du débit
+lents vont ralentir le débit des chemins les plus rapides, ce qui, en
+contre partie, peut s'avérer moins performant qu'une simple connexion
+TCP. Nous allons, dans un premier temps, modifier l'ordonnanceur afin
+de garantir la répartition équitable des charges au détriment du débit
 puis analyser l'influence de cette modification sur les performances
 de MPTCP dans les topologies réseaux utilisés précédemmment. Si nous
 avons le temps, nous réfléchirons s'il est possible d'obtenir un
@@ -60,11 +61,11 @@ Nous testerons différents algorithmes de répartition de charge entre
 les sous-flots: l'algortihme implémenté par défaut (LIA), celui qui
 satisfait l'optimum de pareto par rapport aux objectifs de MPTCP
 (OLIA, \cite{pareto2013}) ou celui qu'on va développer qui permet de
-répartir de manière équilibréé les charges dans les différents
+répartir de manière équilibrée les charges dans les différents
 sous-flots.
 
 Nous utiliserons des scripts python pour automatiser la création des
-sous-flots ainsi que les tests de performance.\\
+sous-flots ainsi que l'analyse des tests.\\
 
 Pour implémenter l'algorithme de balancement équilibré (favorisant la
 sécurité), nous modifierons le code source de MPTCP:
@@ -78,11 +79,17 @@ Dans un premier temps,
 \item et ensuite mesurer les performances de notre algorithme.
 \end{itemize}
 
+
+Nous utiliserons \emph{git} comme outil collaboratif pour maintenir
+les versions du projet.
+
+
 \subsection{Répartition}
 \label{sec:charges:repartition}
 
 Nous allons répartir la charge de travail en deux groupes de deux
 personnes. Le premier groupe va édifier les réseaux virtuels ainsi que
-les outils d'analyses. Le deuxième groupe personnes s'occupera du code
-de l'ordonnanceur sans exclure l'aide ou la concertation entre les
-deux groupes.
+les outils d'analyses. Le deuxième groupe s'occupera du code de
+l'ordonnanceur, sans exclure l'aide ou la concertation entre les deux
+groupes.
+
