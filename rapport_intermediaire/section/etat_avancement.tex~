@@ -1,3 +1,4 @@
+
 \section{Plan de d\'eveloppement}
 \label{sec:plan:devt}
 
@@ -23,14 +24,5 @@
   MPTCP\footnote{par M. Ly}}
 \label{sec:perfo:mptcp}
 La compilation du noyau linux MPTCP (v0.88) dans une image VM de
-mininet (v2.10) a Ã©tÃ© rÃ©alisÃ©
+mininet (v2.10) a été réalisé
 
-
-
-
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "./rapport"
-%%% End: 

@@ -1,0 +1,29 @@
+\subsection[Mise en place: mininet et MPTCP]{Mise en place: mininet et
+  MPTCP\footnote{\label{etatavannote}par M. Ly}}
+\label{subsec:etatavanc:mininet-mptcp}
+
+
+La compilation du noyau linux MPTCP (v0.88) dans une image VM de
+mininet (v2.10) est terminé. Nous avons créé des paquets debian pour
+faciliter l'installation sur les VM de mininet. Il est nécessaire de
+désinstaller openvswitch avant d'installer le nouveau noyau car
+openvwitch (v0.9) n'est pas compatible avec les noyaux linux récents,
+il faudra réinstaller openvswitch ensuite.
+
+Pour tester la réussite de l'installation, une topolgie deux hôtes
+deux switchs a été utilisé. L'utilisation de MPTCP montre un débit par
+iperf supérieur à la même expérience où MPTCP a été désactivé dans le
+noyau.
+
+
+\subsection[Topologies virtualisées]{Topologies virtualisées}
+\label{subsec:etatavanc:topologgie}
+
+\subsubsection[Topologie MPTCP vs TCP]{Topologie MPTCP vs TCP\footnotemark[1]}
+\label{subsubsec:mptcpvstcp}
+
+Nous avons reproduit la topologie où un sous-flot MPTCP est en
+concurrence avec un flux TCP \cite{pareto2013}. Il reste à établir les
+tables de routage de chaque hôte pour pouvoir tester les performances
+de MPTCP.
+
