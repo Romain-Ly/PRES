@@ -1,5 +1,5 @@
 \subsection[Mise en place: mininet et MPTCP]{Mise en place: mininet et
-  MPTCP\footnote{\label{etatavannote}par M. Ly}}
+  MPTCP\footnote{par M. Ly}}
 \label{subsec:etatavanc:mininet-mptcp}
 
 
@@ -10,10 +10,9 @@ désinstaller openvswitch avant d'installer le nouveau noyau car
 openvwitch (v0.9) n'est pas compatible avec les noyaux linux récents,
 il faudra réinstaller openvswitch ensuite.
 
-Pour tester la réussite de l'installation, une topolgie deux hôtes
-deux switchs a été utilisé. L'utilisation de MPTCP montre un débit par
-iperf supérieur à la même expérience où MPTCP a été désactivé dans le
-noyau.
+Pour tester la réussite de l'installation, une topologie deux hôtes
+deux switchs a été utilisé. L'utilisation de MPTCP montre un débit
+supérieur à la même expérience où MPTCP a été désactivé dans le noyau.
 
 
 \subsection[Topologies virtualisées]{Topologies virtualisées}
@@ -27,3 +26,10 @@ concurrence avec un flux TCP \cite{pareto2013}. Il reste à établir les
 tables de routage de chaque hôte pour pouvoir tester les performances
 de MPTCP.
 
+\subsubsection[]{\emph{Fat tree}\footnotemark[1]}
+\label{subsubsec:fattree}
+
+
+\subsection[Mise en place: mininet et
+MPTCP]{Code\footnote{par M. Lam et M. Dubois}}
+\label{subsec:etatavanc:mininet-mptcp}

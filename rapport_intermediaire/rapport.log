@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  6 MAR 2014 19:48
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  6 MAR 2014 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -196,13 +196,19 @@ Package: cite 2010/09/10  v 5.3
 ) (./rapport.aux
 (./rapport_intermediaire.aux
 
-LaTeX Warning: Label `sec:etat-avancement' multiply defined.
+LaTeX Warning: Label `fig:gantt' multiply defined.
 
 
 LaTeX Warning: Label `sec:etat-avancement' multiply defined.
 
 
 LaTeX Warning: Label `sec:etat-avancement' multiply defined.
+
+
+LaTeX Warning: Label `sec:etat-avancement' multiply defined.
+
+
+LaTeX Warning: Label `subsec:etatavanc:mininet-mptcp' multiply defined.
 
 ))
 \openout1 = `rapport.aux'.
@@ -301,12 +307,18 @@ Overfull \hbox (48.36829pt too wide) in paragraph at lines 29--30
  [] 
  []
 
-) (./section/etat_avancement.tex
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 2.
+<../gantt/romain.jpg, id=13, 1544.77126pt x 438.63875pt>
+File: ../gantt/romain.jpg Graphic file (type jpg)
 
+<use ../gantt/romain.jpg>
+Package pdftex.def Info: ../gantt/romain.jpg used on input line 46.
+(pdftex.def)             Requested size: 546.2915pt x 155.1188pt.
+
+Overfull \hbox (48.36829pt too wide) in paragraph at lines 46--47
+ [] 
+ []
+
+)
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 71.68336pt.
@@ -321,16 +333,45 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 12.
+(epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-12.
+8.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [2
 
- <../gantt/gant.jpg>]))
+ <../gantt/gant.jpg> <../gantt/romain.jpg>] (./section/conception.tex)
+
+Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
+ Make it at least 71.68336pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
+(epstopdf)                    date: 2014-03-06 13:52:03
+(epstopdf)                    size: 405180 bytes
+(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-03-06 13:52:03
+(epstopdf)                    size: 16894 bytes
+(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
+d-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 20.
+Package epstopdf Info: Output file is already uptodate.
+File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
+<use UPMC_sorbonne-eps-converted-to.pdf>
+Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
+20.
+(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
+ [3
+
+] (./section/etat_avancement.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+))
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 71.68336pt.
@@ -352,7 +393,9 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 156.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [3] (./rapport.bbl)
+ [4
+
+] (./rapport.bbl)
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 71.68336pt.
@@ -374,7 +417,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 164.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [4
+ [5
 
 ] (./rapport.aux
 (./rapport_intermediaire.aux))
@@ -383,24 +426,25 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2770 strings out of 495059
- 38938 string characters out of 3182029
- 99714 words of memory out of 3000000
- 5884 multiletter control sequences out of 15000+200000
- 9763 words of font info for 34 fonts, out of 3000000 for 9000
+ 2780 strings out of 495059
+ 39130 string characters out of 3182029
+ 98716 words of memory out of 3000000
+ 5889 multiletter control sequences out of 15000+200000
+ 10122 words of font info for 35 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  42i,13n,43p,384b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti12.pfb>
-Output written on rapport.pdf (4 pages, 154660 bytes).
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmti12.pfb>
+Output written on rapport.pdf (5 pages, 278222 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
