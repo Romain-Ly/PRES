@@ -6,8 +6,34 @@
 L'expérimentation de MPTCP \emph{in situ} peut s'avérer difficile
 lorsqu'on ne connaît pas les chemins utilisés par les sous-flots.
 
-Mininet permet de créer un réseau virtuel pouvant utiliser un vrai
-noyau (ici celui de MPTCP) dans une seule machine. Le contrôlleur du
-réseau virtuel permettra
+Mininet permet de créer un réseau virtuel et d'utiliser un vrai noyau
+en dessous (ici celui de MPTCP) dans une seule machine. Le contrôleur
+du réseau créé permettra d'utiliser au plein potentiel MPTCP. Il
+permettra à MPTCP de contrôler les chemins utilisés et ainsi de
+pouvoir maximer le potentiel de MPTCP.
+
+Le noyau de MPTCP sera compilé et installé dans une machine virtuelle
+contenant mininet et tournant sur ubuntu. Nous créerons les topologies
+virtuelles grâce à l'API python et nous effectuerons les tests et les
+mesures de performance de la même manière.
+
+\subsection{Performances MPTCP}
+\label{sec:conce:perfMPTCP}
+
+Pour pouvoir mesurer les performances, nous allons faire varier les
+propriétés des chemins empruntés pas les sous-flots de manière
+asymétrique pour déterminer les performances de MPTCP. Les contraintes
+appliquées auront comme critères la latence (critère actuellement
+priviliégé par l'ordonnanceur), la capacité, le taux d'erreur, etc.
 
 
+
+\subsection{Algorithme d'ordonnancement}
+\label{sec:conc:ealgo}
+L'écriture et le test de l'algorithme d'ordonnancement dans le noyau
+linux peut s'avérer une tâche difficile en peu de temps. Pour tester
+la validité de notre algorithme d'ordonnancement, nous réfléchisson à
+effectuer un \emph{ proof of concept} en utilisant directement python
+on qui utilisera des fonctions de \emph{callback} pour lancer les
+fonctions du noyau nécessaire à MPTCP. On utilisera alors UDP pour la
+transmission des données.
