@@ -22,6 +22,16 @@
 \usepackage{enumerate}
 \usepackage{cite}
 \renewcommand{\FrenchLabelItem}{\textbullet}
+
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+}%
+\item[]}
+{\end{list}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Définitions à personnaliser 
@@ -140,11 +150,13 @@
 ~
 
 \tableofcontents
-%\include{charges}
-\include{rapport_intermediaire}
+\include{charges}
+
+\include{rapport_inter}
 
 \bibliography{./PRES.bib}
 \bibliographystyle{ieeetr}
+
 
 
 \label{fin} %% Ne pas supprimer, nécessaire pour calculer le nombre de pages RL
