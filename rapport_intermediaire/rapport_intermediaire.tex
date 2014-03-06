@@ -1,0 +1,45 @@
+\section{Plan de développement}
+\label{sec:plan:devt}
+
+La première partie est de consuitre les topologies virtualisées et de
+tester les performances de MTPCP en faisant varier les paramètres des
+sous-flots. La seconde partie est de construire un alogrithme
+d'ordonnancement répondant à des critères de sécurité.
+
+Les étapes du développement suivront les points suivants:
+
+\begin{itemize}
+\item Préparation d'une machine mininet contenant MPTCP pour
+  l'ensemble de l'équipe.
+\item Lecture du code de MPTCP et commentaires du code.
+\item Préparation de plusieurs topologies : \emph{fat tree} pour
+  simuler un \emph{data center} et d'une topologie permettant de
+  tester la concurrence entre MPTCP et TCP.
+\item Préparation d'une bibliothèque de tests et de mesures via l'API python
+\item Préparation et écriture des algorithmes d'ordonnancement
+\item Compilation et tests de l'algorithme dans la machine virtuel
+\end{itemize}
+
+ 
+
+
+
+
+
+2- Préparer toute une bibliothèque de tests, mesure et autres à appliquer sur notre réseau MPTCP
+// L'idéal serait d'aller un peu plus loin que iperf quoi, faut que je voie ça avec Romain aussi
+3- Préparer les différents algorithmes d'ordonnancement
+// Donc Kevin et Quentin à vous de gérer là-dessus
+4- Exécuter les tests sur la Topo en alternant les algos d'ordonnancement
+5- Faire un rapport (plus tard quoi)
+
+Donc le 3 est faisable en parallèle (en cours), il faut avoir fini le 1 (fait) pour entamer le 2 (en cours).
+Quand les 1/2/3 seront finis on passera au 4, puis au 5
+
+Maintenant si quelqu'un qui maîtrise les diagrammes de Gantt peut modéliser ça (je dirais pas que j'ai la flemme mais plus que j'ai pas d'outil pour =X)
+
+Hésitez pas à apporter vos avis =)
+
+
+e rapport interm ediaire se compose :
+
