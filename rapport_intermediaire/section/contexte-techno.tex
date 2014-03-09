@@ -37,8 +37,8 @@ celà, il est nécessaire que les sous-flots empruntent des chemins
 physiques différents et aujourd'hui il n'est pas possible pour un
 utilisateur de contrôler le routage de ses paquets de bout en
 bout. Une méthode pour contourner le problème serait d'utiliser la
-conjonction de MPTCP et de LISP \emph{Locator/Identifier Separation
-  Protocol} qui permet de découvrir la diversité de chemins existant
+conjonction de MPTCP et de LISP (\emph{Locator/Identifier Separation
+  Protocol}) qui permet de découvrir la diversité de chemins existant
 entre routeurs de bordures (A-MPTCP)
 \cite{coudroncross2013}. 
 
@@ -58,41 +58,34 @@ environnant. MPTCP permettra de décharger le réseau téléphonique de
 l'opérateur tout en augmentant le débit et la résilience de la
 connexion.
 
+\vspace{0.5cm}
 
-Imaginons que nous ayons deux chemins avec des performances très
-différentes (A étant un bon chemin et B un mauvais), le fait que un
-paquet passant sur le chemin B mettent beaucoup plus de temps à
-arriver au récepteur qu un paquet passant par le chemin A, oblige le
-récepteur et l émetteur à garder les paquets dans un tampon. Et plus
-l'écart entre les deux sous-flots est important, plus le tampon sera
-grand. Cela est dû au fait que MPTCP tout comme TCP envoie les paquets
-avec un numéro de séquence afin de reconstituer le message dans
-l ordre au niveau du récepteur. Mais pour que cela soit mené à bien il
-faut que le récepteur garde les messages en mémoire dans un tampon
-jusqu à ce qu il puisse réassembler le message donc si un paquet du
-début du paquet emprunte le chemin lent, tous les paquets suivants qui
-passeront dans le chemin rapide devront attendre dans le buffer que le
-paquet passant par le chemin lent arrive.
+Au moment où les révélations de Snowden montrent que les états
+puissent \emph{sniffer} les paquets au niveau de certains
+\emph{backbone}. L'utilisation de plusieurs sous-flots pourrait être
+un avantage non négligeable en terme de sécurité. Pour pouvoir épier
+une connexion entre A et B, il faudrait à l'attaquant de pouvoir voir
+les paquets qui sont émis sur deux chemins différents, c'est à dire
+sur deux chemins physiques différents. L'utilisation de chiffrement de
+type CBC (\emph{Cipher Block Chaining}) compliquera d'avantage
+l'attaquant car il est nécessaire d'avoir le bloc n-1 pour déchiffrer
+le bloc n. AES-CBC est utilisé couramment dans des communications de
+type HTTPS/SSL.
+
+De plus, si les protocoles de sécurité sont conscients de
+l'utilisation de MPTCP, il pourrait y avoir une synergie entre la
+couche transport et la nécessité de sécuriser la connexion. Par
+exemple, en distribuant les informations des MAC (\emph{Message
+  Authentication Code}) de chaque paquet entre les différents
+sous-flots de manière à éviter les \emph{man in the middle}: sous flot
+1 = message 1 + HMAC (message 2); sous flot 2 = message 2 + HMAC
+(message 1). Il est donc nécessaire que MPTCP dans une optique
+sécurité utilise au mininum deux sous-flots et que les paquets sont
+plus ou moins répartis équitablement entre les différents sous-flots
+ce qui implique nécessaire un compromis entre besoin de sécurité et
+besoin de débit.
 
 
-Et de même du côté de l émetteur il doit les paquets dans un tampon
-jusqu à ce qu il reçoive un ACK donc les paquets passant par le chemin
-lent resteront longtemps dans ce tampon et augmenteront sa taille.
-
-Comme je l ai expliqué précédemment, on est dans l impossibilité de
-choisir son chemin dans Internet et cela au faite qu Internet est en
-fait une succession d AS (Autonomous System) qui utilise des
-protocoles de routages( BGP, OSPF) qui ne nous permettent pas d avoir
-connaissance du chemin que nous allons emprunter et ne nous laisse pas
-le choix de la route que prendra notre connexion 
-
-
-Donc pour conclure nous pouvons dire que MPTCP peut permettre
-d augmenter le débit de manière assez considérable mais que
-l efficacité dépend beaucoup de la topologie qu il traverse
-
-car la différences de performances entre les différents sous-flots est
-assez délicat à gérer dû aux répercutions que cela a au niveau de la
-taille des buffer RTO, RTT, etc. C est pour cela qu aujourd hui MPTCP
-n est pas utilisé sur tout l Internet mais uniquement à certains
-endroits où la topologie le permet (les Data-centers).
+Pour pouvoir utiliser une version sécurisée de MPTCP, il s'avère
+nécessaire nécessaire de créer un algorithme répondant au besoin
+sécuritaire en compromettant les performancesde MPTCP.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  9 MAR 2014 23:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  10 MAR 2014 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,9 +414,6 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [3 <../gantt/romain.jpg> <../gantt/kevin.jpg>] (./section/contexte-techno.tex
 
-LaTeX Warning: Citation `raiciu2010' on page 4 undefined on input line 55.
-
-
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
  We now make it that large for the rest of the document.
@@ -430,12 +427,12 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 76.
+(epstopdf)             \includegraphics on input line 74.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-76.
+74.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [4
 
@@ -490,12 +487,12 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 89.
+(epstopdf)             \includegraphics on input line 94.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-89.
+94.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [6 <../figures/khalili.jpg>])
 
@@ -581,20 +578,17 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
 ] (./rapport.aux
 (./rapport_intermediaire.aux))
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  3915 strings out of 495059
  54451 string characters out of 3182029
- 126043 words of memory out of 3000000
+ 126046 words of memory out of 3000000
  6986 multiletter control sequences out of 15000+200000
  15902 words of font info for 38 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,14n,43p,827b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,43p,827b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
  </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/
 romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/romain/.te
 xmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/romain/.texmf-var/fo
@@ -605,9 +599,9 @@ en/ec/ecrm1440.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
 > </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/r
 omain/.texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on rapport.pdf (9 pages, 568827 bytes).
+Output written on rapport.pdf (9 pages, 570555 bytes).
 PDF statistics:
- 470 PDF objects out of 1000 (max. 8388607)
+ 475 PDF objects out of 1000 (max. 8388607)
  67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)

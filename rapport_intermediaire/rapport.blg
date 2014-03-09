@@ -4,44 +4,44 @@ The top-level auxiliary file: rapport.aux
 A level-1 auxiliary file: rapport_intermediaire.aux
 The style file: ieeetr.bst
 Database file #1: ./PRES.bib.bib
-You've used 4 entries,
+You've used 5 entries,
             1876 wiz_defined-function locations,
-            501 strings with 4178 characters,
-and the built_in function-call counts, 1088 in all, are:
-= -- 98
-> -- 52
+            506 strings with 4367 characters,
+and the built_in function-call counts, 1452 in all, are:
+= -- 130
+> -- 72
 < -- 0
-+ -- 19
-- -- 15
-* -- 81
-:= -- 167
-add.period$ -- 4
-call.type$ -- 4
-change.case$ -- 4
++ -- 26
+- -- 21
+* -- 109
+:= -- 218
+add.period$ -- 5
+call.type$ -- 5
+change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 56
-empty$ -- 102
-format.name$ -- 15
-if$ -- 255
+cite$ -- 5
+duplicate$ -- 75
+empty$ -- 136
+format.name$ -- 21
+if$ -- 342
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 4
-newline$ -- 15
-num.names$ -- 4
-pop$ -- 15
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 18
+num.names$ -- 5
+pop$ -- 21
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 31
+skip$ -- 43
 stack$ -- 0
-substring$ -- 64
-swap$ -- 20
+substring$ -- 88
+swap$ -- 27
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 10
-width$ -- 5
-write$ -- 39
+while$ -- 14
+width$ -- 6
+write$ -- 49

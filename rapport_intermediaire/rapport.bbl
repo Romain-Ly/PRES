@@ -14,6 +14,11 @@ M.~Coudron, S.~Secci, G.~Pujolle, P.~Raad, and P.~Gallard, ``Cross-layer
   Cloud Networking (CloudNet), 2013 IEEE 2nd International Conference on},
   pp.~58--66, IEEE, 2013.
 
+\bibitem{raiciu2010}
+C.~Raiciu, C.~Pluntke, S.~Barre, A.~Greenhalgh, D.~Wischik, and M.~Handley,
+  M.ndley, ``Data center networking with multipath tcp,'' in {\em Proceedings
+  of the 9th ACM SIGCOMM}, pp.~58--66, IEEE, 2010.
+
 \bibitem{pareto2013}
 R.~Khalili, N.~Gast, M.~Popovic, U.~Upadhya, and J.-Y. Le~Boudec, ``Mptcp is
   not pareto-optimal: Performance issues and a possible solution,'' {\em
