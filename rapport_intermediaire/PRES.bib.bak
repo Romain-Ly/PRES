@@ -1,7 +1,7 @@
 % This file was created with JabRef 2.9b2.
 % Encoding: Cp1252
 
-@INPROCEEDINGS{coudron2013cross,
+@INPROCEEDINGS{coudroncross2013,
   author = {Coudron, M. and Secci, S. and Pujolle, G. and Raad, P. and Gallard,
 	P.},
   title = {Cross-layer cooperation to boost multipath TCP performance in cloud
@@ -46,5 +46,23 @@
   owner = {romain},
   timestamp = {2014.01.25},
   url = {http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6583272}
+}
+
+@ARTICLE{rfcsctp,
+  author = {Stewart, R.},
+  title = {Stream Control Transmission Protocol},
+  journal = {RFC 4960},
+  year = {September 2007},
+  owner = {pix},
+  timestamp = {2014.01.24}
+}
+
+@ARTICLE{rfcecmp,
+  author = {Thaler, D. and Microsoft and Hopps, C. and NextHop Technologies},
+  title = {Multipath Issues in Unicast and Multicast Next-Hop Selection},
+  journal = {RFC 2991},
+  year = {November 2000},
+  owner = {pix},
+  timestamp = {2014.01.24}
 }
 

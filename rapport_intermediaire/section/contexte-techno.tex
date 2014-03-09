@@ -1,0 +1,98 @@
+%// -*- coding: iso-8859-1 -*-
+
+L'élaboration de MPTCP a été motivée par le fait que l'on s est aperçu
+qu il y existait dans l'internet plusieurs chemins entre un
+utilisateur A et un utilisateur B. Une connexion entre A et B pourrait
+utiliser ces différents chemins pour augmenter le débit ou la
+résilience de la connexion si l'un des chemins venait à ne plus
+pouvoir acheminer les paquets (congestion, panne de routeur,
+etc.). TCP n'a pas été prévu pour qu'on puisse utiliser plusieurs
+chemins d'où la création de protocoles permettant d'utiliser les
+chemins disponibles d'où la création de MPTCP qui permet d'utiliser
+plusieurs sous-flots (chemins) disponibles pour transmettre les
+paquets d'une connexion entre A et B via les sous-flots connectés.
+
+Il existe déjà plusieurs protocoles proposant d'utiliser plusieurs
+chemins. Nous en citerons que deux: SCTP et ECMP. SCTP (\emph{Stream
+  Control Transmission Protocol}) allie l'avantage de TCP et UDP et
+permet de multiplexer les flux sur plusieurs interfaces
+\cite{rfcsctp}. ECMP (\emph{Equal Cost MultiPath}) est un protocole
+qui semblait prometteur dans les data center. Lors d'une connexion
+entre deux hôtes, le routeur peut transférer les paquets sur plusieurs
+meilleurs chemins à coûts \og égaux \fg{}
+\cite{rfcecmp}. L'inconvénient de SCTP est la nécessité que tous les
+hôtes terminaux puissent comprendre le protocole ; il est donc
+nécessaire de modifier la couche application pour pouvoir
+l'utiliser. ECMP nécessite le travail des routeurs pour connaître les
+chemins et l'augmentation de performance n'est pas forcément
+significative. L'avantage de MPTCP est d'être transparent par rapport
+à TCP, c'est à dire que si un hôte n'est pas compatible avec MPTCP, la
+connexion retournera vers une connexion TCP classique. L'autre
+avantage est qu'il est totalement transparent pour les routeurs, c'est
+une connexion \emph{end to end}.
+
+Dans la pratique, l'utilisation de MPTCP est difficile. L'utilisation
+de plusieurs sous-flots ne garantie pas l'augmentation de débit. Pour
+celà, il est nécessaire que les sous-flots empruntent des chemins
+physiques différents et aujourd'hui il n'est pas possible pour un
+utilisateur de contrôler le routage de ses paquets de bout en
+bout. Une méthode pour contourner le problème serait d'utiliser la
+conjonction de MPTCP et de LISP \emph{Locator/Identifier Separation
+  Protocol} qui permet de découvrir la diversité de chemins existant
+entre routeurs de bordures (A-MPTCP)
+\cite{coudroncross2013}. 
+
+Cependant il existe des cas où MPTCP est utilisable à son plein
+potentiel et suscite l'intérêt : dans les data center et en
+utilisation mobile. Par l'intérmédiaire d'une stratégie de routage par
+SDN \emph{Software Defined Network} par exemple openFlow, le
+contrôleur peut établir des chemins différents entre deux hôtes sur
+tout son réseau. Le transfert de données au sein d'un data center
+nécessite des débits très importants. L'utilisation de MPTCP pourrait
+équilibrer les charges entre les différents noeuds. Des expériences
+sur différents topologies de data center denses ont permis de montrer
+que MPTCP égale et surpasse même la performance d'un ordonnanceur
+centralisé et est de surcroit plus robuste \cite{raiciu2010}. En
+mobile, le terminal pourra utiliser le réseau 3G/4G et le réseau wi-fi
+environnant. MPTCP permettra de décharger le réseau téléphonique de
+l'opérateur tout en augmentant le débit et la résilience de la
+connexion.
+
+
+Imaginons que nous ayons deux chemins avec des performances très
+différentes (A étant un bon chemin et B un mauvais), le fait que un
+paquet passant sur le chemin B mettent beaucoup plus de temps à
+arriver au récepteur qu un paquet passant par le chemin A, oblige le
+récepteur et l émetteur à garder les paquets dans un tampon. Et plus
+l'écart entre les deux sous-flots est important, plus le tampon sera
+grand. Cela est dû au fait que MPTCP tout comme TCP envoie les paquets
+avec un numéro de séquence afin de reconstituer le message dans
+l ordre au niveau du récepteur. Mais pour que cela soit mené à bien il
+faut que le récepteur garde les messages en mémoire dans un tampon
+jusqu à ce qu il puisse réassembler le message donc si un paquet du
+début du paquet emprunte le chemin lent, tous les paquets suivants qui
+passeront dans le chemin rapide devront attendre dans le buffer que le
+paquet passant par le chemin lent arrive.
+
+
+Et de même du côté de l émetteur il doit les paquets dans un tampon
+jusqu à ce qu il reçoive un ACK donc les paquets passant par le chemin
+lent resteront longtemps dans ce tampon et augmenteront sa taille.
+
+Comme je l ai expliqué précédemment, on est dans l impossibilité de
+choisir son chemin dans Internet et cela au faite qu Internet est en
+fait une succession d AS (Autonomous System) qui utilise des
+protocoles de routages( BGP, OSPF) qui ne nous permettent pas d avoir
+connaissance du chemin que nous allons emprunter et ne nous laisse pas
+le choix de la route que prendra notre connexion 
+
+
+Donc pour conclure nous pouvons dire que MPTCP peut permettre
+d augmenter le débit de manière assez considérable mais que
+l efficacité dépend beaucoup de la topologie qu il traverse
+
+car la différences de performances entre les différents sous-flots est
+assez délicat à gérer dû aux répercutions que cela a au niveau de la
+taille des buffer RTO, RTT, etc. C est pour cela qu aujourd hui MPTCP
+n est pas utilisé sur tout l Internet mais uniquement à certains
+endroits où la topologie le permet (les Data-centers).

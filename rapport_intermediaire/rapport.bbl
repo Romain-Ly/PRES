@@ -1,12 +1,12 @@
 \begin{thebibliography}{1}
 
-\bibitem{rfc6182}
-A.~Ford, C.~Raiciu, M.~Handley, S.~Barre, and J.~Iyengar, ``Architectural
-  guidelines for multipath tcp development,'' {\em RFC 6182}, March 2011.
+\bibitem{rfcsctp}
+R.~Stewart, ``Stream control transmission protocol,'' {\em RFC 4960}, September
+  2007.
 
-\bibitem{rfc6824}
-A.~Ford, C.~Raiciu, M.~Handley, and O.~Bonaventure, ``Tcp extensions for
-  multipath operation with multiple addresses,'' {\em RFC 6824}, January 2013.
+\bibitem{rfcecmp}
+D.~Thaler, Microsoft, C.~Hopps, and N.~Technologies, ``Multipath issues in
+  unicast and multicast next-hop selection,'' {\em RFC 2991}, November 2000.
 
 \bibitem{coudroncross2013}
 M.~Coudron, S.~Secci, G.~Pujolle, P.~Raad, and P.~Gallard, ``Cross-layer
