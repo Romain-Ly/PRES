@@ -44,13 +44,12 @@ MPTCP de fonctionner (découverte et gestion des chemins,
 ordonnancement des paquets, contrôle de congestion) et la couche
 inférieure correspond aux sous-flots établis.
 
-Lorsque MPTCP utilise plusieurs sous-flots (si les chemins différents
-existent), le débit est augmenté de manière à ce qu'il soit supérieur
-à une connexion TCP unique sur le meilleur des chemins utlisés. MPTCP
-augmente aussi la résilience de la connexion, si un sous-flot est
+MPTCP permet l'augmentation du débit dee manière à ce qu'il soit
+supérieur à une connexion TCP unique sur le meilleur des chemins
+utlisés, ainsi que la résilience de la connexion. Si un sous-flot est
 congestionné, le traffic est alors réparti et/ou réexpédié sur les
-autres sous-flots sans qu'il y a it besoins de rétablir une connexion
-MPTCP entre les deux terminaux. Cette approche permet d'utiliser les
+autres sous-flots sans la nécessité de rétablir une connexion TCP
+entre les deux terminaux. Cette approche permet d'utiliser les
 ressources disponibles par une approche bout en bout.
 
 Mais pour pouvoir profiter de ces deux avantages, le gestionnaire des
