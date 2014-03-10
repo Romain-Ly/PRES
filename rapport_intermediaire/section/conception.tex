@@ -92,6 +92,34 @@ sous-flots), la capacité, le taux d'erreur, la gigue, etc. Nous
 testerons quelle est l'influence de ces paramètres sur le choix des
 sous-flots par l'ordonnanceur.
 
+\subsection{Conception algorithme sécurité}
+\label{sec:conc:algosec}
+
+Le but est de rendre une connexion plus sécurisée par la complexité de
+l'analyse des paquets de données échangés entre deux
+utilisateurs. Nous chercherons à faire une méthode simple et non
+performante pour efffectuer des tests et savoir comment MPTCP réagit
+au nouvel algorithme de répartition des paquets dans les sous-flots
+TCP. Cette méthode consiste à prendre le nombre de sous-flots total et
+de répartir les paquets équitablement entre les sous-flots. Le débit
+de chaque sous-flot correspondra au débit le plus faible des
+sous-flots.  Cela reste une solution de l'objectif noté dans le cahier
+des charges.
+
+Néanmoins il sera nécessaire d'avoir un algorithme plus
+intelligent. En effet, il est nécessaire d'avoir un meilleur
+algorithme que celui expliqué ci-dessus car le débit serait bien plus
+faible si un des chemins à un débit beaucoup plus faible ou s'il est
+congestionné. Or même si nous voulons accroître la sécurité il est
+préférable d'avoir au moins le débit d'une connexion TCP simple. Bien
+sûr, la difficulté dans cette partie est de pouvoir adapter
+l'ordonnanceur selon le nombre de sous-flots disponibles car s'il n'y
+a pas de chemins différents et que l'on veut sécurisé la connexion,
+cela n'est pas possible et, s'il n'y en a pas assez ou qui ne sont pas
+suffisamment corrects, cela aurait des répercussions sur le débit mais
+il pourrait y avoir une option pour que l'utilisateur fasse lui-même
+ses propres choix selon ses besoins.
+
 
 
 \subsection{Test de l'algorithme d'ordonnancement}

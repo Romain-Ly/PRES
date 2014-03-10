@@ -1,47 +1,48 @@
 This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: rapport.aux
+A level-1 auxiliary file: charges.aux
 A level-1 auxiliary file: rapport_intermediaire.aux
 The style file: ieeetr.bst
-Database file #1: ./PRES.bib.bib
-You've used 5 entries,
+Database file #1: ./PRES.bib
+You've used 7 entries,
             1876 wiz_defined-function locations,
-            506 strings with 4367 characters,
-and the built_in function-call counts, 1452 in all, are:
-= -- 130
-> -- 72
+            517 strings with 4670 characters,
+and the built_in function-call counts, 1815 in all, are:
+= -- 154
+> -- 103
 < -- 0
-+ -- 26
-- -- 21
-* -- 109
-:= -- 218
-add.period$ -- 5
-call.type$ -- 5
-change.case$ -- 5
++ -- 37
+- -- 30
+* -- 139
+:= -- 283
+add.period$ -- 7
+call.type$ -- 7
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 75
-empty$ -- 136
-format.name$ -- 21
-if$ -- 342
+cite$ -- 7
+duplicate$ -- 93
+empty$ -- 170
+format.name$ -- 30
+if$ -- 422
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 18
-num.names$ -- 5
-pop$ -- 21
+int.to.str$ -- 7
+missing$ -- 7
+newline$ -- 24
+num.names$ -- 7
+pop$ -- 29
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 43
+skip$ -- 45
 stack$ -- 0
 substring$ -- 88
-swap$ -- 27
+swap$ -- 29
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 14
-width$ -- 6
-write$ -- 49
+while$ -- 16
+width$ -- 8
+write$ -- 65

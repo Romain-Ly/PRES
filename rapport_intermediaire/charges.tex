@@ -1,14 +1,13 @@
-
 \section{Cahier des charges}
 
 \subsection{Objectifs}
 \label{sec:charges:intro}
 
-Les objectifs du projet sont de 
+Les objectifs du projet sont de :
 \begin{itemize}
 \item mesurer les performances de MPTCP sur différentes topologies de
   réseaux virtuels.
-\item modifier l'ordonnanceur de MPTCP pour priviliéger une
+\item modifier l'ordonnanceur de MPTCP pour privilégier une
   répartition équilibrée sur les différents sous-flots.
 \end{itemize}
 
@@ -21,75 +20,44 @@ multiplicité des sous-flots a pour but d'améliorer le débit et
 d'augmenter la résilience de la connexion\cite{rfc6182,rfc6824,
   coudroncross2013}.
 
-L'utilisation de MPTCP ne doit en aucun cas diminuer les performances
-de l'utilisateur en dessous des performances d'une simple connexion
-TCP ou diminuer le débit des autres utilisateurs sur le même
-réseau. Les performances de MPTCP dépendent en partie de l'algorithme
-utilisé pour la répartition des données entre les différents
-sous-flots ouverts \cite{pareto2013}. Pour caractériser les
-performances de l'ordonnanceur de MPTCP, nous allons le tester dans
-différents réseaux virtualisés en utilisant dans un premier temps
-l'algorithme par défaut implémenté dans MPTCP dans le kernel de linux.
+Les performances de MPTCP ne doivent pas être inférieures à celles de
+TCP et son l'utilisation ne doit pas diminuer le débit des autres
+utilisateurs s ur le méme réseau. Les performances de MPTCP dépendent
+en partie de l'algorithme utilisé pour la répartition des données
+entre les différents sous-flots ouverts \cite{pareto2013}. Pour
+caractériser les performances de l'ordonnanceur de MPTCP, nous allons
+le tester dans différents réseaux virtualisés en utilisant dans un
+premier temps l'algorithme implémenté dans le kernel MPTCP de
+linux\footnote{\url{mptcp.org}}.
 
-L'utilisation exclusive d'un chemin dans une connexion TCP permet la
-possibilité à un attaquant d'écouter la totalité des données
-échangées, d'utiliser des attaques de type rejeu ou \emph{man in the
-  middle}.  L'emploi de MPTCP améliorerait la sécurité si les données
-transitaient de manière équilibrée entre les différents sous-flots. Le
-débit global de la connexion serait affecté car les chemins les plus
-lents vont ralentir le débit des chemins les plus rapides, ce qui, en
-contre partie, peut s'avérer moins performant qu'une simple connexion
-TCP. Nous allons, dans un premier temps, modifier l'ordonnanceur afin
-de garantir la répartition équitable des charges au détriment du débit
+L'emploi de MPTCP améliorerait la sécurité si les données transitaient
+de manière équilibrée entre les différents sous-flots, ce qui
+complexifient les attaques. Le débit global de la connexion serait
+affecté car les chemins les plus lents vont ralentir le débit des
+chemins les plus rapides, ce qui, en contre partie, peut s'avérer
+moins performant qu'une simple connexion TCP.  Nous allons modifier
+l'ordonnanceur afin de garantir la répartition équitable des charges
 puis analyser l'influence de cette modification sur les performances
-de MPTCP dans les topologies réseaux utilisés précédemmment. Si nous
-avons le temps, nous réfléchirons s'il est possible d'obtenir un
-algorithme pouvant garantir une sécurité et un débit supérieur à celle
-d'une simple connexion TCP pour que cela soit conforme aux objectifs
-premiers de MPTCP.
+de MPTCP dans les topologies réseaux utilisées précédemment.
 
 \subsection{Méthodes}
 \label{sec:charges:methodes}
 
-La simulation des réseaux sera effectué via mininet qui va nous
-permettre de simuler un réseau OpenFlow. Pour caractériser l'influence
-de l'ordonnanceur sur les performances, nous utiliserons des réseaux
-simples où les différents sous-flots sont asymétriques et diffèrent
-par une propriété à la fois: latence, débit, pertes ...\\
-
-Nous testerons différents algorithmes de répartition de charge entre
-les sous-flots: l'algortihme implémenté par défaut (LIA), celui qui
-satisfait l'optimum de pareto par rapport aux objectifs de MPTCP
-(OLIA, \cite{pareto2013}) ou celui qu'on va développer qui permet de
-répartir de manière équilibrée les charges dans les différents
-sous-flots.
-
-Nous utiliserons des scripts python pour automatiser la création des
-sous-flots ainsi que l'analyse des tests.\\
-
-Pour implémenter l'algorithme de balancement équilibré (favorisant la
-sécurité), nous modifierons le code source de MPTCP:
-\url{https://github.com/multipath-tcp/mptcp/tree/mptcp_v0.88/net/mptcp}.
-Dans un premier temps,
+La réalisation du projet peut être subdivisé en trois parties :
 \begin{itemize}
-\item nous privilégierons une répartition équitable entre les
-  différents sous-flots.
-\item il sera peut-être aussi nécessaire de gérer les problèmes liés à
-  la retransmission lors d'une congestion par exemple,
-\item et ensuite mesurer les performances de notre algorithme.
+\item la simulation de réseaux à topologies différentes,
+\item l'analyse des performances de MPTCP,
+\item l'adaptation de l'ordonnanceur pour l'aspect sécurité.
 \end{itemize}
 
-
-Nous utiliserons \emph{git} comme outil collaboratif pour maintenir
-les versions du projet.
-
-
-\subsection{Répartition}
-\label{sec:charges:repartition}
-
-Nous allons répartir la charge de travail en deux groupes de deux
-personnes. Le premier groupe va édifier les réseaux virtuels ainsi que
-les outils d'analyses. Le deuxième groupe s'occupera du code de
-l'ordonnanceur, sans exclure l'aide ou la concertation entre les deux
-groupes.
-
+Nous utiliserons Mininet afin de simuler les topologies réseaux où
+nous pourrons mesurer les performances de MPTCP à l'aide de l'API
+Python fournie par Mininet.  Pour caractériser l'influence de
+l'ordonnanceur sur les performances, nous utiliserons des réseaux
+simples où les différents sous-flots sont asymétriques et diffèrent
+par une propriété à la fois : latence, débit, pertes... Nous testerons
+différents algorithmes de répartition de charge entre sous-flots :
+l'algorithme implémenté par défaut (LIA), celui qui satisfait
+l'optimum de pareto par rapport aux objectifs de MPTCP, ou encore un
+algorithme de répartition équilibrée de la charge réseau entre les
+différents sous-flots.
