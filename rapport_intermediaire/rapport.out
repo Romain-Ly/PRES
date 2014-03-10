@@ -18,7 +18,7 @@
 \BOOKMARK [2][-]{subsection.5.4}{5.4 Test de l'algorithme d'ordonnancement}{section.5}% 18
 \BOOKMARK [1][-]{section.6}{6 \311tat d'avancement}{}% 19
 \BOOKMARK [2][-]{subsection.6.1}{6.1 Outil de coordination: git}{section.6}% 20
-\BOOKMARK [2][-]{subsection.6.2}{6.2 Mise en place: mininet et MPTCP}{section.6}% 21
-\BOOKMARK [2][-]{subsection.6.3}{6.3 Mise en place: mininet et MPTCP}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.2}{6.2 Compilation MPTC}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.3}{6.3 FatTree}{section.6}% 22
 \BOOKMARK [2][-]{subsection.6.4}{6.4 Topologies virtualis\351es}{section.6}% 23
-\BOOKMARK [2][-]{subsection.6.5}{6.5 Mise en place: mininet et MPTCP}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.5}{6.5 Code MPTCP}{section.6}% 24
