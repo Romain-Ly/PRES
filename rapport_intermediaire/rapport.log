@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.27)  10 MAR 2014 18:14
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.19)  10 MAR 2014 21:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -302,10 +302,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -332,10 +332,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -374,10 +374,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -398,10 +398,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -416,12 +416,12 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
 \openout2 = `rapport_intermediaire.aux'.
 
  (./rapport_intermediaire.tex
-(./section/plandev.tex <../gantt/gant.jpg, id=29, 1375.1375pt x 276.03125pt>
+(./section/plandev.tex <../gantt/gant.jpg, id=29, 1160.335pt x 276.03125pt>
 File: ../gantt/gant.jpg Graphic file (type jpg)
 
 <use ../gantt/gant.jpg>
 Package pdftex.def Info: ../gantt/gant.jpg used on input line 28.
-(pdftex.def)             Requested size: 546.2915pt x 109.6566pt.
+(pdftex.def)             Requested size: 546.2915pt x 129.95793pt.
 
 Overfull \hbox (48.36829pt too wide) in paragraph at lines 28--29
  [] 
@@ -457,10 +457,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -482,10 +482,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -504,19 +504,19 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 63.
+(epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-63.
+62.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [7
 
@@ -528,19 +528,19 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 139.
+(epstopdf)             \includegraphics on input line 131.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-139.
+131.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [8]) (./section/conception.tex
 
@@ -550,10 +550,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -586,10 +586,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -608,10 +608,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -630,10 +630,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -655,10 +655,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -679,10 +679,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -701,10 +701,10 @@ Package Fancyhdr Warning: \headheight is too small (56.9055pt):
  This may cause the page layout to be inconsistent, however.
 
 Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 405180 bytes
 (epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-07 10:48:42
+(epstopdf)                    date: 2014-03-06 13:52:03
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
@@ -726,11 +726,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  3938 strings out of 495059
  54776 string characters out of 3182029
- 126372 words of memory out of 3000000
+ 126376 words of memory out of 3000000
  7000 multiletter control sequences out of 15000+200000
  16979 words of font info for 40 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,14n,43p,827b,421s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,43p,827b,421s stack positions out of 5000i,500n,10000p,200000b,50000s
  </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/
 romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/romain/.te
 xmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/romain/.texmf-var/fo
@@ -743,7 +743,7 @@ omain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/romain/.tex
 mf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/romain/.texmf-var/fon
 ts/pk/ljfour/jknappen/ec/eccc1200.600pk></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmsy10.pfb>
-Output written on rapport.pdf (15 pages, 593573 bytes).
+Output written on rapport.pdf (15 pages, 590915 bytes).
 PDF statistics:
  528 PDF objects out of 1000 (max. 8388607)
  88 compressed objects within 1 object stream
