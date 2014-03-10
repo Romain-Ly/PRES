@@ -5,7 +5,7 @@
 
 
 Nous allons simuler des topologies openFlow en utilisant mininet. Les
-switchs seront virtualisés par open Vswitch (OVS) qui est installé par
+switchs seront virtualisés par open vSwitch (OVS) qui est installé par
 défaut dans mininet. Pour utiliser le multi chemin, le noyau de MPTCP
 sera compilé dans la machine virtuelle et chaque hôte sera configuré
 de manière adéquate pour pouvoir utiliser MPTCP.
@@ -18,7 +18,7 @@ python.
 \label{subsubsec:conception:multcihemin}
 La topologie simple est composé de deux hôtes et de N switchs. Les N
 switchs composeront les N chemins disponibles. Cette topologie simple
-servira principalement de test du fonctionnement de MPTCP.
+servira principalement au test de fonctionnement de MPTCP.
 
 \subsubsection{FatTree}
 \label{subsubsec:conception:fatTree}
@@ -85,40 +85,40 @@ qu'on pourra tester à la volée avec les différents algorithmes gérant
 MPTCP (celui par défaut, l'OLIA et le notre si celui-ci est
 opérationnel) et sur les différents topologies virtuels construites.
 
-
 Les contraintes appliquées auront comme critères la latence (critère
 actuellement priviliégé par l'ordonnanceur pour les choix de
 sous-flots), la capacité, le taux d'erreur, la gigue, etc. Nous
 testerons quelle est l'influence de ces paramètres sur le choix des
 sous-flots par l'ordonnanceur.
 
-\subsection{Conception algorithme sécurité}
+\subsection{Conception algorithme sécurisé}
 \label{sec:conc:algosec}
 
 Le but est de rendre une connexion plus sécurisée par la complexité de
 l'analyse des paquets de données échangés entre deux
 utilisateurs. Nous chercherons à faire une méthode simple et non
-performante pour efffectuer des tests et savoir comment MPTCP réagit
-au nouvel algorithme de répartition des paquets dans les sous-flots
+performante pour effectuer des tests et savoir comment MPTCP réagit au
+nouvel algorithme de répartition des paquets dans les sous-flots
 TCP. Cette méthode consiste à prendre le nombre de sous-flots total et
-de répartir les paquets équitablement entre les sous-flots. Le débit
-de chaque sous-flot correspondra au débit le plus faible des
-sous-flots.  Cela reste une solution de l'objectif noté dans le cahier
-des charges.
+de répartir les segments équitablement entre les différents
+sous-flots. Le débit de chaque sous-flot correspondra au débit le plus
+faible des sous-flots.  Cela reste une solution de l'objectif noté
+dans le cahier des charges.
 
 Néanmoins il sera nécessaire d'avoir un algorithme plus
 intelligent. En effet, il est nécessaire d'avoir un meilleur
-algorithme que celui expliqué ci-dessus car le débit serait bien plus
-faible si un des chemins à un débit beaucoup plus faible ou s'il est
+algorithme que celui expliqué ci-dessus car le débit la performance
+pourrait être grandement affecté. Le débit pourrait être bien plus
+faible qu'une connexion TCP classique sur le meilleur des chemins si
+un des chemins a un débit beaucoup plus faible ou s'il est
 congestionné. Or même si nous voulons accroître la sécurité il est
-préférable d'avoir au moins le débit d'une connexion TCP simple. Bien
-sûr, la difficulté dans cette partie est de pouvoir adapter
-l'ordonnanceur selon le nombre de sous-flots disponibles car s'il n'y
-a pas de chemins différents et que l'on veut sécurisé la connexion,
-cela n'est pas possible et, s'il n'y en a pas assez ou qui ne sont pas
-suffisamment corrects, cela aurait des répercussions sur le débit mais
-il pourrait y avoir une option pour que l'utilisateur fasse lui-même
-ses propres choix selon ses besoins.
+préférable d'avoir au moins le débit d'une connexion TCP simple. La
+difficulté dans cette partie est de pouvoir adapter l'ordonnanceur
+selon le nombre de sous-flots disponibles. Une idée serait de répartir
+les charges de manière à que l'ordonnanceur de paquets n'envoie plus
+de 50~+~$\varepsilon$~\% des segments à un unique sous-flot. Ce nombre
+pourrait être variable selon d'autres paramètres comme le nombre de
+sous-flots disponibles.
 
 
 
