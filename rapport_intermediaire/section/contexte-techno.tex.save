@@ -5,7 +5,7 @@ dans les réseaux de plusieurs chemins entre deux machines A et
 B. L'utilisation de ces différents chemins entre les deux hôtes
 pourrait être un atout non négligeable pour augmenter le débit de la
 connexion et/ou la résilience de la connexion si l'un des chemins
-venaient à ne plus pouvoir acheminer les paquets (congestion, panne de
+venait à ne plus pouvoir acheminer les paquets (congestion, panne de
 routeur, etc). De plus le multi-chemin permet d'équilibrer la
 répartition des charges sur les sous-flots utilisés. TCP n'a pas été
 conçu pour exploiter plusieurs chemins d'où la nécessité de concevoir
@@ -37,29 +37,17 @@ une connexion \emph{end to end}.
 \label{subsec:fonctMPTC}
 
 MPTCP utilise dans un premier temps une connexion TCP pour créer des
-sous-flots similaires à TCP avec des chemins différents. La couche TCP
+sous-flots similaire à TCP avec des chemins différents. La couche TCP
 est alors remplacée par la couche MPTCP qui est divisée en deux
-parties (\fig{fig:mptcpstack}): la couche supérieure correspond aux
-fonctions nécessaires à MPTCP de fonctionner (découverte et gestion
-des chemins, ordonnancement des paquets, contrôle de congestion) et la
-couche inférieure correspond aux sous-flots établis.
-
-\begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
-    \centering
-    \includegraphics[width=0.7\textwidth]{../figures/mptcp.jpg}
-  \end{changemargin}
-  \centering
-  
-  \caption{\textbf{Schéma de la pile MPTCP}. source : \url{www.cisco.org}}
-  \label{fig:mptcpstack}
-  
-\end{figure}
+parties : la couche supérieure correspond aux fonctions nécessaires à
+MPTCP de fonctionner (découverte et gestion des chemins,
+ordonnancement des paquets, contrôle de congestion) et la couche
+inférieure correspond aux sous-flots établis.
 
 MPTCP permet l'augmentation du débit de manière à ce qu'il soit
 supérieur à une connexion TCP unique sur le meilleur des chemins
-disponibles. Il permet aussi la résilience de la connexion en cas de
-panne ou de congestion, dans ce cas le trafic est alors réparti et/ou
+disponibles Il permet aussi la résilience de la connexion en cas de
+panne ou de congestion, dans ce cas le traffic est alors réparti et/ou
 réexpédié sur les autres sous-flots sans la nécessité de rétablir une
 connexion TCP entre les deux terminaux. Cette approche permet de
 répartir les charges sur les ressources disponibles.
@@ -69,28 +57,31 @@ la connexion \cite{rfc6182}
 \begin{itemize}
 \item le gestionnaire de chemin ou \emph{path manager}
 \item l'ordonnanceur de paquets (\emph{packet scheduling})
+\item le sous-flot (\emph{subflow})
 \item le contrôleur de congestion 
 \end{itemize}
 
-Le sous-flot prend en charge les segments de l'ordonnaceur 
-pour l'envoyer sur un chemin disponible. Le sous-flot agit comme une
-connexion TCP classique et dispose de cette manière des fonctions de
-ce protocole de transport assurant d'envoyer des paquets de manière
-fiable et séquencée. \`A la réception, le sous-flot envoie les
-segments à la couche ordonnanceur de paquet pour le réassemblage.
-
 Le gestionnaire des chemins est le mécanisme permettant de détecter et
 d'utiliser les chemins disponibles par l'intermédiaire de multiples
-adresses IPs dans les hôtes. Il signale l'existence d'adresses
+adresses IPs dans les hôtes. Il signal l'existence d'adresses
 alternatives et permet d'intégrer de nouveaux sous-flots à une
 connexion MPTCP existante ou d'en enlever.
 
-L'ordonnanceur des paquets découpe le flux de données provenant de la
-couche application en segments prêts à être envoyés par l'un des
+L'ordonnanceur des paquet découpe le flux de données provenant de la
+couche application en segments prêts à être envoyer par l'un de
 sous-flots. Il séquence les segments et permet de réassocier les
 segments pour réordonner les données côté destinataire. L'ordonnanceur
 dépend des informations des chemins disponibles provenant du
-gestionnaire de chemins \cite{rfc6356}.
+gestionnaire de chemin.
+
+Le sous-flot prend en charge les segments de l'ordonnaceur pour
+l'envoyer sur un chemin disponible. Le sous-flot agit comme une
+connexion TCP classique et dispose de cette manière des fonctions de
+ce protocole de transport assurant d'envoyer des paquets de manière
+fiable et séquencés. \'A la réception, le sous-flot envoie les
+segments à la couche ordonnanceur de paquet pour le réassemblage.
+
+\cite{rfc6356} 
 
 Enfin, le contrôle de congestion est un outil essentiel qui permet
 d'adapter le débit de chaque sous-flot et de définir si un chemin est
@@ -109,26 +100,25 @@ point central dans les performances de MPTCP sur le réseau.
 Lors des choix des sous-flots, l'algorithme doit effectuer un
 compromis entre équilibre des charges dans les différents sous-flots
 et réactivité (\emph{responsiveness}) en cas de modification de la
-latence des sous-flots ou de découverte de nouveaux chemins. Une
+latence des sous-flots ou de découvertes de nouveaux chemins. Une
 priorité vers l'équilibre des charges entraîne l'envoi des données sur
 les meilleurs routes (selon la métrique utilisée, par défaut la
 latence du chemin) mais cela peut déclencher un changement constant de
 route produisant un effet de battement (\emph{flappiness}): si
 plusieurs chemins possèdent le même coût, l'algorithme aura tendance à
-changer plus souvent de chemins. Si la priorité utilisée est la
+changer très souvent de chemins. Si la priorité utilisée est la
 réactivité (par augmentation de la taille de la fenêtre d'un des
 sous-flot), l'utilisation de toutes les ressources disponibles peut ne
 pas être optimale car on aura tendance à utiliser qu'un seul
-sous-flot. Les paramètres de l'algorithme doivent être déterminés
+sous-flot. Les paramètres de l'algorithme doit être déterminer
 efficacement pour répartir les charges sur les sous-flots et ne pas
 être agressif (augmentation trop rapide de la taille de la fenêtre sur
-un des sous-flots) pour garantir l'optimalité de Pareto
-\cite{pareto2013}.
+un des sous-flots) pour garantir l'optimalité de Pareto.
 
- Dans l'algorithme par défaut, le critère privilégié par l'algorithme
+ Dans l'algorithme par défaut, le critère priviliégé par l'algorithme
 est le RTT. Il serait intéressant de modifier les caractéristiques du
-réseau pour mesurer les performances de MPTCP sur le choix des chemins
-utilisés ou en cas de modification de chemins sur des critères de
+réseau pour mesurer les performance de MPTCP sur le choix des chemins
+utilisées ou en cas de modification du chemins sur des critères de
 latence, pertes, débit \ldots
 
 
@@ -148,15 +138,15 @@ entre routeurs de bordures (A-MPTCP)
 \cite{coudroncross2013}. 
 
 Cependant il existe des cas où MPTCP est utilisable à son plein
-potentiel et suscite l'intérêt : dans les datacenters et en
-environnement mobile. Par l'intermédiaire d'une stratégie de routage
-par SDN (\emph{Software Defined Network}) par exemple OpenFlow, le
+potentiel et suscite l'intérêt : dans les data center et en
+environnement mobile. Par l'intérmédiaire d'une stratégie de routage
+par SDN (\emph{Software Defined Network}) par exemple openFlow, le
 contrôleur peut établir des chemins différents entre deux hôtes sur
-tout son réseau. Le transfert de données au sein d'un datacenter
+tout son réseau. Le transfert de données au sein d'un data center
 nécessite des débits très importants. L'utilisation de MPTCP pourrait
 répartir les charges entre les différents noeuds. Des expériences sur
-différentes topologies de datacenter à haute densité ont permis de
-montrer que MPTCP égale, voir surpasse même la performance d'un
+différents topologies de data center à haute densité ont permis de
+montrer que MPTCP égale et surpasse même la performance d'un
 ordonnanceur centralisé et est de surcroit plus robuste
 \cite{raiciu2010}. En mobile, le terminal pourra utiliser le réseau
 3G/4G et le réseau wi-fi environnant. MPTCP permettra de décharger le
@@ -170,7 +160,7 @@ résilience de la connexion.
 pourrait être un avantage non négligeable en terme de sécurité. Pour
 pouvoir épier une connexion entre A et B, il faudrait à l'attaquant de
 pouvoir \emph{sniffer} les paquets qui sont émis sur les sous-flots
-utilisés, c'est-à-dire sur autant de chemins physiques
+utilisés, c'est à dire sur autant de chemins physiques
 différents. L'intérêt du multi-chemin prend alors tout son
 sens. Cependant ce n'est pas le seul avantage, on peut réfléchir à
 plusieurs moyens d'augmenter la sécurité par l'utilisation du

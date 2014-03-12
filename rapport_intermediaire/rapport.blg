@@ -5,44 +5,44 @@ A level-1 auxiliary file: charges.aux
 A level-1 auxiliary file: rapport_intermediaire.aux
 The style file: ieeetr.bst
 Database file #1: ./PRES.bib
-You've used 7 entries,
+You've used 8 entries,
             1876 wiz_defined-function locations,
-            517 strings with 4670 characters,
-and the built_in function-call counts, 1815 in all, are:
-= -- 154
-> -- 103
+            522 strings with 4798 characters,
+and the built_in function-call counts, 1977 in all, are:
+= -- 166
+> -- 114
 < -- 0
-+ -- 37
-- -- 30
-* -- 139
-:= -- 283
-add.period$ -- 7
-call.type$ -- 7
-change.case$ -- 7
++ -- 41
+- -- 33
+* -- 151
+:= -- 311
+add.period$ -- 8
+call.type$ -- 8
+change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 93
-empty$ -- 170
-format.name$ -- 30
-if$ -- 422
+cite$ -- 8
+duplicate$ -- 102
+empty$ -- 187
+format.name$ -- 33
+if$ -- 459
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 7
-newline$ -- 24
-num.names$ -- 7
-pop$ -- 29
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 27
+num.names$ -- 8
+pop$ -- 33
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 45
+skip$ -- 46
 stack$ -- 0
 substring$ -- 88
-swap$ -- 29
+swap$ -- 30
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 16
-width$ -- 8
-write$ -- 65
+while$ -- 17
+width$ -- 9
+write$ -- 73
