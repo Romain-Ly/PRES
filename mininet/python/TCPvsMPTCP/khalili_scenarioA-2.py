@@ -1,11 +1,12 @@
-#!/usr/bin/python  
-        
+#!/usr/bin/python                                                                     
+
+
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 
-class Khalili2(Topo):
+class Khalili(Topo):
     "Private Switch"
     def __init__(self,**opts):
         #Initialize Topology
@@ -67,7 +68,7 @@ def PingTest():
 if __name__ == '__main__':
     # Tell mininet to print useful information
     setLogLevel('info')
-    PingTest()
+   # PingTest()
 
 
 topos = {'test': lambda n: Khalili()}

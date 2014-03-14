@@ -7,10 +7,11 @@ from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 
 class Khalili(Topo):
-    "Private Switch"
+    "TCP vs MPTCP khalili et al., 2012"
+
     def __init__(self,P=3,**opts):
         #Initialize Topology
-        Topo.__init__(self,**opts)
+        super(Khalili,self).__init__(**opts)
 
         #Create private switches and type1 hosts
         switchesA = [self.addSwitch('sA%s' %s) for s in range(1,P+1)]
