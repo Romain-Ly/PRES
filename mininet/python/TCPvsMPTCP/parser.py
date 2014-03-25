@@ -2,7 +2,20 @@
 
 import sys
 import argparse
+import termcolor as T
+
+from time import sleep
 from mininet.log import lg
+from subprocess import Popen, PIPE
+
+
+def progress(t):
+    while t > 0:
+        print T.colored('  %3d seconds left  \r' % (t), 'cyan'),
+        t -= 1
+        sys.stdout.flush()
+        sleep(1)
+    print '\r\n'
 
 def sysctl_set(key, value):
     """Issue systcl for given param to given value and check for error."""
@@ -72,3 +85,10 @@ def parse_args():
 def setup(args):
     set_mptcp_enabled(args.mptcp)
     set_mptcp_ndiffports(args.ndiffports)
+
+def end(args):
+    set_mptcp_enabled(False)
+    set_mptcp_ndiffports(1)
+
+def set_names(args,topo):
+    args.names=topo.names

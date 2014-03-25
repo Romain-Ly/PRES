@@ -12,6 +12,7 @@ class TwoHostNInterfaceTopo(Topo):
         # Note: switches are not strictly necessary, but they do give
         # visibility into traffic from the root namespace.
         SWITCHES = ['s%i' % i for i in range(1, n + 1)]
+
         for sw in SWITCHES:
             self.addSwitch(sw)
 
