@@ -1,0 +1,160 @@
+%% 
+%% Author:  Olivier Fourmaux (olivier.fourmaux@upmc.fr)
+%% 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Type et package
+
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[francais,english]{babel}
+\usepackage{fancyhdr}
+\usepackage[latin1]{inputenc}
+\usepackage{epsfig}
+\usepackage{calc}
+\usepackage{url}
+\usepackage{boxedminipage}
+
+%%%%%
+%%Rajout
+\input{formatanddefs}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définitions à personnaliser 
+
+%% Pour les noms, utilisez la première lettre du prénom suivi du 
+%% nom de famille (première lettre majuscule, reste en minuscule).
+
+
+%%%% Indiquer le nom de l'encadrant ci-dessous:
+
+\def\nomEncad{S.~Secci,\\ Y.~Benchaïb, M.~Coudron}
+%%<matthieu.coudron@lip6.fr>,
+%%<yacine.benchaib@lip6.fr>
+%% Si le projet est co-encadré indiquer les deux noms à la suite dans 
+%% Le même champs
+
+
+%%%% Indiquer les noms des étudiants participant ci-dessous:
+
+\def\nomEtudC{Q.~Dubois}
+\def\nomEtudB{K.~Lam}
+\def\nomEtudA{R.~Ly}
+\def\nomEtudD{S.~Ravier}
+
+%% Si le projet est encadré par moins de 4 étudiants laissez
+%% les variables inutiles vides
+
+
+%%%% Indiquer la référence (numero) et le nom du sujet ci-dessous:
+
+\def\refProjet{9} \def\titreProjetCourt{perf\,MPTCP\,OpenFlow}
+\def\titreProjetLong{MPTCP\\Performances et optimisation de la
+  sécurité avec un ordonnancement réparti dans les topologies
+  virtualisées OpenFlow}
+
+%% Le titre court ne doit pas faire plus d'une vingtaine de caractère
+%% résumez le à quelques mots essenciels
+
+
+%%%% Indiquer le type de document et sa version ci-dessous:
+
+\def\typeDoc{Rapport final}
+ 
+%% - Rapport intermédaire
+%% - Rapport final
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définitions à ne pas modifier
+ 
+%%%%% ||| Mise en page verticale ||| 
+\setlength{\voffset}{-1in} % a4:reste 297mm pour les 5 suivants:
+\setlength{\topmargin}{15mm}         % avant l'en-tête
+\setlength{\headheight}{20mm}        % hauteur de l'en-tête 
+\setlength{\headsep}{10mm}            % entre l'en-tête et le corps
+\setlength{\textheight}{220mm}       % hauteur du corps
+\setlength{\footskip}{12mm}          % pied de page par rapport au corps 
+
+%%%%% --- Mise en page horizontale ---
+\setlength{\hoffset}{-1in} % a4:reste 210mm 
+\setlength{\oddsidemargin}{25mm}     % entre hoffset et le corps
+\setlength{\evensidemargin}{25mm}    % entre hoffset et le corps
+\setlength{\marginparwidth}{0mm}     % largeur de la marge
+\setlength{\marginparsep}{0mm}       % séparateur corps marge
+\setlength{\textwidth}{160mm}        % largeur du corps
+
+\def\annee{2013-14}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Début du document
+
+\begin{document}
+
+\selectlanguage{francais}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Définition des en-têtes et pied de pages
+\pagestyle{fancyplain}
+\lhead[\fancyplain{}{\texttt{Université Pierre et Marie Curie}\\
+          Master Informatique\\ UE \textbf{PRes} fév. \annee \\ \nomEncad}]
+      {\fancyplain{}{\textsc{Université Pierre et Marie Curie}\\
+          Master Informatique\\ UE \textbf{PRes} \annee \\ \nomEncad}}
+\chead[\fancyplain{}{\textbf{Projet \refProjet\\\titreProjetCourt}}]
+      {\fancyplain{}{\textbf{Projet \refProjet\\\titreProjetCourt}}}
+\rhead[\fancyplain{}{\nomEtudA\\\nomEtudB\\\nomEtudC\\\nomEtudD}]
+      {\fancyplain{}{\nomEtudA\\\nomEtudB\\\nomEtudC\\\nomEtudD}}
+\lfoot[\fancyplain{}{\epsfig{figure=UPMC_sorbonne.eps,width=3cm}}]
+      {\fancyplain{}{\epsfig{figure=UPMC_sorbonne.eps,width=3cm}}}
+\cfoot[\fancyplain{}{\textbf{\thepage/\pageref{fin}}}]
+      {\fancyplain{}{\textbf{\thepage/\pageref{fin}}}}
+\rfoot[\fancyplain{}{\typeDoc}]
+      {\fancyplain{}{\typeDoc}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+~
+
+      \begin{center}
+        \begin{boxedminipage}{12cm}{
+            \begin{center}
+              ~\\\LARGE\textbf{\titreProjetLong}\\
+              ~\\\large Encadrants: \textbf{\nomEncad,}\\
+              ~\\\large Etudiants: \textbf{\nomEtudA, \nomEtudB, \nomEtudC, \nomEtudD}\\
+              ~
+            \end{center}
+            }
+        \end{boxedminipage}
+      \end{center}
+
+~
+
+\tableofcontents
+\include{charges}
+\include{corps}
+
+\include{section/Annexe1}
+
+\bibliography{./PRES}
+\bibliographystyle{ieeetr}
+
+
+
+\label{fin} %% Ne pas supprimer, nécessaire pour calculer le nombre de pages RL
+\end{document}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

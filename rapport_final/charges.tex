@@ -1,0 +1,63 @@
+\section{Cahier des charges}
+
+\subsection{Objectifs}
+\label{sec:charges:intro}
+
+Les objectifs du projet sont de :
+\begin{itemize}
+\item mesurer les performances de MPTCP sur différentes topologies de
+  réseaux virtuels.
+\item modifier l'ordonnanceur de MPTCP pour privilégier une
+  répartition équilibrée sur les différents sous-flots.
+\end{itemize}
+
+\subsection{Contexte}
+\label{sec:charges:contexte}
+
+MPTCP est une extension de TCP qui permet pour une connexion TCP
+donnée d'utiliser plusieurs chemins pour l'échange de données. La
+multiplicité des sous-flots a pour but d'améliorer le débit et
+d'augmenter la résilience de la connexion\cite{rfc6182,rfc6824,
+  coudroncross2013}.
+
+Les performances de MPTCP ne doivent pas être inférieures à celles de
+TCP et son l'utilisation ne doit pas diminuer le débit des autres
+utilisateurs s ur le méme réseau. Les performances de MPTCP dépendent
+en partie de l'algorithme utilisé pour la répartition des données
+entre les différents sous-flots ouverts \cite{pareto2013}. Pour
+caractériser les performances de l'ordonnanceur de MPTCP, nous allons
+le tester dans différents réseaux virtualisés en utilisant dans un
+premier temps l'algorithme implémenté dans le kernel MPTCP de
+linux\footnote{\url{mptcp.org}}.
+
+L'emploi de MPTCP améliorerait la sécurité si les données transitaient
+de manière équilibrée entre les différents sous-flots, ce qui
+complexifient les attaques. Le débit global de la connexion serait
+affecté car les chemins les plus lents vont ralentir le débit des
+chemins les plus rapides, ce qui, en contre partie, peut s'avérer
+moins performant qu'une simple connexion TCP.  Nous allons modifier
+l'ordonnanceur afin de garantir la répartition équitable des charges
+puis analyser l'influence de cette modification sur les performances
+de MPTCP dans les topologies réseaux utilisées précédemment.
+
+\subsection{Méthodes}
+\label{sec:charges:methodes}
+
+La réalisation du projet peut être subdivisé en trois parties :
+\begin{itemize}
+\item la simulation de réseaux à topologies différentes,
+\item l'analyse des performances de MPTCP,
+\item l'adaptation de l'ordonnanceur pour l'aspect sécurité.
+\end{itemize}
+
+Nous utiliserons Mininet afin de simuler les topologies réseaux où
+nous pourrons mesurer les performances de MPTCP à l'aide de l'API
+Python fournie par Mininet.  Pour caractériser l'influence de
+l'ordonnanceur sur les performances, nous utiliserons des réseaux
+simples où les différents sous-flots sont asymétriques et diffèrent
+par une propriété à la fois : latence, débit, pertes... Nous testerons
+différents algorithmes de répartition de charge entre sous-flots :
+l'algorithme implémenté par défaut (LIA), celui qui satisfait
+l'optimum de pareto par rapport aux objectifs de MPTCP, ou encore un
+algorithme de répartition équilibrée de la charge réseau entre les
+différents sous-flots.

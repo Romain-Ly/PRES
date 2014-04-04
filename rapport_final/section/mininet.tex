@@ -1,0 +1,39 @@
+\subsection{arguments mininet}
+\label{sec:annexe1:commentaires_argument}
+
+\begin{verbatim}
+usage: sudo mptc_khal.py [h] [--cli] --bw BW [--delay DELAY] [-n N] [-t T]
+                         [--mptcp] [--pause] [--ndiffports NDIFFPORTS]
+\end{verbatim}
+
+
+
+cf argument parser annexe.
+
+\subsubsection{ssh}
+\label{sec:annexe1:ssh}
+
+\begin{verbatim}
+usage: sudo mptc_khal.py --sshd
+\end{verbatim}
+
+Cette option lance le démon ssh dans chacun des n\oe uds avec la
+commande 
+\begin{verbatim}
+/usr/sbin/sshd -o UseDNS=no -u0
+\end{verbatim}. 
+
+Pour l'instant, seul la connexion à partir de root avec le premier
+hôte (172.16.0.1) fonctionne. En effet la résolution ARP échoue pour
+les autres hôtes (pas de paquets ARP reply en utilisant
+tcpdump).\\ 
+
+sur le n\oe ud root
+\begin{verbatim}
+tcpdump -i root-eth0 arp
+\end{verbatim}. 
+
+Cependant, il reste possible de se connecter aux autres hôtes par ssh
+via le premier hôte.
+
+\input{section/Argument_parser}

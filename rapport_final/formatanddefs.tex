@@ -1,0 +1,64 @@
+%// -*- coding: iso-8859-1 -*-
+
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{enumerate}
+\usepackage{cite}
+\usepackage[a4paper,pagebackref,hyperindex=true]{hyperref}
+\renewcommand{\FrenchLabelItem}{\textbullet}
+
+\usepackage[babel=true]{csquotes}
+\usepackage[T1]{fontenc}
+\usepackage{verbatim}
+\usepackage[normalem]{ulem}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+}%
+\item[]}
+{\end{list}}
+
+\newcommand{\fig}[1]{Fig.~\ref{#1}}
+\newcommand{\tup}[1]{\textup{#1}}
+
+
+%nicer backref links
+\renewcommand*{\backref}[1]{} \renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 %
+  (Non cité.)%
+  \or (Cité en page~#2.)%
+  \else (Cité en pages~#2.)%
+  \fi} \renewcommand*{\backrefsep}{, } \renewcommand*{\backreftwosep}{
+  et~} \renewcommand*{\backreflastsep}{ et~}
+
+% Links in pdf
+\usepackage[usenames]{color}%usenames permet d'utiliser les noms des couleurs 
+\definecolor{linkcol}{rgb}{0,0,0.4} 
+\definecolor{citecol}{rgb}{0.5,0,0} 
+\definecolor{indexcolor}{rgb}{0.8117,0.6941,0.86666} 
+
+% Change this to change the informations included in the pdf file
+
+\hypersetup
+{
+bookmarks=true
+bookmarksopen=true,
+bookmarksnumbered=true,
+pdftitle="MPTCP: Performances et optimisation de la sécurité avec un ordonnancement réparti dans les topologies virtualisées OpenFlow",
+pdfauthor="Romain Ly", %auteur du document
+pdfsubject="PRES", %sujet du document
+pdfkeywords={MPTCP}{canaux calciques de type T}{Purkinje}, %Mots clés
+pdfnewwindow={true},%Permet d'ouvrir une nouvelle page sur un lien internet
+%pdftoolbar=false, %barre d'outils non visible
+pdfmenubar=true, %barre de menu visible
+pdfhighlight=/O, %effet d'un clic sur un lien hypertexte
+colorlinks=true, %couleurs sur les liens hypertextes
+pdfpagemode=None, %aucun mode de page
+pdfpagelayout=SinglePage, %ouverture en simple page
+pdffitwindow=true, %pages ouvertes entierement dans toute la fenetre
+linkcolor=linkcol, %couleur des liens hypertextes internes
+citecolor=citecol, %couleur des liens pour les citations
+urlcolor=linkcol %couleur des liens pour les url
+}

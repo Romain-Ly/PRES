@@ -1,0 +1,16 @@
+
+
+\subsection{Topologies virtualisées}
+\label{sec:conce:topologiesvirt}
+
+L'expérimentation de MPTCP \emph{in situ} peut s'avérer difficile
+lorsqu'on ne connaît pas les chemins utilisés par les sous-flots.
+
+Mininet permet de créer un réseau virtuel pouvant utiliser un vrai
+noyau (ici celui de MPTCP) dans une seule machine. Le contrôlleur du
+réseau créé permettra d'utiliser au plein potentiel MPTCP. Il
+permettra à MPTCP d'utiliser au maximum les liens du réseau virtuel.
+
+Le noyau de MPTCP installé dans la machine tournant 
+
+

@@ -1,0 +1,28 @@
+
+\section{Plan de d\'eveloppement}
+\label{sec:plan:devt}
+
+
+\input{./section/plandev.tex}
+
+\section{Contexte technologique}
+\label{sec:etat-avancement}
+
+
+\section{Analyse}
+\label{sec:etat-avancement}
+
+
+\section{Conception}
+\label{sec:etat-avancement}
+
+
+\section{\'Etat d'avancement}
+\label{sec:etat-avancement}
+
+\subsection[Mise en place: mininet et MPTCP]{Mise en place: mininet et
+  MPTCP\footnote{par M. Ly}}
+\label{sec:perfo:mptcp}
+La compilation du noyau linux MPTCP (v0.88) dans une image VM de
+mininet (v2.10) a été réalisé
+

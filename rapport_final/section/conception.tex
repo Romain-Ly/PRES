@@ -1,0 +1,132 @@
+
+
+\subsection{Topologies virtualisées}
+\label{sec:conce:topologiesvirt}
+
+
+Nous allons simuler des topologies openFlow en utilisant mininet. Les
+switchs seront virtualisés par openvSwitch (OVS) qui est installé par
+défaut dans l'image mininet. Pour utiliser le multi chemin, le noyau de 
+MPTCP sera compilé dans la machine virtuelle et chaque hôte sera 
+configuré de manière adéquate pour pouvoir utiliser MPTCP.
+
+Nous créerons et testerons les topologies virtuelles grâce à l'API
+python.
+
+
+\subsubsection{Multi-chemins simple}
+\label{subsubsec:conception:multcihemin}
+La topologie simple est composée de deux hôtes et de N switchs. Les N
+switchs composeront les N chemins disponibles. Cette topologie simple
+servira principalement au test de fonctionnement de MPTCP.
+
+\subsubsection{FatTree}
+\label{subsubsec:conception:fatTree}
+
+
+Afin de tester MPTCP de manière réaliste, nous avons simulé une
+topologie FatTree, souvent utilisée dans les datacenters qui sont les
+premiers nécessiteux des performances offertes par MPTCP. Cette
+topologie repose sur le principe d'établir plusieurs liens physiques
+entre deux équipements réseau, en l'occurrence des switchs. Tous les
+switchs du réseau ont le même nombre de ports; ils sont organisés par
+couches : une couche \og coeur\fg{}, une couche \og frontière \fg{} et
+une couche \og hôtes\fg{}. Les couches hôtes et coeurs sont directement
+connectées à la couche frontière, mais pas entre elles. Chaque switch
+de la couche coeur est connecté à chaque switch de la couche frontière
+par de multiples liens. Le nombre de ports disponibles sur les
+switchs coeurs est équitablement réparti entre chaque switch
+frontière; ainsi, avec deux switchs coeurs et quatre switchs
+frontières à 36 ports, on disposera de 9 liens entre chaque paire de
+switchs de couches différentes. Le reste des ports disponibles sur
+les switchs frontières sont utilisés pour y connecter les hôtes, à
+raison d'un lien par hôte. Notons que deux équipements d'une même
+couche ne sont jamais interconnectés.
+
+
+\subsubsection{MPTCP vs TCP}
+\label{subsubsec:conception:MPTCPvsTCP}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../figures/khalili.jpg}
+  \caption{\textbf{Testbed MPTCP vs TCP\cite{pareto2013}}.}
+  \label{fig:khalili}
+\end{figure}
+
+Pour déterminer les critères à respecter de l'ordonnanceur (celui par
+défaut, ou l'OLIA) et conserver les principes de MPTCP (équitabilité
+avec les utilisateurs TCP et performances supérieures à TCP), nous
+allons reproduire le \emph{testbed} utilisé dans l'article de Khalili
+(\fig{fig:khalili}).
+
+
+Si nous pouvons reproduire les résultats obtenus par Khalili avec
+notre configuration, nous reproduirons le cas avec N1 utilisateurs
+MPTCP et N2 utilisateurs TCP (voir \fig{fig:khalili2}).
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../figures/khaliliB.jpg}
+  \caption{\textbf{Testbed MPTCP vs TCP\cite{pareto2013}}. Les N1
+    utilisateurs MPTCP (rouge) utilisent deux points d'accès pour se
+    connecter à un serveur distant dont un qui est partagé avec les N2
+    utilisateurs TCP (bleu).}
+  \label{fig:khalili2}
+\end{figure}
+
+\subsection{Performances de MPTCP}
+\label{sec:conce:perfMPTCP}
+
+Pour mesurer les performances de MPTCP, nous allons faire varier les
+propriétés de chaque sous-flot emprunté en modifiant les chemins de
+manière asymétrique. Le but est de créer des conditions de stress
+qu'on pourra tester à la volée avec les différents algorithmes gérant
+MPTCP (celui par défaut, l'OLIA et le notre si celui-ci est
+opérationnel) et sur les différentes topologies virtuelles construites.
+
+Les contraintes appliquées auront comme critères la latence (critère
+actuellement privilégié par l'ordonnanceur pour les choix de
+sous-flots), la capacité, le taux d'erreurs, la gigue, etc. Nous
+testerons quelle est l'influence de ces paramètres sur le choix des
+sous-flots par l'ordonnanceur.
+
+\subsection{Conception algorithme sécurisé}
+\label{sec:conc:algosec}
+
+Le but est de rendre une connexion plus sécurisée par la complexité de
+l'analyse des paquets de données échangés entre deux
+utilisateurs. Nous chercherons à faire une méthode simple et non
+performante pour effectuer des tests et savoir comment MPTCP réagit au
+nouvel algorithme de répartition des paquets dans les sous-flots
+TCP. Cette méthode consiste à prendre le nombre de sous-flots total et
+de répartir les segments équitablement entre les différents
+sous-flots. Le débit de chaque sous-flot correspondra au débit le plus
+faible des sous-flots.  Cela reste une solution de l'objectif noté
+dans le cahier des charges.
+
+Néanmoins il sera nécessaire d'avoir un algorithme plus
+intelligent. En effet, il est nécessaire d'avoir un meilleur
+algorithme que celui expliqué ci-dessus car la performance
+pourrait être grandement affecté. Le débit pourrait être bien plus
+faible qu'une connexion TCP classique sur le meilleur des chemins si
+un des chemins a un débit beaucoup plus faible ou s'il est
+congestionné. Or même si nous voulons accroître la sécurité il est
+préférable d'avoir au moins le débit d'une connexion TCP simple. La
+difficulté dans cette partie est de pouvoir adapter l'ordonnanceur
+selon le nombre de sous-flots disponibles. Une idée serait de répartir
+les charges de manière à que l'ordonnanceur de paquets n'envoie plus
+de 50~+~$\varepsilon$~\% des segments à un unique sous-flot. Ce nombre
+pourrait être variable selon d'autres paramètres comme le nombre de
+sous-flots disponibles.
+
+
+\subsection{Test de l'algorithme d'ordonnancement}
+\label{sec:conc:ealgo}
+L'écriture et le test de l'algorithme d'ordonnancement dans le noyau
+linux peut s'avérer une tâche difficile en si peu de temps. Pour
+tester la validité de notre algorithme d'ordonnancement, nous
+réfléchissons à effectuer d'abord un \emph{proof of concept} en
+utilisant directement python qui utilisera des fonctions de
+\emph{callback} pour certaines fonctions du noyau nécessaire à
+MPTCP. On utilisera alors UDP pour la transmission des données.

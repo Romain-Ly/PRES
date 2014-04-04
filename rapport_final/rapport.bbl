@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{rfc6182}
+A.~Ford, C.~Raiciu, M.~Handley, S.~Barre, and J.~Iyengar, ``Architectural
+  guidelines for multipath tcp development,'' {\em RFC 6182}, March 2011.
+
+\bibitem{rfc6824}
+A.~Ford, C.~Raiciu, M.~Handley, and O.~Bonaventure, ``Tcp extensions for
+  multipath operation with multiple addresses,'' {\em RFC 6824}, January 2013.
+
+\bibitem{coudroncross2013}
+M.~Coudron, S.~Secci, G.~Pujolle, P.~Raad, and P.~Gallard, ``Cross-layer
+  cooperation to boost multipath tcp performance in cloud networks,'' in {\em
+  Cloud Networking (CloudNet), 2013 IEEE 2nd International Conference on},
+  pp.~58--66, IEEE, 2013.
+
+\bibitem{pareto2013}
+R.~Khalili, N.~Gast, M.~Popovic, U.~Upadhya, and J.-Y. Le~Boudec, ``Mptcp is
+  not pareto-optimal: Performance issues and a possible solution,'' {\em
+  Networking, IEEE/ACM Transactions on}, vol.~21, no.~5, pp.~1651--1665, 2013.
+
+\bibitem{rfcsctp}
+R.~Stewart, ``Stream control transmission protocol,'' {\em RFC 4960}, September
+  2007.
+
+\bibitem{rfcecmp}
+D.~Thaler, Microsoft, C.~Hopps, and N.~Technologies, ``Multipath issues in
+  unicast and multicast next-hop selection,'' {\em RFC 2991}, November 2000.
+
+\bibitem{rfc6356}
+C.~Raiciu, M.~Handly, and D.~Wischik, ``Coupled congestion control for
+  multipath transport protocols,'' {\em RFC 6356}, October 2011.
+
+\bibitem{raiciu2010}
+C.~Raiciu, C.~Pluntke, S.~Barre, A.~Greenhalgh, D.~Wischik, and M.~Handley,
+  M.ndley, ``Data center networking with multipath tcp,'' in {\em Proceedings
+  of the 9th ACM SIGCOMM}, pp.~58--66, IEEE, 2010.
+
+\end{thebibliography}

@@ -1,0 +1,63 @@
+\subsection[Outil de coordination: git]{Outil de coordination: git}
+\label{subsec:etatavanc:git}
+L'état des scripts utilisées par l'équipe est mise à jour par un
+système de version utilisant git
+\url{https://github.com/Romain-Ly/PRES}.
+
+\subsection[Compilation MPTC]{Compilation MPTCP\footnote{par M. Ly}}
+\label{subsec:etatavanc:mininet-mptcp}
+
+La mise en place du noyau linux MPTCP (v0.88) dans une VM de mininet
+(v2.10) est à 100~\% terminé.
+
+Les paquets debian pour l'installation du noyau MTPCP sur une VM de
+mininet est disponible :
+(\url{https://www.dropbox.com/sh/y4ykck8rg6908ps/7V3lsV6Ggg}).
+
+Pour tester la réussite de l'installation, une topologie deux hôtes et
+n switchs a été utilisé. L'utilisation de MPTCP montre un débit
+supérieur lorsque l'on compare à la même expérience où MPTCP a été
+désactivé dans le noyau.
+
+\subsection[FatTree]{FatTree\footnote{par M. Ravier}}
+\label{subsec:etatavanc:fattree}
+Chargé de la conception du réseau de test, ma première préoccupation a
+été de maîtriser Mininet. Après documentation, je me suis penché sur
+l'API Python offert par cet outil. Après cette prise en main
+concrétisée par quelques tests de connectivité sur des topologies
+simples, j'ai commencé à coder ma propre topologie, un FatTree à 2
+niveaux avec des switches à 36 ports. N'ayant pas trouvé de définition
+formelle du FatTree, je me suis contenté d'une instance particulière,
+relativement simple mais permettant tout de même à MPTCP d'emprunter
+plusieurs sous-flots différents pour se rendre d'un hôte à l'autre.
+Suite au travail de Romain, la prochaine tâche sera d'installer le
+noyau MPTCP sur la machine virtuelle Mininet, de le configurer, puis
+faire en sorte qu'il soit correctement utilisé dans notre réseau
+FatTree. J'effectuerai ensuite plusieurs tests de performance sur
+cette topologie, probablement en collaboration avec Romain.
+
+\subsection[Topologies virtualisées]{Topologies
+  virtualisées\footnote{par M. Ly}}
+\label{subsec:etatavanc:topologgie}
+
+J'ai reproduit la topologie où MPTCP est en concurrence avec un flux
+TCP \cite{pareto2013}. Il reste à établir les tables de routage de
+chaque hôte pour pouvoir tester les performances de MPTCP.
+
+
+\subsection[Code MPTCP]{Code MPTCP\footnote{par M. Lam
+    et M. Dubois}}
+\label{subsec:etatavanc:mininet-mptcp}
+
+Nous avons regardé les fichiers de MPTCP pour avoir une vision globale
+de l'implémentation dans le noyau linux et essayer de déterminer les
+fichiers qui concernent l'ordonnancement des sous-flux.  Nous avons
+ensuite essayé de déterminer où nous pouvions modifier le code afin
+d'adapter l'ordonnanceur aux besoins du projet. Nous avons avancé sur
+cette phase de compréhension du code mais il nous reste toujours à
+savoir où nous pouvons modifier le code sans rendre MPTCP non
+fonctionnel ou non performant. Pour cela, il faudra tester sur des
+topologies virtuelles simples et comparer les différences de
+performances. Bien sûr, dans les tests nous ne codons que des
+ordonnanceurs idiots : ils effectueront uniquement une répartition
+équitable des sous-flux sachant qu'ils ont tous le même débit.

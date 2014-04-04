@@ -1,0 +1,19 @@
+\subsection{Argument Parser}
+\label{sec:annexe1:mininetParserargs}
+
+\begin{verbatim}
+usage: sudo mptc_khal.py [h] [--cli] --bw BW [--delay DELAY] [-n N] [-t T]
+                         [--mptcp] [--pause] [--ndiffports NDIFFPORTS]
+\end{verbatim}
+
+\textbf{\large Description}
+\vspace{0.5cm}
+
+\begin{tabular}{ll}
+\textbf{-\,-cli}&passe en mode\emph{command line interface} avant le lancement de l'expérience\\
+
+\textbf{-\,-sshd}&lance sshd sur chaque hôte. Connexion du réseau à l'espace de nom de la racine.\\
+
+
+
+\textbf{-\,-delay} \uline{delai}:&fixe le délai de tous les liens\\
