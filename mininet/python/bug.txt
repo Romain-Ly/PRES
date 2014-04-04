@@ -1,0 +1,7 @@
+relatif à mininet :
+
+- pas possible de créer deux liens entre les mêmes hôtes et/ou switches avec la topologie (utilisation de la class mininet)
+
+- noms des hôtes et switches doit être courts
+
+- 

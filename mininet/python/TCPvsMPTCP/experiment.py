@@ -2,118 +2,37 @@ from mininet.log import lg
 from parser import progress
 from time import sleep
 
-def tcpVSmptcp(args, net):
-    seconds = int(args.t)
+#sudo python ./mptcp_khal.py --bw 10 --mptcp -n 2
 
-    sd_name=args.names.sender[0]
-    rv_name=args.names.receiver[0]
-    sender = net.getNodeByName(sd_name)
-    receiver = net.getNodeByName(rv_name)
-    
-    tcp_sender = net.getNodeNyName(arg.names.tcp_sender[0])
-    tcp_receiver = net.getNodeNyName(arg.names.tcp_receiver[0])
-
-    
-    for i in range(args.n):
-        # Setup IPs:
-        sd_dev = sd_name + '-eth%i' % i
-        rv_dev = rv_name + '-eth%i' % i
-
-        sender.cmdPrint('ifconfig ' + sd_dev + ' 10.0.%i.3 netmask 255.255.255.0' %  i)
-        receiver.cmdPrint('ifconfig ' + rv_dev + ' 10.0.%i.4 netmask 255.255.255.0' %  i)
-
-
-        print("-------debug-------")
-        print(sd_dev)
-        print(rv_dev)
-
-        receiver.cmdPrint('ifconfig ' + rv_dev)
-        sender.cmdPrint('ifconfig ' + sd_dev)
-        print("-------/debug-------")
-
-        if args.mptcp:
-            lg.info("configuring source-specific routing tables for MPTCP\n")
-            # This creates two different routing tables, that we use based on the
-
-            table = '%s' % (i + 1)
-            sender.cmdPrint('ip rule add from 10.0.%i.3 table %s' % (i, table))
-            sender.cmdPrint('ip route add 10.0.%i.0/24 dev %s scope link table %s' % (i, sd_dev, table))
-            sender.cmdPrint('ip route add default via 10.0.%i.1 dev %s table %s' % (i, sd_dev, table))
-
-    # TODO: expand this to verify connectivity with a ping test.
-    lg.info("pinging each destination interface\n")
-    for i in range(args.n):
-        receiver_out = receiver.cmd('ping -c 1 10.0.%i.3' % i)
-        lg.info("ping test output: %s\n" % receiver_out)
-
-    lg.info("iperfing")
-    receiver.sendCmd('iperf -s -i 1')
-#    receiver.sendCmd('iperf -s -u -i 1')
-
-    cmd = 'iperf -c 10.0.0.4 -t %d -i 1' % seconds
- #   cmd = 'iperf -c 10.0.0.4 -t %d -i 1' % seconds
-    sender.sendCmd(cmd)
-    progress(seconds + 1)
-    sender_out = sender.waitOutput()
-    lg.info("client output:\n%s\n" % sender_out)
-    sleep(0.1)  # hack to wait for iperf server output.
-    out = receiver.read(10000)
-    lg.info("server output: %s\n" % out)
-    return None
 
 
 def test(args, net):
+    print('-------------------Test Begin---------------------')
     seconds = int(args.t)
+    sd_name=args.names.client[0]
+    rv_name=args.names.server[0]
+    client = net.getNodeByName(sd_name)
+    server = net.getNodeByName(rv_name)
 
-    print(args.names.sender[0])
-    print(args.names.receiver[0])
-    sd_name=args.names.sender[0]
-    rv_name=args.names.receiver[0]
-    sender = net.getNodeByName(sd_name)
-    receiver = net.getNodeByName(rv_name)
-    
-    for i in range(args.n):
-        # Setup IPs:
-        sd_dev = sd_name + '-eth%i' % i
-        rv_dev = rv_name + '-eth%i' % i
-
-        sender.cmdPrint('ifconfig ' + sd_dev + ' 10.0.%i.3 netmask 255.255.255.0' %  i)
-        receiver.cmdPrint('ifconfig ' + rv_dev + ' 10.0.%i.4 netmask 255.255.255.0' %  i)
-
-
-        print("-------debug-------")
-        print(sd_dev)
-        print(rv_dev)
-
-        receiver.cmdPrint('ifconfig ' + rv_dev)
-        sender.cmdPrint('ifconfig ' + sd_dev)
-        print("-------/debug-------")
-
-        if args.mptcp:
-            lg.info("configuring source-specific routing tables for MPTCP\n")
-            # This creates two different routing tables, that we use based on the
-
-            table = '%s' % (i + 1)
-            sender.cmdPrint('ip rule add from 10.0.%i.3 table %s' % (i, table))
-            sender.cmdPrint('ip route add 10.0.%i.0/24 dev %s scope link table %s' % (i, sd_dev, table))
-            sender.cmdPrint('ip route add default via 10.0.%i.1 dev %s table %s' % (i, sd_dev, table))
-
-    # TODO: expand this to verify connectivity with a ping test.
     lg.info("pinging each destination interface\n")
     for i in range(args.n):
-        receiver_out = receiver.cmd('ping -c 1 10.0.%i.3' % i)
-        lg.info("ping test output: %s\n" % receiver_out)
+        server_out = server.cmd('ping -c 1 172.16.%i.2' % i)
+        lg.info("ping test output: %s\n" % server_out)
 
     lg.info("iperfing")
-    receiver.sendCmd('iperf -s -i 1')
+    server.sendCmd('iperf -s -i 1')
     
 
-    cmd = 'iperf -c 10.0.0.4 -t %d -i 1' % seconds
-    sender.sendCmd(cmd)
+    cmd = 'iperf -c 172.16.0.2 -t %d -i 1' % seconds
+    client.sendCmd(cmd)
     progress(seconds + 1)
-    sender_out = sender.waitOutput()
-    lg.info("client output:\n%s\n" % sender_out)
+    client_out = client.waitOutput()
+    lg.info("client output:\n%s\n" % client_out)
     sleep(0.1)  # hack to wait for iperf server output.
-    out = receiver.read(10000)
+    out = server.read(10000)
     lg.info("server output: %s\n" % out)
+
+    print('-------------------Test End---------------------')
+
     return None
+

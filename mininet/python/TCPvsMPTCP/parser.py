@@ -34,21 +34,69 @@ def sysctl_set(key, value):
 def set_mptcp_enabled(enabled):
     """Enable MPTCP if true, disable if false"""
     e = 1 if enabled else 0
-    lg.info("setting MPTCP enabled to %s\n" % e)
+    lg.info("***** setting MPTCP enabled to %s\n *****" % e)
     sysctl_set('net.mptcp.mptcp_enabled', e)
+
+def set_args(args):
+    #--cli
+    args.cli =1 if args.cli else 0
+
+    #--sshd
+    if args.sshd:
+         args.cli = True
+    args.sshd =1 if args.sshd else 0 #active cli par defaut
+
+    #verbose
+    args.verbose = 1 if args.verbose else 0
+        
+"""
+def set_CLI(args):
+    args.cli =1 if args.cli else 0
+
+def set_sshd(args):
+    if args.sshd :
+         args.cli = True
+    args.sshd =1 if args.sshd else 0 #active cli par defaut
+"""
 
 
 def set_mptcp_ndiffports(ports):
     """Set ndiffports, the number of subflows to instantiate"""
-    lg.info("setting MPTCP ndiffports to %s\n" % ports)
+    lg.info("***** setting MPTCP ndiffports to %s\n *****" % ports)
     sysctl_set("net.mptcp.mptcp_ndiffports", ports)
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="MPTCP 2-host n-switch test")
+    parser = argparse.ArgumentParser(description="MPTCP 2-host n-switch test"
+)
+    parser.add_argument('--verbose','-v',
+                        action="store_true",
+                        help="verbose",
+                        required=False,
+                        default =False)
+
+
+    parser.add_argument('--sshd',
+                        action="store_true",
+                        help="Launch sshd on all hosts",
+                        required=False,
+                        default =False)
+
+    parser.add_argument('--cli',
+                        action="store_true",
+                        help="Launch CLI",
+                        required=False,
+                        default =False)
+
+
     parser.add_argument('--bw', '-B',
                         action="store",
                         help="Bandwidth of links",
                         required=True)
+
+    parser.add_argument('--delay', '-D',
+                        action="store",
+                        help="Delay of links : --delay 10ms",
+                        default='10ms')
     
     parser.add_argument('-n',
                         action="store",
@@ -77,6 +125,7 @@ def parse_args():
 
     args = parser.parse_args()
     args.bw = float(args.bw)
+    args.delay=str(args.delay)
     args.n = int(args.n)
     args.ndiffports = int(args.ndiffports)
     return args
@@ -85,10 +134,15 @@ def parse_args():
 def setup(args):
     set_mptcp_enabled(args.mptcp)
     set_mptcp_ndiffports(args.ndiffports)
+#    set_sshd(args)
+ #   set_CLI(args)
+    set_args(args)#ssd,cli,verbose
+
 
 def end(args):
     set_mptcp_enabled(False)
     set_mptcp_ndiffports(1)
+
 
 def set_names(args,topo):
     args.names=topo.names

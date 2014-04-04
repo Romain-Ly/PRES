@@ -102,7 +102,8 @@ def run(args, net):
     seconds = int(args.t)
     h1 = net.getNodeByName('h1')
     h2 = net.getNodeByName('h2')
-
+    for host in net.hosts:
+        print host,host.IP()
     for i in range(args.n):
         # Setup IPs:
         h1.cmdPrint('ifconfig h1-eth%i 10.0.%i.3 netmask 255.255.255.0' % (i, i))
@@ -135,6 +136,10 @@ def run(args, net):
     sleep(0.1)  # hack to wait for iperf server output.
     out = h2.read(10000)
     lg.info("server output: %s\n" % out)
+
+    h1.cmdPrint('ifconfig')
+    print h1.IP()
+
     return None
 
 
