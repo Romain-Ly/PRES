@@ -4,7 +4,7 @@
 from parser import *
 from khalili_topo import *
 from khalili_options import *
-from experiment import *
+#from experiment import *
 
 from mininet.node import OVSKernelSwitch as Switch
 from mininet.util import makeNumeric, custom
@@ -17,7 +17,7 @@ from mininet.log import lg
 def set_IP(args,net):
 
     print
-    lg.info("**********************set IP**********************\n")
+    lg.info("**************************** set IP ****************************\n")
     sd_name=args.names.client[0]
     rv_name=args.names.server[0]
     client = net.getNodeByName(sd_name)
@@ -64,94 +64,83 @@ def set_IP(args,net):
             
     for host in net.hosts:
         print host,host.IP()        
-    lg.info("**********************/set IP**********************\n")
-    print
-
-def set_TC(args,net):
     
-    ct_name=args.names.client[0]
-    sv_name=args.names.server[0]
-    client = net.getNodeByName(args.names.client[0])
-    server = net.getNodeByName(args.names.server[0])
-
-    eth_dev= "-eth1" 
-    ct_dev = ct_name + eth_dev
-
-    print
-
-    lg.info("**********************set tc**********************\n")
-
-    lg.info('%s\n' %ct_dev)
-
-    client.cmdPrint('tc qdisc del dev %s root' %ct_dev)
-    client.cmdPrint('tc qdisc add dev %s root netem delay 200ms' %ct_dev)
-    client.cmdPrint('tc -s qdisc ls dev %s' %ct_dev)
-            
-
-    lg.info("**********************/set tc**********************\n")    
-
     print
 
 
 
-def test_MPTCP(args,topo,setup,run,end):
+
+def run_MPTCP(args,topo,setup,run,end):
     #set basic link properties
     #TCLink = symetric interfaces
     link = custom(TCLink,bw=args.bw,delay=args.delay)
 
     net = Mininet(topo=topo, switch=Switch, link=link)
     
-    #change of topology required here for multiple links between two node (khalili_topo.py)
-
     #setup args from parser
     setup(args) 
 
     #get arguments from class top and put them in args
     set_names(args,topo)
 
+    #modification of topology (add new links, ...)
     net = khalili2_test_options(args,net)
 
     #set ip @
     set_IP(args,net)
-    set_TC(args,net)
+    if args.tc:
+        set_TC(args,net)
 
     #-- ssh (khalili_options.py) create root and make a link to a swtich
     if args.sshd:
         sshd_RootIntf=sshd_connectToRootNS(args,net)
 
-    #creation of class mininet object
+#********************************************************************
+#creation of class mininet object
     net.start()
+#********************************************************************
 
     #-- ssh (khalili_options.py) launch ssd in each host
     if args.sshd:
         sshd_start(args,net,sshd_RootIntf)
 
+    #tcpdump
+    if args.dump:
+        tcpdump_start(args,net)
+
     #-- cli
     if args.cli:
         print("********************** CLI **********************\n")
         CLI(net)
-        print("********************** /CLI **********************\n")
 
-    if args.pause:
-        print "press enter to run test"
-        raw_input()
 
     data = run(args, net)#Run functions in experiment.py
+
     if args.pause:
-        print "press enter to finish test"
+        print "press enter to end experiment"
         raw_input()
- 
+
+  
+    output_name=["_server","_client"]
+    if args.file_write:
+        for i in range(2):
+            f=open(args.file+output_name[i],'w')
+            f.write(data[i])
+            f.close()
+
+    if args.sshd: #kill sshd
+        sshd_stop(net)
 
     net.stop()
     end(args)
+
     return data
 
 def main():
     args = parse_args()
     lg.setLogLevel('info')
     topo = khalili2_test()
-    test_MPTCP(args,topo,setup,test,end) #launch Test
- 
-
+    data=run_MPTCP(args,topo,setup,test,end) #launch Test
+        
 if __name__ == '__main__':
     main()

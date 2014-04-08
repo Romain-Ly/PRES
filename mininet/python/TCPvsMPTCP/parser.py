@@ -41,24 +41,33 @@ def set_args(args):
     #--cli
     args.cli =1 if args.cli else 0
 
+    #pause
+    args.pause = 1 if args.pause else 0
+    
+    #tc
+    args.tc =1 if args.tc else 0
+
     #--sshd
     if args.sshd:
-         args.cli = True
+         args.cli = 1
+         args.pause =1
     args.sshd =1 if args.sshd else 0 #active cli par defaut
 
     #verbose
     args.verbose = 1 if args.verbose else 0
+
+    #csv
+    args.csv = 1 if args.csv else 0
         
-"""
-def set_CLI(args):
-    args.cli =1 if args.cli else 0
-
-def set_sshd(args):
-    if args.sshd :
-         args.cli = True
-    args.sshd =1 if args.sshd else 0 #active cli par defaut
-"""
-
+    #file
+    if len(args.file)>0:
+        args.file_write=True
+    else:
+        args.file_write=False
+        
+    #tcpdump
+    args.dump = 1 if args.dump else 0
+        
 
 def set_mptcp_ndiffports(ports):
     """Set ndiffports, the number of subflows to instantiate"""
@@ -73,7 +82,13 @@ def parse_args():
                         help="verbose",
                         required=False,
                         default =False)
-
+    
+    parser.add_argument('--tc',
+                        action="store_true",
+                        help="use set TC functions",
+                        required=False,
+                        default =False)
+    
 
     parser.add_argument('--sshd',
                         action="store_true",
@@ -87,6 +102,30 @@ def parse_args():
                         required=False,
                         default =False)
 
+    parser.add_argument('--csv',
+                        action="store_true",
+                        help="report iperf in csv",
+                        required=False,
+                        default =False)
+
+    parser.add_argument('--dump',
+                        action="store_true",
+                        help="launch tcpdump",
+                        required=False,
+                        default=False)
+
+
+    parser.add_argument('--open', '-O',
+                        action="store",
+                        help="Experiment python File",
+                        required=False,
+                        default="experiment.py")
+
+    parser.add_argument('--file', '-F',
+                        action="store",
+                        help="Output File",
+                        required=False,
+                        default="")
 
     parser.add_argument('--bw', '-B',
                         action="store",
@@ -134,9 +173,7 @@ def parse_args():
 def setup(args):
     set_mptcp_enabled(args.mptcp)
     set_mptcp_ndiffports(args.ndiffports)
-#    set_sshd(args)
- #   set_CLI(args)
-    set_args(args)#ssd,cli,verbose
+    set_args(args)#ssd,cli,verbose, csv,pause,tc
 
 
 def end(args):
