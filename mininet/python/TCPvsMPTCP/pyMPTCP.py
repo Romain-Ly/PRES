@@ -156,7 +156,7 @@ def main():
     #setup args from parser
     setup(args) 
 
-    exp = importlib.import_module(args.open,package="experiment")
+    exp = importlib.import_module("."+args.open,package="experiment")
 
     lg.setLogLevel('info')
     topo = khalili2hosts()

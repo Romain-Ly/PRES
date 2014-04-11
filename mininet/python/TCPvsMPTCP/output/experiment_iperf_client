@@ -1,0 +1,13 @@
+tcpdump: listening on h1-eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
+tcpdump: listening on h1-eth1, link-type EN10MB (Ethernet), capture size 65535 bytes
+WARNING: attempt to set TCP maximum segment size to 1460, but got 536
+------------------------------------------------------------
+Client connecting to 172.16.0.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  3] local 172.16.0.1 port 41727 connected with 172.16.0.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec  1.25 MBytes  10.5 Mbits/sec
+[  3]  1.0- 2.0 sec  1.38 MBytes  11.5 Mbits/sec
+[  3]  0.0- 2.2 sec  2.75 MBytes  10.5 Mbits/sec
+[  3] MSS size 1448 bytes (MTU 1500 bytes, ethernet)

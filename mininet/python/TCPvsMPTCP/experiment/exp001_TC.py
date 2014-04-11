@@ -19,10 +19,11 @@ def set_TC(args,net):
 
 
     lg.info("****************************  set tc ****************************\n")
-
+    print "arg:"
+    print args.arg1
     lg.info('%s\n' %ct_dev)
     client.cmdPrint('tc qdisc del dev %s root' %ct_dev)
-    client.cmdPrint('tc qdisc add dev %s root netem delay 300ms' %ct_dev)
+    client.cmdPrint('tc qdisc add dev %s root netem delay %s' %(ct_dev,args.arg1))
     client.cmdPrint('tc -s qdisc ls dev %s' %ct_dev)
 
     print
@@ -32,15 +33,27 @@ def set_TC(args,net):
 def test(args, net):
     print('-------------------Test Begin---------------------')
     seconds = int(args.t)
-    sd_name=args.names.client[0]
-    rv_name=args.names.server[0]
-    client = net.getNodeByName(sd_name)
-    server = net.getNodeByName(rv_name)
+    ct_name=args.names.client[0]
+    sv_name=args.names.server[0]
+    client = net.getNodeByName(ct_name)
+    server = net.getNodeByName(sv_name)
 
     lg.info("pinging each destination interface\n")
     for i in range(args.n):
-        client.cmd('ping -c 1 172.16.%i.2' % i)
+        opts = "-DAq "
+        n = "500" # ping
+        out_ping=client.cmdPrint('ping %s -c %s 172.16.%i.2' % (opts,n,i))
         
+       # lg.info("ping test output: %s\n" % out_ping)
+        
+        ip='172.16.%i.2'%i
+        g=open(args.output + args.prepend + '_'+ "ping_"+ip,'w')
+        g.write(out_ping)
+        g.close()
+
+
+
+
     lg.info("iperfing")
     #iperf options
     #-i report time interval

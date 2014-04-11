@@ -1,0 +1,12 @@
+2006
+WARNING: attempt to set TCP maximum segment size to 1460, but got 536
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 172.16.0.2 port 5001 connected with 172.16.0.1 port 41727
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0- 1.0 sec  1.07 MBytes  9.00 Mbits/sec
+[  4]  1.0- 2.0 sec  1.12 MBytes  9.44 Mbits/sec
+[  4]  0.0- 2.5 sec  2.75 MBytes  9.26 Mbits/sec
+[  4] MSS size 1428 bytes (MTU 1500 bytes, ethernet)

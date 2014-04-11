@@ -143,7 +143,14 @@ def parse_args():
 
     parser.add_argument('--prepend',
                         action="store",
-                        help="prepend name for output files",
+                        help="prepend sting for output files names",
+                        required=False,
+                        default="")
+
+
+    parser.add_argument('--postpend',
+                        action="store",
+                        help="postpend string for output files names",
                         required=False,
                         default="")
 
@@ -192,6 +199,39 @@ def parse_args():
                         action="store",
                         help="Set # subflows (net.mptcp.mptcp_ndiffports)",
                         default=1)
+
+    parser.add_argument('--arg1',
+                        action="store",
+                        help="optional argument 1",
+                        required=False,
+                        default="")
+
+    parser.add_argument('--arg2',
+                        action="store",
+                        help="optional argument 2",
+                        required=False,
+                        default="")
+
+    parser.add_argument('--arg3',
+                        action="store",
+                        help="optional argument 3",
+                        required=False,
+                        default="")
+
+    parser.add_argument('--arg4',
+                        action="store",
+                        help="optional argument 4",
+                        required=False,
+                        default="")
+
+    parser.add_argument('--arg5',
+                        action="store",
+                        help="optional argument 5",
+                        required=False,
+                        default="")
+
+
+
 
     args = parser.parse_args()
     args.bw = float(args.bw)
