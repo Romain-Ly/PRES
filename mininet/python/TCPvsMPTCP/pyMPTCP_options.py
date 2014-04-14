@@ -78,16 +78,17 @@ def tcpdump_start(args,net):
 
 	cmd = 'tcpdump'
 
+
 	print("**********************set tcpdump**********************\n")
 	for j in range(args.n):
 		eth_dev= "-eth%i" %j
 		client_if  = args.names.client[0] + eth_dev
-		client_filename = args.output + args.prepend + '_tcpdump_' + client_if + '.pcap'
+		client_filename = args.output + args.prepend + '_tcpdump_' + client_if + args.shark
 
 		client_cmd = cmd + ' -i ' + client_if + ' -w ' + client_filename  + ' &' 
 
 		server_if  = args.names.server[0] + eth_dev
-		server_filename = args.output + args.prepend + '_tcpdump_' + server_if + '.pcap'
+		server_filename = args.output + args.prepend + '_tcpdump_' + server_if + args.shark
 
 		server_cmd = cmd + ' -i ' + server_if + ' -w ' + server_filename + ' &'
 
@@ -143,6 +144,12 @@ def bwm_stop():
 	print cmd
 	call(cmd,shell=True)
 
+def iperf_output(args,data):
+    output_name=["_server","_client"]
+    for i in range(2):
+        f=open(args.output + args.prepend + '_'+ args.file+output_name[i],'w')
+        f.write(data[i])
+        f.close()
 
 def iperf_stop():
 	print("-----kill iperf-----")

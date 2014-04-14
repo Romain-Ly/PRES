@@ -76,8 +76,15 @@ def set_args(args):
     else:
         args.file_write=False
         
+
+
     #tcpdump
-    args.dump = 1 if args.dump else 0
+    if args.shark:
+        args.dump=1
+        args.shark=".pcap"
+    else:
+        args.dump = 1 if args.dump else 0
+        args.shark=""
 
     #bwm-ng
     args.bwm_ng = 1 if args.bwm_ng else 0
@@ -128,6 +135,13 @@ def parse_args():
                         required=False,
                         default=False)
 
+    parser.add_argument('--shark',
+                        action="store_true",
+                        help="like dump but pcap output",
+                        required=False,
+                        default=False)
+
+
     parser.add_argument('--bwm_ng',
                         action="store_true",
                         help="launch bwm-ng on host interfaces",
@@ -146,7 +160,6 @@ def parse_args():
                         help="prepend sting for output files names",
                         required=False,
                         default="")
-
 
     parser.add_argument('--postpend',
                         action="store",

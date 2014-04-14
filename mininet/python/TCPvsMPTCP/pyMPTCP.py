@@ -136,19 +136,15 @@ def run_MPTCP(args,topo,exp,end):
         raw_input()
 
     #write iperf output
-    output_name=["_server","_client"]
     if args.file_write:
-        for i in range(2):
-            f=open(args.output + args.prepend + '_'+ args.file+output_name[i],'w')
-            f.write(data[i])
-            f.close()
+        iperf_output(args,data)
 
     kill_daemons(args,net)
 
     net.stop()
     end(args)
 
-    return data
+    return None
 
 def main():
     args = parse_args()
@@ -161,7 +157,7 @@ def main():
     lg.setLogLevel('info')
     topo = khalili2hosts()
 
-    data = run_MPTCP(args,topo,exp,end) #launch Test
+    run_MPTCP(args,topo,exp,end) #launch Test
         
 if __name__ == '__main__':
     main()

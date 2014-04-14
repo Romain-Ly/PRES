@@ -1,0 +1,11 @@
+WARNING: attempt to set TCP maximum segment size to 1460, but got 536
+------------------------------------------------------------
+Client connecting to 172.16.0.2, TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  3] local 172.16.0.1 port 33794 connected with 172.16.0.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec  2.75 MBytes  23.1 Mbits/sec
+[  3]  1.0- 2.0 sec  2.38 MBytes  19.9 Mbits/sec
+[  3]  0.0- 2.1 sec  5.25 MBytes  20.8 Mbits/sec
+[  3] MSS size 1448 bytes (MTU 1500 bytes, ethernet)

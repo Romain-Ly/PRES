@@ -1,0 +1,4 @@
+%// -*- coding: iso-8859-1 -*-
+\section{Plan de d\'eveloppement}
+\label{sec:plan:devt}
+\input{./section/plandev.tex}

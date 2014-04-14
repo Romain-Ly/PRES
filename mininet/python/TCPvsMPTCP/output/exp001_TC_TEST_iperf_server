@@ -1,0 +1,14 @@
+tcpdump: ./output/exp001_TC_TEST_tcpdump_sv_mp1-eth0: Permission denied
+tcpdump: ./output/exp001_TC_TEST_tcpdump_sv_mp1-eth1: Permission denied
+10745
+WARNING: attempt to set TCP maximum segment size to 1460, but got 536
+------------------------------------------------------------
+Server listening on TCP port 5001
+TCP window size: 85.3 KByte (default)
+------------------------------------------------------------
+[  4] local 172.16.0.2 port 5001 connected with 172.16.0.1 port 33794
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0- 1.0 sec  2.05 MBytes  17.2 Mbits/sec
+[  4]  1.0- 2.0 sec  2.25 MBytes  18.8 Mbits/sec
+[  4]  0.0- 2.4 sec  5.25 MBytes  18.1 Mbits/sec
+[  4] MSS size 1428 bytes (MTU 1500 bytes, ethernet)

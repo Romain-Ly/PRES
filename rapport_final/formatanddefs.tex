@@ -11,6 +11,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{verbatim}
 \usepackage[normalem]{ulem}
+\usepackage{xspace}
 
 \newenvironment{changemargin}[2]{%
 \begin{list}{}{%
@@ -22,7 +23,15 @@
 
 \newcommand{\fig}[1]{Fig.~\ref{#1}}
 \newcommand{\tup}[1]{\textup{#1}}
+\newcommand{\lunder}{\underline{\hspace*{0.5cm}}}
 
+%Table 
+% \usepackage{array,multirow,makecell}
+% \setcellgapes{1pt}
+% \makegapedcells
+% \newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+% \newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+% \newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
 
 %nicer backref links
 \renewcommand*{\backref}[1]{} \renewcommand*{\backrefalt}[4]{%

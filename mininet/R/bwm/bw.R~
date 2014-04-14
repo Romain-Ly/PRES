@@ -1,0 +1,4 @@
+k
+
+
+colnames(a)=c(unix_timestamp,iface_name,bytes_out,bytes_in,bytes_total,packets_out,packets_in,packets_total,errors_out,errors_in)

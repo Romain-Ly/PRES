@@ -1,0 +1,12 @@
+commandes:
+tcpstat -o "%S %T\tavg=%a\n" -r exp001_TC_TEST_tcpdump_h1-eth1.pcap 1
+
+tcpstat 
+-o output : 
+%S timestamp (s unix 1970)
+%T TCP packets
+% average packets
+-r read:
+file
+1 : every second
+

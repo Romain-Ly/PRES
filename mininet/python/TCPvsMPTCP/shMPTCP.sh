@@ -62,16 +62,17 @@ runMPTCP()
 
 runTC()
 {
-
-    experiment="experimentTC"
+   
+    experiment="exp001_TC"
     iperf_time="4"
     subflow="2"
-    prepend="runTC"
-    options="--bwm_ng"
+    test="runTC"
+    options="--bwm_ng\ --tc\ --csv"
     arg1=0
 
-    for arg in `seq 0 100`
+    for arg1 in `seq 0 5`
     do
+	prepend="$test""$arg1""$2"
 	echo runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options
 	eval runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options
 	
@@ -90,16 +91,21 @@ runTest()
     options="--bwm_ng\ --cli"
     
     echo runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options
-    eval runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options $prepend $subflow $prepend
+    eval runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options
 
 }
 
 
 test()
 {
+    echo "$*"
+    tata="titi"
+    local tutu
     for i in `seq 2 10`
     do 
-	echo "$i" 
+	tutu="$tata""$i"
+	echo "$tutu" 
+	
     done
 
 }
@@ -107,11 +113,15 @@ test()
 
 if [ "$1" = "test" ];
 then
-    test
+    test "$2" #$2 trial nb
 elif [ "$1" = "runTest" ];
 then
     echo "runTest"
     runTest
+elif [ "$1" = "runTC" ];
+then
+    echo "runTC"
+    runTC "$2"
 elif [ "$1" = "clean" ];
 then
     echo "clean"

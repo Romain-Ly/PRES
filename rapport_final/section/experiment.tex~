@@ -1,0 +1,25 @@
+\subsection{Argument Parser}
+\label{sec:annexe1:mininetParserargs}
+
+\begin{tabular}{lp{\linewidth - 4cm}}
+-\,-cli&lance le mode \emph{command line interface} avant le lancement de l'expérience\\
+
+-\,-csv & la sortie de la commande iperf est formatée en csv\\
+
+\textbf{--delay, -D} \uline{n}&fixe le délai de tous les liens\\
+
+-\,-dump & lance tcpdump sur toutes les interfaces utilisant mptcp et écrit la sortie dans un fichier de type [hôte]-[if].pcap\\
+
+\textbf{--file, -F} <filename>&fichiers de sortie, un pour le client et un pour le serveur. Par défaut, aucun fichier n'est créé.\\
+
+-\,-pause & pause après la simulation\\
+
+\textbf{--sshd}&lance sshd sur chaque hôte. Connexion du réseau à l'espace de nom de la racine.\\
+
+
+-\,-t \uline{n}&\emph{iperf} durée en seconde de l'expérience\\
+
+-\,-tc & active la modification des liens via \emph{tc}\\
+
+
+\end{tabular}

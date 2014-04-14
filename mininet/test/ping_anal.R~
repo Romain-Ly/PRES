@@ -1,0 +1,2 @@
+toto <- file(description="ping",open="r")
+readLines(toto)
