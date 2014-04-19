@@ -1,0 +1,27 @@
+
+iperf_analysis <- function(filestring){
+  conn <- file(description=filestring,open="r")
+  iperf <- readLines(conn)
+  result <- data.frame(vector(length=9))
+  for (i in 1:length(iperf)){
+  #dirty way to remove lines
+    test <- suppressWarnings(as.numeric(substring(iperf[i],1,13)))
+    if (!is.na(test)){
+      row <- strsplit(iperf[i],split=",")[[1]]
+      #rownames(row) <- seq(1,length(row)-1)
+      result <- cbind(result,row)
+    }
+}
+  dim.res <- dim(result)
+ # print(dim.res)
+  result <- as.data.frame(t(result[,2:dim.res[2]]))
+  colnames(result) <- c("timestamp","ip.src","port.src","ip.dest","port.dest","chaitpas","interval","transfer","rate")
+  rownames(result) <- seq(1,dim.res[2]-1)
+  close(conn)
+
+  return(result)
+}
+
+    
+  
+  

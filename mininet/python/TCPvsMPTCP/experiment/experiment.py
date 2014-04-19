@@ -50,7 +50,7 @@ def test(args, net):
     #-M set MSS
 
     #***** common_args **** 
-    report = ' --reportstyle C' if args.csv else ''
+    report = ' --reportstyle C -o /dev/null' if args.csv else ''
 
     #********* server **********
     opts =' -i 1 -m -M 1460'

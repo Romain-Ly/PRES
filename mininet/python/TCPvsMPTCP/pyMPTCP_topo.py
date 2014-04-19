@@ -67,7 +67,17 @@ def khalili2hosts_options(args,net):
     right = net.getNodeByName(rt_name)
     net.addLink(left,right)
 
-
+    if (args.n > 2):
+        nb = args.n - 2
+        SWITCHES = ['s%i' % i for i in range(1, nb + 1)]
+        for sw in SWITCHES:
+            net.addSwitch(sw)
+        for sw in SWITCHES:
+            switch = net.getNodeByName(sw)
+            client = net.getNodeByName(args.names.client[0])
+            server = net.getNodeByName(args.names.server[0])
+            net.addLink(client,switch)
+            net.addLink(server,switch)
 
     return net
 

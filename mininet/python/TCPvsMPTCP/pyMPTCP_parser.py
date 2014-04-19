@@ -88,7 +88,8 @@ def set_args(args):
 
     #bwm-ng
     args.bwm_ng = 1 if args.bwm_ng else 0
-        
+
+    args.maxq = int(args.maxq)
 
 def set_mptcp_ndiffports(ports):
     """Set ndiffports, the number of subflows to instantiate"""
@@ -197,6 +198,13 @@ def parse_args():
                         action="store",
                         help="Seconds to run the experiment",
                         default=2)
+
+    parser.add_argument('-maxq',
+                        dest="maxq",
+                        action="store",
+                        help="max_queue_size",
+                        default=1000)
+
     
     parser.add_argument('--mptcp',
                         action="store_true",

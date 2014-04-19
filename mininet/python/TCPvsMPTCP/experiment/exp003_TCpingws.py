@@ -3,8 +3,8 @@ from mininet.log import lg
 from pyMPTCP_parser import progress
 
 from time import sleep
+from subprocess import call
 
-#sudo python ./mptcp_khal.py --bw 10 --mptcp -n 2
 
 def set_TC(args,net):
     
@@ -39,20 +39,15 @@ def test(args, net):
     server = net.getNodeByName(sv_name)
 
     lg.info("pinging each destination interface\n")
+    
     for i in range(args.n):
-        opts = "-DAq "
-        n = "100" # ping
-        out_ping=client.cmdPrint('ping %s -c %s 172.16.%i.2' % (opts,n,i))
-        
-       # lg.info("ping test output: %s\n" % out_ping)
-        
         ip='172.16.%i.2'%i
-        g=open(args.output + args.prepend + '_'+ "ping_"+ip,'w')
-        g.write(out_ping)
-        g.close()
-
-
-
+        output = args.output + args.prepend + '_'+ "ping_"+ip 
+        opts = "-DAq "
+        interval = "0.250"
+        n = (float(args.t)-1)/float(interval)
+        client.cmd('ping %s -c %d -i %s 172.16.%i.2 > %s &' % (opts,n,interval,i,output)) # ping pendant iperf
+        
 
     lg.info("iperfing")
     #iperf options
@@ -66,12 +61,12 @@ def test(args, net):
     report = ' --reportstyle C' if args.csv else ''
 
     #********* server **********
-    opts =' -i 1 -m -M 1460'
+    opts =' -i 1 -m -M 1460 -w %s' %args.arg1
     cmd = 'iperf -s' + opts + report
     server.sendCmd(cmd)
     
     #********* client **********
-    opts =  ' -t %d -i 1 -m -M 1460' % seconds
+    opts =  ' -t %d -i 1 -m -M 1460 -w %s' % (seconds,args.arg1)
     ip = ' 172.16.0.2'
     cmd = 'iperf -c ' + ip + opts + report
     client.sendCmd(cmd)
@@ -84,6 +79,13 @@ def test(args, net):
     server_out = server.read(500000)#
     lg.info("server output: %s\n" % server_out)
 
+    
+    ssh_cmd ='/usr/sbin/sshd'
+    
+	#dirty way to kill sshd
+    cmd='pkill -f "ping -DAq"'
+    call(cmd,shell=True)
+    sleep(1)
     print('-------------------Test End---------------------')
 
     return server_out,client_out
