@@ -81,8 +81,8 @@ def test(args, net):
 
     
     ssh_cmd ='/usr/sbin/sshd'
-    
 	#dirty way to kill sshd
+
     cmd='pkill -f "ping -DAq"'
     call(cmd,shell=True)
     sleep(1)

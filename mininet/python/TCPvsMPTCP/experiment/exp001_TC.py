@@ -14,9 +14,9 @@ def set_TC(args,net):
     client = net.getNodeByName(args.names.client[0])
     server = net.getNodeByName(args.names.server[0])
 
-    eth_dev= "-eth1" 
+    eth_dev = "-eth1" 
     ct_dev = ct_name + eth_dev
-
+    sv_dev = sv_name + eth_dev 
 
     lg.info("****************************  set tc ****************************\n")
     print "arg:"
@@ -25,6 +25,11 @@ def set_TC(args,net):
     client.cmdPrint('tc qdisc del dev %s root' %ct_dev)
     client.cmdPrint('tc qdisc add dev %s root netem delay %s' %(ct_dev,args.arg1))
     client.cmdPrint('tc -s qdisc ls dev %s' %ct_dev)
+
+
+    server.cmdPrint('tc qdisc del dev %s root' %sv_dev)
+    server.cmdPrint('tc qdisc add dev %s root netem delay %s' %(sv_dev,args.arg1))
+    server.cmdPrint('tc -s qdisc ls dev %s' %sv_dev)
 
     print
 

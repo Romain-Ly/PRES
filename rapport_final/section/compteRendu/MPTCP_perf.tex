@@ -1,0 +1,48 @@
+
+\subsection{Performance de MPTCP sur mininet}
+\label{sec:CR:perfMPTCP:base}
+
+Après la compilation du noyau, pour vérifier le fonctionnement de
+MPTCP nous avons mesurer le débit moyen en utilisant \emph{iperf} sur
+la topologie A.
+
+Les paramètres du réseau sont les suivants.
+
+\vspace{1cm}
+\begin{tabular}{lp{\linewidth - 4cm}}
+
+\textbf{fichier}& \textbf{Commentaires}\\
+\hline
+MSS& 1460 Bytes\\
+Window size& \\
+délai par lien & 10 ms\\
+\end{tabular}
+\vspace{0.5cm}
+
+
+
+
+
+
+Les performances de TCP ou de MPTCP dépendent des paramètres utilisés
+dans la connexion entre deux hôtes. En particulier, le débit de chaque
+chemin, le délai (RTT) sont des facteurs un rôle important dans le débit moyen
+mesuré. Afin de déterminer les limites de notre simulation, nous avons
+utilisé la topologie simple pour caractériser les performances de
+MPTCP sur plusieurs sous-flots où chacun des liens de la topologie
+possède les mêmes propriétés (débit maximal, RTT, perte, gigue).
+
+Pour mesurer la performance maximale obtenue avec cette topologie,
+nous utilisons l'application iperf.
+
+\begin{figure}[!htb]
+  \begin{changemargin}{-2.0cm}{0.5cm}
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/bw.pdf}
+  \end{changemargin}
+  \centering
+  
+  \caption{\textbf{Schéma de la pile MPTCP}. source : \url{www.cisco.org}}
+  \label{fig:mptcpstack}
+  
+\end{figure}

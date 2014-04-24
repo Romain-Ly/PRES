@@ -1,0 +1,45 @@
+cur_wd <- getwd()
+setwd("/home/romain/M1/PRES/projet/mininet/R")#path to R files
+source("iperf_anal.R")
+source("ping_anal.R")
+source("bw_anal.R")
+setwd(cur_wd)
+
+#compare 
+args <- list()
+
+args[[1]] <- c(paste(cur_wd,"/bw-exp/",sep=""), "exp001_TC_runbw", "client", 10,50)
+args[[2]] <- c(paste(cur_wd,"/bw-exp-NoMPTCP/",sep=""), "exp001_TC_runNoMPTCPbw", "client", 10,50)
+
+
+
+arg <- args[[1]]
+iperf.MPTCP <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5])
+
+arg <- args[[2]]
+iperf.TCP <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5])
+
+
+pdf("toto.pdf")
+with(iperf.MPTCP,plot((rate/1000000)~bw,pch=16,ylim=c(0,1000),xlab="débit par lien (Mbit/s)",ylab="débit total (Mbit/s)"))
+with(iperf.TCP,points((rate/1000000)~bw,pch=16,col="red"))
+abline(0,1)
+
+
+legend("bottomright", # la position sur le graphique
+       c("MPTCP n=2", "TCP"), # le texte pour chaque courbe
+       col=c("black", "red"), # La couleur de chaque courbe
+       pch=c(16,16),
+       lwd=c(1,1), # L'épaisseur de chaque courbe
+       lty=c(1,3) # Le type de trait de chaque courbe
+)
+dev.off()
+
+
+
+
+
+
+
+
+          

@@ -5,48 +5,78 @@ source("ping_anal.R")
 source("bw_anal.R")
 setwd(cur_wd)
 
-#compare 
+shell_arg <- commandArgs(trailingOnly = TRUE)
+pref <- shell_arg[1] #output file name prefix
+
+host <- "client"
+
 args <- list()
 
-args[[1]] <- c(paste(cur_wd,"/delaybas-exp-bw10/",sep=""), "exp001_TC_runbasdelay", "client", 10,50)
-args[[2]] <- c(paste(cur_wd,"/delaybas-exp2-bw10/",sep=""), "exp002_TCping_runbasdelay", "client", 10,50)
-args[[3]] <- c(paste(cur_wd,"/delaybas-exp2-bw50/",sep=""), "exp002_TCping_runbasdelay", "client", 10,50)
-args[[4]] <- c(paste(cur_wd,"/delaybas-exp2-bw100/",sep=""), "exp002_TCping_runbasdelay", "client", 10,50)
 
-args[[5]] <- c(paste(cur_wd,"/delaybas-exp2-bw200/",sep=""), "exp002_TCping_runbasdelay", "client", 10,50)
+args[[1]] <- c(paste(cur_wd,"/delaybas-exp-bw10/",sep=""), "exp001_TC_runbasdelay", host, 10,50)
+args[[2]] <- c(paste(cur_wd,"/delaybas-exp-bw20/",sep=""), "exp001_TC_runbasdelay", host, 10,50)
+args[[3]] <- c(paste(cur_wd,"/delaybas-exp-bw50/",sep=""), "exp001_TC_runbasdelay", host, 10,50)
+args[[4]] <- c(paste(cur_wd,"/delaybas-exp-bw100/",sep=""), "exp001_TC_runbasdelay", host, 10,50)
+args[[5]] <- c(paste(cur_wd,"/delaybas-exp-bw200/",sep=""), "exp001_TC_runbasdelay", host, 10,50)
 
 
 arg <- args[[1]]
 iperf.bw10 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
 ping.bw10 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+
 arg <- args[[2]]
-iperf.2bw10 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
-ping.2bw10 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+iperf.bw20 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
+ping.bw20 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+
 arg <- args[[3]]
-iperf.2bw50 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
-#ping.2bw50 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+iperf.bw50 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
+ping.bw50 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+
 arg <- args[[4]]
-iperf.2bw100 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
-ping.2bw100 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+iperf.bw100 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
+ping.bw100 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
+
 arg <- args[[5]]
-iperf.2bw200 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
+iperf.bw200 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5],split="y")
 ping.bw200 <- ping_f(arg[1],arg[2],"172.16.0.2",2,split="y")
 
 
-pdf("rtt.pdf")
-with(iperf.bw10,plot((rate/1000000)~ping.bw10$avg,pch=16,ylim=c(0,200),xlab="débit par lien (Mbit/s)",ylab="débit total (Mbit/s)"))
-with(iperf.2bw10,points((rate/1000000)~ping.2bw10$avg,pch=16,col="red"))
-#with(iperf.2bw50,points((rate/1000000)~ping.2bw50$avg,pch=16,col="blue"))
-with(iperf.2bw100,points((rate/1000000)~ping.2bw100$avg,pch=16,col="green"))
-with(iperf.2bw200,points((rate/1000000)~ping.2bw200$avg,pch=16,col="purple"))
+if (!is.na(pref)){
+  output_name <- paste(pref,"_rtt.pdf")
+} else {
+  output_name <- "rtt.pdf"
+}
 
-legend("bottomright", # la position sur le graphique
-       c("MPTCP n=2", "TCP"), # le texte pour chaque courbe
-       col=c("black", "red"), # La couleur de chaque courbe
-       pch=c(16,16),
-       lwd=c(1,1), # L'épaisseur de chaque courbe
-       lty=c(1,3) # Le type de trait de chaque courbe
+
+W=7
+H=8
+pdf(output_name,
+    width=W,
+    height=H,
+    )
+
+n <- 5
+rcolor <- rainbow(n, s = 1, v = 1, start = 0.6, end = 0.1, alpha = 1)
+
+with(iperf.bw10,plot((rate/1000000)~ping.bw10$avg,pch=16,
+                     ylim=c(0,300),
+                     xlab="RTT (ms)",
+                     ylab="débit total (Mbit/s)",
+                     col=rcolor[1]))
+with(iperf.bw20,points((rate/1000000)~ping.bw20$avg,pch=16,col=rcolor[2]))
+with(iperf.bw50,points((rate/1000000)~ping.bw50$avg,pch=16,col=rcolor[3]))
+with(iperf.bw100,points((rate/1000000)~ping.bw100$avg,pch=16,col=rcolor[4]))
+with(iperf.bw200,points((rate/1000000)~ping.bw200$avg,pch=16,col=rcolor[5]))
+
+legend("topright", # la position sur le graphique
+       title="débit par lien (Mbit/s)",
+       c("10","20","50","100","200"),
+       col=c(rcolor[1], rcolor[2], rcolor[3], rcolor[4], rcolor[5]),
+       pch=c(16),
+       bty="n"
 )
+print("file_name")
+print(output_name)
 dev.off()
 
 

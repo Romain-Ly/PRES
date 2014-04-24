@@ -111,29 +111,34 @@ def bwm_start(args,net):
 	cmd = 'bwm-ng'
 
 	print("**********************set bwm-ng**********************\n")
-	for j in range(args.n):
+#	for j in range(args.n):
 		#-D daemon
 		#-O output mode
 		#-t time (ms)
 		#-u unit
-		
-		eth_dev= "-eth%i" %j
-		opts = ' -D 1 -o csv -t 100 -T rate' #start with a space
+#	
+	j = 0	
+#	eth_dev= "-eth%i" %j
+	opts = ' -D 1 -o csv -t 500 -T rate' #start with a space
 
-		client_if  = args.names.client[0] + eth_dev
-		client_opts = ' -I ' + client_if + opts #start with a space
-		client_filename = args.output + args.prepend + '_bwm_' + client_if + '.csv'
+#		client_if  = args.names.client[0] + eth_dev
+	client_if = '%lo'
+#		client_opts = ' -I ' + client_if + opts #start with a space
+	client_opts = ' -I ' + client_if + opts #start with a space
+	client_filename = args.output + args.prepend + '_bwm_' + "client_all" + '.csv'
 
-		client_cmd = cmd + client_opts + ' -F ' + client_filename  + ' &' 
+	client_cmd = cmd + client_opts + ' -F ' + client_filename  + ' &' 
 
-		server_if  = args.names.server[0] + eth_dev
-		server_opts = ' -I ' + server_if + opts
-		server_filename = args.output + args.prepend + '_bwm_' + server_if + '.csv'
-
-		server_cmd = cmd + server_opts + ' -F ' + server_filename + ' &'
-
-		client.cmdPrint(client_cmd)
-		server.cmdPrint(server_cmd)
+#	server_if  = args.names.server[0] + eth_dev
+	server_if ='%lo'
+#	server_opts = ' -I ' + server_if + opts
+	server_opts = ' -I ' + server_if + opts
+	server_filename = args.output + args.prepend + '_bwm_' + "server_all" + '.csv'
+	
+	server_cmd = cmd + server_opts + ' -F ' + server_filename + ' &'
+	
+	client.cmdPrint(client_cmd)
+	server.cmdPrint(server_cmd)
 
 	return client_cmd,server_cmd
 		

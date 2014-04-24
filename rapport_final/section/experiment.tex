@@ -18,11 +18,20 @@ TCPvsMPTCP$/$ \\
 
 
 
+
+
+
+
+
+
 \begin{tabular}{lp{\linewidth - 4cm}}
 
 \textbf{fichier}& \textbf{Commentaires}\\
 \hline
 experiment.py&  fixe délai h1-eth1, valeur à modifier dans le fichier\\
-exp001_TC.py&  fixe délai h1-eth1, valeur à modifier dans le fichier\\
-
+exp001\_TC.py&  fixe délai h1-eth1, valeur à modifier dans le fichier\\
+exp002\_TCping&  même caractéristiques que exp001, le ping est mesuré pendant la mesure de débit.\\
+exp003\_TCpingws& cf exp002. arg1 est utilisé pour modifier la fenêtre TCP dans iperf \og -w n \fg\\
 \end{tabular}
+
+

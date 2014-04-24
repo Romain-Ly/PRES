@@ -199,7 +199,7 @@ def parse_args():
                         help="Seconds to run the experiment",
                         default=2)
 
-    parser.add_argument('-maxq',
+    parser.add_argument('--maxq',
                         dest="maxq",
                         action="store",
                         help="max_queue_size",

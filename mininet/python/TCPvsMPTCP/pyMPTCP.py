@@ -84,7 +84,7 @@ def set_IP(args,net):
 def run_MPTCP(args,topo,exp,end):
     #set basic link properties
     #TCLink = symetric interfaces
-    link = custom(TCLink,bw=args.bw,delay=args.delay)
+    link = custom(TCLink,bw=args.bw,delay=args.delay,max_queue_size=args.maxq )
 
     net = Mininet(topo=topo, switch=Switch, link=link)
     

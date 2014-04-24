@@ -1,0 +1,26 @@
+\subsection[Outil de coordination: git]{Outil de coordination: git}
+\label{subsec:etatavanc:git}
+L'état des scripts utilisées par l'équipe est mise à jour par un
+système de version utilisant git
+\url{https://github.com/Romain-Ly/PRES}.
+
+\subsection[Compilation MPTC]{Compilation MPTCP\footnote{par M. Ly}}
+\label{subsec:etatavanc:mininet-mptcp}
+
+Pour la réalisation du projet, nous utilisons une machine virtuelle de
+mininet installé ubuntu 13.04 32 bits, disponible ici :
+\url{https://bitbucket.org/mininet/mininet-vm-images/downloads.
+
+La mise en place du noyau linux MPTCP (v0.88) dans une VM de mininet
+(v2.10) est à 100~\% terminé.
+
+Les paquets debian pour l'installation du noyau MTPCP sur une VM de
+mininet est disponible :
+(\url{https://www.dropbox.com/sh/y4ykck8rg6908ps/7V3lsV6Ggg}).
+
+Pour tester la réussite de l'installation, une topologie deux hôtes et
+n switchs a été utilisé. L'utilisation de MPTCP montre un débit
+supérieur lorsque l'on compare à la même expérience où MPTCP a été
+désactivé dans le noyau.
+
+%\input{./section/compteRendu/MPTCP_perf}

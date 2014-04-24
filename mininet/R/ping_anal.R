@@ -10,24 +10,31 @@ ping_analysis <- function(filestring){
   readLines(conn,n=(line-5)+3)
   ploss_raw <- readLines(conn,n=1)
   rtt_raw <- readLines(conn,n=1)
-  print(ploss_raw)
+  #print(ploss_raw)
   ploss_split <- strsplit(ploss_raw,split=" ")[[1]]
   ploss <- as.numeric(ploss_split[c(1,4)]) #packets sent / received
   ping_time <- (as.numeric(strsplit(ploss_split[10],split="m")[[1]][1]))
   
   rtt <- strsplit(rtt_raw,split=" ")[[1]]
- # print(rtt)
+  #print(rtt)
   rtt.avg <- as.numeric(strsplit(rtt[4],split="/")[[1]]) # parse min/avg/max/mdev rtt
 
-  if (length(rtt) >= 10){
+  ipg <- length(rtt)
+  if (ipg >= 10){
     index = 9
-  } else { 
+    rtt.ipg <- as.numeric(strsplit(rtt[index],split="/")[[1]]) # parse ipg/ewmda #may be 9 if pipe 2
+  } else if (ipg>7) { 
     index = 7
+    rtt.ipg <- as.numeric(strsplit(rtt[index],split="/")[[1]]) # parse ipg/ewmda #may be 9 if pipe 2
+  } else {
+    rtt.ipg <- c(0,0)
   }
- ## print(length(rtt))
+  
+  #print(length(rtt))
   #print(index)
-  rtt.ipg <- as.numeric(strsplit(rtt[index],split="/")[[1]]) # parse ipg/ewmda #may be 9 if pipe 2
+
   close(conn)
+#  print(rtt.ipg)
   result <- data.frame(name=c("min","avg","max","mdev","ipg","ewmda","pk_sent","pk_loss","time"),
                        value=c(rtt.avg,rtt.ipg,ploss,ping_time))
   return(result)

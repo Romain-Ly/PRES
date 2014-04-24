@@ -31,7 +31,7 @@ iperf_analysis <- function(filestring){
 
     
 iperf_bw <- function(path,fname,host,start,end,split_char="w"){
-  fname_abs <- paste(path,fname,sep="")
+  fname_abs <- paste(path,fname,sep="")#Attention fname non utilisé
 
   print(path)
   pattern = paste("'","iperf_",host,"'",sep="")
