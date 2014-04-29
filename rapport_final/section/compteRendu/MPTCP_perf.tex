@@ -6,43 +6,181 @@ Après la compilation du noyau, pour vérifier le fonctionnement de
 MPTCP nous avons mesurer le débit moyen en utilisant \emph{iperf} sur
 la topologie A.
 
-Les paramètres du réseau sont les suivants.
+Les paramètres\footnote{paramètres par défaut dans le noyau Linux}
+utilisés sont les suivants:
+
 
 \vspace{1cm}
-\begin{tabular}{lp{\linewidth - 4cm}}
-
-\textbf{fichier}& \textbf{Commentaires}\\
+%\begin{tabular}{lp{\linewidth - 4cm}} 
+\begin{tabular}{ll}
+\textbf{Paramètre}& \textbf{Valeur}\\
 \hline
-MSS& 1460 Bytes\\
-Window size& \\
+MSS& 1460 octets\\
+window size& 85,3 Koctets\\
 délai par lien & 10 ms\\
+Algorithme de congestion& LIA \cite{rfc6356}\\
 \end{tabular}
 \vspace{0.5cm}
 
+Si nous fixons le MSS à 1460 octets, nous obtenons ce message
+d'erreur:
+\begin{verbatim}
+  WARNING: attempt to set TCP maximum segment size to 1460, but got
+  536
+\end{verbatim}
+
+Cependant, si nous analysons les paquets enregistrés grâce à TCPdump,
+nous observons que la taille maximal du MSS négocié pendant le
+\emph{handshake} de la connexion MPTCP est de 1460 octets et que la
+taille du MSS dans les paquets de données est de 1428 octets.
+
+\subsubsection{Un exemple de démonstration}
+\label{sec:CR:perfMPTCP:unique}
+
+Ici nous allons prendre l'exemple d'une connexion avec deux sous-flots
+à 100 Mbit/s. Voici la commande pour générer cet exemple:
+\begin{verbatim}
+sudo python ./pyMPTCP -O exp001_TC --bw 100 -t 30 -n 2 --mptcp --bwm_ng
+\end{verbatim}
+
+Pour les détails de l'activation de MPTCP dans le noyau et
+l'utilisation des arguments des scripts python, une notice est donnée
+en Annexe 1: voir sections \ref{sec:annexe1:usepyth} page
+\pageref{sec:annexe1:usepyth} et \ref{sec:annexe1:mininetParserargs}
+page \pageref{sec:annexe1:mininetParserargs}.
+
+\vspace{0.5cm}
+Le délai (RTT) entre h1 et sv\_mp1 est de 44\,$\pm$\,11\,ms (mesuré
+avec la commande ping), ce qui correspond bien au délai nécessaire
+pour traverser deux liens. La moyenne ici tient compte du délai du
+premier paquet qui est envoyé vers le contrôleur qui va établir le
+chemin vers le serveur\footnote{Il pourrait être nécessaire d'enlever
+  le délai de ce premier paquet dans une version future.}.
+
+L'argument ``-\,-bwm-ng'' permet de lancer Bandwidth Monitor
+NG\footnote{\url{http://www.gropp.org/?id=projects&sub=bwm-ng} }
+(bwm-ng) et de mesurer plusieurs paramètres comme le nombre d'octets,
+de paquets, le débit entrant ou sortant passant par chacune des
+interfaces sondées. La Figure \ref{fig:MPTCP-perfbwm-ng} montre le
+débit entrant côté serveur pour ses deux interfaces, nous observons
+que pour deux sous-flots aux capacités identiques, le débit mesuré est
+quasi identique (une différence de quelques paquets est observée).
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/bw-single.pdf}
+    \caption{\textbf{Débit entrant côté serveur.} échantillonage : 2\,Hz.}
+  \label{fig:MPTCP-perfbwm-ng}
+\end{figure}
+
+Pour mesurer le débit total généré, nous moyennons les débits totaux
+mesurés toutes les secondes par \emph{iperf} entre 5 secondes après le
+début de la connexion et 1 seconde avant la fin de la connexion. Nous
+obtenons, côté serveur et pour cet exemple, un débit maximal de
+168\,Mbit/s ce qui est attendu par les mesures de débit \emph{via}
+bwm\_ng.
 
 
+\subsubsection{Variation du débit maximal par lien}
+\label{sec:CR:perfMPTCP:nsousflots}
 
+Pour connaître les limites de la capacité de notre simulation, nous
+faisons varier le débit maximal par sous-flot, ainsi que le nombre de
+sous-flots dans la topologie A.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/bw-coupled.pdf}
+    \caption{\textbf{Débit total mesuré en fonction du débit maximal
+        par sous-flot.} Les débits sont mesurés avec \emph{iperf} pour
+      une connexion TCP classique et une connexion MPTCP contenant de
+      2 à 6 sous-flots.}
+  \label{fig:MPTCP-perf-subflow-bw}
+\end{figure}
 
-Les performances de TCP ou de MPTCP dépendent des paramètres utilisés
-dans la connexion entre deux hôtes. En particulier, le débit de chaque
-chemin, le délai (RTT) sont des facteurs un rôle important dans le débit moyen
-mesuré. Afin de déterminer les limites de notre simulation, nous avons
-utilisé la topologie simple pour caractériser les performances de
-MPTCP sur plusieurs sous-flots où chacun des liens de la topologie
-possède les mêmes propriétés (débit maximal, RTT, perte, gigue).
+Nous observons une phase linéaire où l'augmentation du débit par lien
+ou l'augmentation du nombre de sous-flots augmente linéairement le
+débit total obtenu côté serveur. Cette phase située en dessous des
+100\,Mbit/s par lien correspond au but de MPTCP : augmentation du
+débit. Cependant, les performances décroissent rapidement et tombent
+sous les performances d'une simple connexion TCP ce qui est contraire
+à la nature même de MPTCP \cite{rfc6182}.
 
-Pour mesurer la performance maximale obtenue avec cette topologie,
-nous utilisons l'application iperf.
+Ce problème pourrait être expliquer par l'utilisation non optimale de
+la capacité des sous-flots. Le \emph{bandwidth delay product} (BDP)
+implique une taille minimale du tampon de réception. Pour un débit de
+1000\,Mo et un RTT de 44\,ms, on obtient une taille minimale de tampon
+de 5,5\,Mo. Sachant que le tampon de réception est partagé pour tous
+les sous-flots d'une connexion MPTCP \cite{rfc6824}, la taille
+minimale du tampon de réception doit suivre cette formule :
+
+\begin{equation}
+  \label{eq:MPTCP:buffer}
+  buffer\_size \geqslant max(\{RTT_i\}_{i \in [1,n]})*\sum_{i \in [1,n]} Bandwidth_{\{i\}}
+\end{equation}
+
+C'est à dire que la taille du tampon de réception doit être le produit
+du RTT maximal parmi tous les sous-flots et le débit total de tous les
+sous-flots réunis. Cette taille de tampon garantit l'utilisation
+optimale du lien lorsque des paquets nécessitent d'être retransmisent
+sur des sous-flots aux délais lents. Dans notre simulation, il n'y a
+pas de perte de paquet, la valeur minimale correspond au BDP le plus
+élevé.
+
+Pour les mêmes propriétés de liens, avec deux sous-flots, nous
+obtenons une taille minimale de 11\,Mo. Mininet modife automatiquement
+les tampons au lancement de la topologie et les valeurs utilisées sont
+les suivantes:
+
+\begin{verbatim}
+net.core.wmem_max = 16777216
+net.core.wmem_default = 163840
+net.core.rmem_max = 16777216
+net.core.rmem_default = 163840
+net.ipv4.tcp_wmem = 10240	87380	16777216
+net.ipv4.tcp_rmem = 10240	87380	16777216
+net.ipv4.tcp_mem = 19326	25768	38652
+\end{verbatim}
+
+Nous observons que le tampon maximal pouvant être alloué par socket
+est de 16\,Mo environ ce qui est largement supérieur à la taille
+requise. De plus en augmentant la taille du tampon, nous n'observons
+pas d'augmentation de performances alors qu'en le diminuant, nous
+observons une diminution du débit mesuré
+Fig. \ref{fig:mptcp:windowscale}.
 
 \begin{figure}[!htb]
   \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
-    \includegraphics[width=0.7\textwidth]{../figures/bw.pdf}
+    \includegraphics[width=0.7\textwidth]{../figures/ws.pdf}
   \end{changemargin}
   \centering
   
-  \caption{\textbf{Schéma de la pile MPTCP}. source : \url{www.cisco.org}}
-  \label{fig:mptcpstack}
+  \caption{\textbf{Débit mesuré en fonction de la taille de la
+      fenêtre}. La taille maximmale de la fenêtre TCP est modifiée
+    avec l'argument '-w' avec \emph{iperf}. La taille obtenue est
+    étrangement de deux fois supérieure à la taille demandé. Le nombre
+    de paquets correspond à la taille maximale de la queue des
+    routeurs.}
+  \label{fig:mptcp:windowscale}
   
 \end{figure}
+
+Nous obtenons les mêmes résultats en modifiant la taille maximale de
+la queue des routeurs ou en modifiant les valeurs dans le noyau (voir
+\ref{sec:annexe1:windowsize} page \pageref{sec:annexe1:windowsize})
+que ce soit les paramètres minimum, par défaut et maxium
+d'\emph{auto-tuning} de TCP (\emph{net.ipv4}) ou les valeurs maximales
+ou par défaut pour tous les type de connexions (\emph{net.core}). Une
+vérification de la charge CPU global avec \emph{htop} ne montre pas
+une saturation des processeurs (environ 15\,\% d'utilisation)
+cependant, il reste à implémenter \emph{cpuacct} pour vérifier la
+charge CPU par conteneur.
+
+
+En effectuant des
+recherches\footnote{\url{https://github.com/mininet/mininet/wiki/Introduction-to-Mininet\#what-are-mininets-limitations}}\footnote{\url{https://mailman.stanford.edu/pipermail/mininet-discuss/2014-January/003901.html}},
+il semblerait que la limite du débit est lié aux n\oe uds Open vSwitch
+sur Ubuntu 13.04, ce qui pour une dizaine de liens limite la capacité
+à 100 Mbit/s. C'est pourquoi, nous utiliserons des débits de 10 Mbit/s
+environ pour les prochaines expériences.

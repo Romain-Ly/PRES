@@ -1,0 +1,21 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=latex 2013.11.27)  25 APR 2014 17:58
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\input compterendu.tex
+
+! Emergency stop.
+<*> \input compterendu.tex
+                          
+*** (job aborted, file error in nonstop mode)
+
+ 
+Here is how much of TeX's memory you used:
+ 3 strings out of 495060
+ 112 string characters out of 3182052
+ 45057 words of memory out of 3000000
+ 3288 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 4i,0n,3p,1b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.

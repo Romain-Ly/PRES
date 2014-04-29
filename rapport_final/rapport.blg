@@ -2,12 +2,14 @@ This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: rapport.aux
 A level-1 auxiliary file: charges.aux
-A level-1 auxiliary file: rapport_intermediaire.aux
+A level-1 auxiliary file: corps.aux
+A level-1 auxiliary file: section/Annexe1.aux
 The style file: ieeetr.bst
 Database file #1: ./PRES.bib
+Warning--I didn't find a database entry for "rfc6256"
 You've used 8 entries,
             1876 wiz_defined-function locations,
-            522 strings with 4798 characters,
+            524 strings with 4808 characters,
 and the built_in function-call counts, 1977 in all, are:
 = -- 166
 > -- 114
@@ -46,3 +48,4 @@ warning$ -- 0
 while$ -- 17
 width$ -- 9
 write$ -- 73
+(There was 1 warning)

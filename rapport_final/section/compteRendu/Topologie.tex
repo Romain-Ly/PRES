@@ -1,0 +1,29 @@
+\subsection{Topologie}
+\label{subsec:CR:topologie}
+
+Pour effectuer les expériences de débit avec MPTCP, nous utilisons
+principalement deux topologies (A et B).
+
+La topologie A est inspiré du \emph{testbed} de l'article de
+R. Khalili \cite{pareto2013}, voir \fig{fig:topoMPTCP:A}. Nous avons
+ajouté à cette topolgoie des routeurs privés entre le client et le
+serveur \emph{MPTCP} pour augmenter le nombre de sous-flots.
+
+\begin{figure}[!htb]
+  \begin{changemargin}{-2.0cm}{0.5cm}
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/mptcp_tcp/mptcp_tcp.pdf}
+  \end{changemargin}
+  \centering
+  
+  \caption{\textbf{Reproduction de la topologie de l'article de
+      R. Khalili}. Le(s) \emph{switch(s)} n ne sont présent(s) que si
+    le nombre de sous-flot est supérieure à deux. Pour n sous-flots,
+    il y aura création de n-2 \emph{switchs} et autant de liens
+    supplémentaires. L'hyperviseur est connecté à tous les
+    switchs. Pour se connecter via ssh aux hôtes, un \emph{switch} \og
+    root \fg est créé et est connecté au \emph{switch} sw\_mp1 (non
+    représenté ici) voir utilisations CF linktobeadded.}
+  \label{fig:topoMPTCP:A}
+  
+\end{figure}

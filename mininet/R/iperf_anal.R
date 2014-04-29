@@ -20,7 +20,7 @@ iperf_analysis <- function(filestring){
     }
 }
   dim.res <- dim(result)
- #print(dim.res)
+#  print(dim.res)
   result <- as.data.frame(t(result[,2:dim.res[2]]))
   colnames(result) <- c("timestamp","ip.src","port.src","ip.dest","port.dest","chaitpas","interval","transfer","rate")
   rownames(result) <- seq(1,dim.res[2]-1)
@@ -45,7 +45,7 @@ iperf_bw <- function(path,fname,host,start,end,split_char="w"){
   n <- length(iperf_list)
   iperf.y <- vector(length=n)
   iperf.x <- vector(length=n)
-  
+
   for(i in 1:length(iperf_list)) {
     file.path <- paste(path,iperf_list[i],sep="")
     iperf.x[i] <- as.numeric(strsplit(strsplit(iperf_list[i],split="_")[[1]][3],split=split_char)[[1]][2])

@@ -8,7 +8,7 @@ enableMPTCP()
 {
     sysctl net.mptcp.mptcp_path_manager=fullmesh
 }
-disableMPTCP(){
+disableMPTCPfullmesh(){
     sysctl net.mptcp.mptcp_path_manager=default
 }
 
@@ -66,15 +66,15 @@ runMPTCP()
 runbw()
 {
 
-    subflow="2"
+    subflow="6"
     basal_delay="10ms"
     experiment="exp001_TC"
-    iperf_time="60"
-    test="runMPTCP-6-bw"
+    iperf_time="30"
+    test="runMPTCPcoupled-6-bw"
     options="--bwm_ng\ --csv\ --mptcp"
     arg1=0
 
-    for basal_bwidth in `seq 1 2 100` `seq 100 10 400` `seq 500 100 1000`
+    for basal_bwidth in `seq 1 4 100` `seq 100 10 400` `seq 500 100 1000`
     do
 	prepend="$test""$basal_bwidth""$2"
 	echo runMPTCP $experiment $basal_bwidth $basal_delay $subflow $iperf_time $prepend $options
@@ -163,9 +163,9 @@ rundelay5subflow()
 {
 
     basal_delay="5ms"
-    basal_bwidth="500"   
+    basal_bwidth="10"   
     experiment="exp004_TCmultipleflow"
-    iperf_time="60"
+    iperf_time="40"
     subflow="5"
     test="run5sub-delay"
     options="--bwm_ng\ --csv\ --mptcp"
@@ -194,6 +194,42 @@ rundelay5subflow()
     done
 
 }
+rundelay5subflowiperf3()
+{
+
+    basal_delay="5ms"
+    basal_bwidth="5"   
+    experiment="exp005_TCmultipleflowlimitediperf"
+    iperf_time="40"
+    subflow="5"
+    test="run5sub-delayiperf3"
+    options="--bwm_ng\ --csv\ --mptcp"
+
+    slope=-1
+    max1=10
+    max2=20
+    max3=100
+    max4=470
+    xhalf=5
+    for i in `seq 1 0.1 10`
+    do 
+
+	delay1="1"
+	delay2=$(echo "scale=2; $max1/(1+e(($i-$xhalf)/$slope));" | bc -l)
+	delay3=$(echo "scale=2; $max2/(1+e(($i-$xhalf)/$slope));" | bc -l)
+	delay4=$(echo "scale=2; $max3/(1+e(($i-$xhalf)/$slope));" | bc -l)
+	delay5=$(echo "scale=2; 30+$max4/(1+e(($i-$xhalf)/$slope));" | bc -l)
+
+	prepend="$test""$i""$2"
+	delay="$basal_delay""ms"
+	options="--bwm_ng\ --csv\ --mptcp\ --tc\ --arg1\ $delay1""ms""\ --arg2\ $delay2""ms""\ --arg3\ $delay3""ms""\ --arg4\ $delay4""ms""\ --arg5\ $delay5""ms"
+	echo runMPTCP $experiment $basal_bwidth $delay $subflow $iperf_time $prepend $options
+	eval runMPTCP $experiment $basal_bwidth $delay $subflow $iperf_time $prepend $options
+	mn -c
+    done
+
+}
+
 
 
 runTest()
@@ -211,7 +247,8 @@ runTest()
 }
 
 
-test()
+
+test2()
 {
 
     slope=-1
@@ -237,7 +274,19 @@ test()
 
 }
 
-if [ "$1" = "rundelay5subflow" ];
+
+test()
+{
+    echo "toto"
+
+
+}
+
+if [ "$1" = "rundelay5subflowiperf3" ];
+then
+    rundelay5subflowiperf3
+
+elif [ "$1" = "rundelay5subflow" ];
 then
     rundelay5subflow
 elif [ "$1" = "runbwTC" ];

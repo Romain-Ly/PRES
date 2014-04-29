@@ -29,12 +29,16 @@
 \contentsline {subsection}{\numberline {7.2}Compilation MPTC}{16}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Topologie}{16}{subsection.7.3}
 \contentsline {subsection}{\numberline {7.4}Performance de MPTCP sur mininet}{17}{subsection.7.4}
-\contentsline {section}{\numberline {8}Annexe1}{19}{section.8}
-\contentsline {subsection}{\numberline {8.1}Utilisation des scripts pythons}{19}{subsection.8.1}
-\contentsline {subsubsection}{\numberline {8.1.1}Activation MPTCP}{19}{subsubsection.8.1.1}
-\contentsline {subsection}{\numberline {8.2}Lancement scripts python}{19}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}R\'esum\'e des arguments pour le parseur}{20}{subsection.8.3}
-\contentsline {subsection}{\numberline {8.4}arguments mininet}{20}{subsection.8.4}
-\contentsline {subsubsection}{\numberline {8.4.1}ssh}{21}{subsubsection.8.4.1}
-\contentsline {subsection}{\numberline {8.5}Class Mininet}{21}{subsection.8.5}
-\contentsline {subsection}{\numberline {8.6}Exp\'eriences}{21}{subsection.8.6}
+\contentsline {subsubsection}{\numberline {7.4.1}Un exemple de d\'emonstration}{17}{subsubsection.7.4.1}
+\contentsline {subsubsection}{\numberline {7.4.2}Variation du d\'ebit maximal par lien}{18}{subsubsection.7.4.2}
+\contentsline {section}{\numberline {8}Annexe1}{22}{section.8}
+\contentsline {subsection}{\numberline {8.1}Utilisation des scripts pythons}{22}{subsection.8.1}
+\contentsline {subsubsection}{\numberline {8.1.1}Activation MPTCP}{22}{subsubsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.2}Choix de l'algorithme congestion}{22}{subsubsection.8.1.2}
+\contentsline {subsubsection}{\numberline {8.1.3}Taille de la fen\^etre}{23}{subsubsection.8.1.3}
+\contentsline {subsection}{\numberline {8.2}Lancement scripts python}{23}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}R\'esum\'e des arguments pour le parseur}{24}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}arguments mininet}{24}{subsection.8.4}
+\contentsline {subsubsection}{\numberline {8.4.1}ssh}{24}{subsubsection.8.4.1}
+\contentsline {subsection}{\numberline {8.5}Class Mininet}{25}{subsection.8.5}
+\contentsline {subsection}{\numberline {8.6}Exp\'eriences}{25}{subsection.8.6}

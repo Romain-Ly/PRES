@@ -49,6 +49,9 @@ def test(args, net):
         client.cmd('ping %s -c %d -i %s 172.16.%i.2 > %s &' % (opts,n,interval,i,output)) # ping pendant iperf
         
 
+#    server.cmdPrint("sudo sysctl -w net.ipv4.tcp_rmem='4096 870380 8388608'")
+
+
     lg.info("iperfing")
     #iperf options
     #-i report time interval

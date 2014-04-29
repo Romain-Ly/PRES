@@ -1,0 +1,12 @@
+#defult config "coupled"
+
+sysctl net.ipv4.tcp_congestion_control=
+sysctl net.core.wmem_max
+sysctl net.core.rmem_max
+sysctl net.ipv4.tcp_wmem
+sysctl net.ipv4.tcp_rmem
+
+#should be 1
+sysctl net.ipv4.tcp_window_scaling
+sysctl net.ipv4.tcp_timestamps
+sysctl net.ipv4.tcp_sack

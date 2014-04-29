@@ -8,6 +8,12 @@ bwm_analysis <- function(filestring,iface){
   return(bwm)
 }
 
+#garde toutes les ifs
+bwm_analysis2 <- function(filestring){ 
+  bwm <- read.csv(filestring,sep=";",header=FALSE)
+  colnames(bwm) <- c("unix_timestamp","iface_name","bytes_out_s","bytes_in_s","bytes_total_s","bytes_in","bytes_out","packets_out_s","packets_in_s","packets_total_s","packets_in","packets_out","errors_out_s","errors_in_s","errors_in","errors_out")
+  return(bwm)
+}
 
 
 

@@ -18,7 +18,6 @@ args[[5]] <- c(paste(cur_wd,"/bw-exp3maxq10000-fenetrebw1000/",sep=""),"", Host,
 args[[6]] <- c(paste(cur_wd,"/bw-exp3maxq1e7-fenetrebw1000/",sep=""),"", Host, 10,50)
 
 
-
 arg <- args[[1]]
 iperf.bw100 <- iperf_bw( arg[1],arg[2],arg[3],arg[4],arg[5])
 arg <- args[[2]]
@@ -32,26 +31,30 @@ iperf.bw1000maxq10000 <- iperf_bw(arg[1],arg[2],arg[3],arg[4],arg[5])
 arg <- args[[6]]
 iperf.bw1000maxq1e7 <- iperf_bw(arg[1],arg[2],arg[3],arg[4],arg[5])
 
-
+print("toto")
 n <- 6
 rcolor <- rainbow(n, s = 1, v = 1, start = 0.6, end = 0.1, alpha = 1)
 
 
 pdf("ws.pdf",useDingbats=FALSE)
 with(iperf.bw100,plot((rate/1000000)~bw,pch=16,
+                      xaxt="n",
                       ylim=c(0,600),
-                      xlab="débit par lien (Mbit/s)",
+                      xlab="taille buffer (Mo)",
                       ylab="débit total (Mbit/s)",
-                      col=rcolor[1]))
+                      col=rcolor[1])
+     )
+axis(1, at=seq(0e6,10e6,by=1e6), labels=seq(0,10,by=1))
 with(iperf.bw200,points((rate/1000000)~bw,pch=16,col=rcolor[2]))
 with(iperf.bw500,points((rate/1000000)~bw,pch=16,col=rcolor[3]))
 with(iperf.bw1000,points((rate/1000000)~bw,pch=16,col=rcolor[4]))
 with(iperf.bw1000maxq10000,points((rate/1000000)~bw,pch=16,col=rcolor[5]))
 with(iperf.bw1000maxq1e7,points((rate/1000000)~bw,pch=16,col=rcolor[6]))
-abline(0,1)
+
 
 legend("topright", # la position sur le graphique
-       c("100", "200","500","1000","1000 maxQ","1000 maxQ 1e7"), # le texte pour chaque courbe
+       title="débit maximal par lien (Mbit/s)",
+       c("100", "200","500","1000",expression("1000 "+ 10^4~"paquets"),expression("1000 "+10^7~"paquets")), # le texte pour chaque courbe
        col=c(rcolor[1],rcolor[2],rcolor[3],rcolor[4],rcolor[5],rcolor[6]),
        pch=c(16,16)
 )

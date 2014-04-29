@@ -26,6 +26,7 @@ def set_TC(args,net):
 
     server.cmdPrint('tc qdisc del dev %s root' %sv_dev)
     server.cmdPrint('tc qdisc add dev %s root netem delay %s' %(sv_dev,args.arg1))
+    
     server.cmdPrint('tc -s qdisc ls dev %s' %sv_dev)
 
     print

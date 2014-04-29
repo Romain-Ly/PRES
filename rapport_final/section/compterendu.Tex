@@ -4,7 +4,7 @@ L'état des scripts utilisées par l'équipe est mise à jour par un
 système de version utilisant git
 \url{https://github.com/Romain-Ly/PRES}.
 
-\subsection[Compilation MPTC]{Compilation MPTCP\footnote{par M. Ly}}
+\subsection[Compilation MPTC]{Compilation MPTCP}
 \label{subsec:etatavanc:mininet-mptcp}
 
 Pour la réalisation du projet, nous utilisons une machine virtuelle de
@@ -18,33 +18,6 @@ Les paquets debian pour l'installation du noyau MTPCP sur une VM de
 mininet est disponible :
 (\url{https://www.dropbox.com/sh/y4ykck8rg6908ps/7V3lsV6Ggg}).
 
-Pour tester la réussite de l'installation, une topologie deux hôtes et
-n switchs a été utilisé. L'utilisation de MPTCP montre un débit
-supérieur lorsque l'on compare à la même expérience où MPTCP a été
-désactivé dans le noyau.
 
-\subsection{Topologie}
-\label{subsec:CR:topologie}
-
-\begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
-    \centering
-    \includegraphics[width=0.7\textwidth]{../figures/mptcp_tcp/mptcp_tcp.pdf}
-  \end{changemargin}
-  \centering
-  
-  \caption{\textbf{Reproduction de la topologie de l'article de
-      R. Khalili}. Le(s) \emph{switch(s)} n ne sont présent(s) que si
-    le nombre de sous-flot est supérieure à deux. Pour n sous-flots,
-    il y aura n-2 \emph{switchs} en plus et autant de liens
-    supplémentaires. L'hyperviseur est connecté à tous les
-    switchs. Pour se connecter via ssh aux hôtes, un \emph{switch} \og
-    root \fg est créé et est connecté au \emph{switch} sw\_mp1 voir
-    utilisations CF linktobeadded.}
-  \label{fig:topoMPTCP:inks}
-  
-\end{figure}
-
-
-
+\input{./section/compteRendu/Topologie}
 \input{./section/compteRendu/MPTCP_perf}

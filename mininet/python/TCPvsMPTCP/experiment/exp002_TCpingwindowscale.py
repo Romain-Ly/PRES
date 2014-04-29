@@ -61,12 +61,12 @@ def test(args, net):
     report = ' --reportstyle C' if args.csv else ''
 
     #********* server **********
-    opts =' -i 1 -m -M 1460 -w args.arg1'
+    opts =' -i 1 -m -M 1460 -w %s' %args.arg2
     cmd = 'iperf -s' + opts + report
     server.sendCmd(cmd)
     
     #********* client **********
-    opts =  ' -t %d -i 1 -m -M 1460 -w args.arg1' % seconds
+    opts =  ' -t %d -i 1 -m -M 1460 -w %s' % (seconds,args.arg2)
     ip = ' 172.16.0.2'
     cmd = 'iperf -c ' + ip + opts + report
     client.sendCmd(cmd)

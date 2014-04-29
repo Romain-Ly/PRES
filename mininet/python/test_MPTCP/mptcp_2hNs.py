@@ -137,8 +137,8 @@ def run(args, net):
     out = h2.read(10000)
     lg.info("server output: %s\n" % out)
 
-    h1.cmdPrint('ifconfig')
-    print h1.IP()
+#    h1.cmdPrint('ifconfig')
+ #   print h1.IP()
 
     return None
 

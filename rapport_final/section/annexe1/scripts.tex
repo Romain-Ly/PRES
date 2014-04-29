@@ -1,0 +1,171 @@
+
+\subsection{Utilisation des scripts pythons}
+\label{sec:annexe1:usepyth}
+
+\subsubsection{Activation MPTCP}
+\label{sec:annexe1:MPTCP}
+
+
+Il y a deux fichiers qui nous intéressent:
+\begin{verbatim}
+/proc/sys/net/mptcp_path_manager
+/proc/sys/net/mptcp_enabled
+\end{verbatim}
+
+Le fichier enabled permet d'activer (\emph{1}) ou de désactiver
+(\emph{0}) MPTCP sur la machine.
+
+Le fichier path\_manager influence sur la méthode d'annonce des
+sous-flots. Deux valeurs nous intéressent: \emph{fullmesh}, et
+\emph{default}. La valeur \emph{default}, il n'y a pas d'annonces des
+sous-flots disponibles tandis que \emph{fullmesh} permet la création
+d'un \emph{mesh} de sous-flots parmi tous ceux disponibles.
+
+Pour modifier la valeur du fichier, il suffit d'utiliser sysctl en utilisant la forme ``nom=valeur''
+
+\begin{verbatim}
+sudo sysctl -w net.mptcp.mptcp_path_manager=fullmesh
+sudo sysctl -w net.mptcp.mptcp_enabled=1
+\end{verbatim}
+
+Attention, selon les choix lors de la compilation du noyau, la valeur
+par défaut du path\_manager peut être mise sur ``default''.
+
+\subsubsection{Choix de l'algorithme congestion}
+\label{sec:annexe1:MPTCPcongestion}
+Pour choisir l'algorithme de congestion, il est nécessaire de modifier
+le fichier suivant :
+
+\begin{verbatim}
+/proc/sys/net/ipv4/tcp_congestion_control
+\end{verbatim}
+
+Pour l'algorithme LIA:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=coupled
+\end{verbatim}
+
+Pour l'algorithme OLIA:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=olia
+\end{verbatim}
+
+Pour l'algorithme par défaut:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=cubic
+\end{verbatim}
+
+Pour afficher les algorithmes disponibles:
+\begin{verbatim}
+sudo sysctl net.ipv4.tcp_available_congestion_control
+\end{verbatim}
+
+L'ordonnanceur par défaut est choisi à la compilation du noyau.
+
+\subsubsection{Taille de la fenêtre}
+\label{sec:annexe1:windowsize}
+
+Pour modifier la taille maximale de la fenêtre de réception et
+d'envoi, il faut modifier les fichiers suivants:
+
+\begin{verbatim}
+/proc/sys/net/core/wmem_max
+/proc/sys/net/core/rmem_max
+\end{verbatim}
+
+Pour une taille \emph{buffer} maximale de $\sim$16\,Mo:
+\begin{verbatim}
+sysctl -w net.core.wmem_max=16777216
+sysctl -w net.core.rmem_max=16777216
+\end{verbatim}
+
+
+\subsection{Lancement scripts python}
+\label{sec:annexe1:python}
+
+Les fichiers permettant de lancer la topologie et d'exécuter les tests
+se nomment en commençant par ``pyMPTCP'' et se situent sur le git pour
+l'instant dans ``./mininet/python/TCPvsMPTCP''
+
+\begin{verbatim}
+pyMPTCP.py
+pyMPTCP_parser.py
+pyMPTCP_topo.py
+pyMPTCP_options.py
+\end{verbatim}
+
+pyMPTCP.py contient le \emph{main} et doit être modifié pour choisir
+la topologie (objet \emph{topo} dans la fonction \emph{main} et objet
+\emph{net} dans la fonction \emph{runMPTCP}).
+
+pyMPTCP\_topo.py contient les définitions des topologies utilisées. La
+classe \emph{Topo} sera utilisée par mininet pour la création du
+réseau. La classe \emph{Topo->names} contient les noms des hôtes et
+des switches qui seront utiles pour les tests.
+
+pyMPTCP\_parser.py contient le parseur d'argument voir section
+\ref{sec:annexe1:commentaires_argument}.
+
+pyMPTCP\_options.py contient les fonctions qui seront lancées selon les
+arguments utilisés.
+
+La fonction options permet de modifier la topologie après la création
+des n\oe uds. \`A cause d'un bug de mininet ,pour l'instant encore non
+résolu, il est nécessaire d'utiliser la classe \emph{mininet} pour
+pouvoir créer plus d'un lien entre deux mêmes n\oe uds.
+
+Exemple d'utilisation:
+\begin{verbatim}
+sudo python ./pyMPTCP.py -O exp001_TC --bw 10 --mptcp -n 5 -t 60 --shark
+\end{verbatim}
+Ici nous lançons la topologie A, avec l'expérience exp001\_TC avec un
+débit maximal par lien de 10\,Mbit/s, en utilisant MPTCP, avec 5
+sous-flots et \emph{iperf} sera utilisé pendant 60 secondes, et
+tcpdump sera utilisé pour enregister les paquets. Pour plus de
+précisions voir \ref{sec:annexe1:commentaires_argument}.
+
+
+\input{section/annexe1/Argument_parser}
+
+\subsection{arguments mininet}
+\label{sec:annexe1:commentaires_argument}
+
+\begin{verbatim}
+usage: sudo mptc_khal.py [h] [--cli] --bw BW [--delay DELAY] [-n N] [-t T]
+                         [--mptcp] [--pause] [--ndiffports NDIFFPORTS]
+\end{verbatim}
+
+
+
+cf argument parser annexe.
+
+\subsubsection{ssh}
+\label{sec:annexe1:ssh}
+
+\begin{verbatim}
+usage: sudo mptc_khal.py --sshd
+\end{verbatim}
+
+Cette option lance le démon ssh dans chacun des n\oe uds avec la
+commande 
+\begin{verbatim}
+/usr/sbin/sshd -o UseDNS=no -u0
+\end{verbatim}. 
+
+Pour l'instant, seul la connexion à partir de root avec le premier
+hôte (172.16.0.1) fonctionne. En effet la résolution ARP échoue pour
+les autres hôtes (pas de paquets ARP reply en utilisant
+tcpdump).\\ 
+
+sur le n\oe ud root
+\begin{verbatim}
+tcpdump -i root-eth0 arp
+\end{verbatim}. 
+
+Cependant, il reste possible de se connecter aux autres hôtes par ssh
+via le premier hôte.
+
+Pour l'instant, une méthode \og sale \fg est utilisée pour arrêter les
+démons sshd sur les hôtes.
+
+
