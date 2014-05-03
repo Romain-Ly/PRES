@@ -1,0 +1,33 @@
+
+\subsubsection{Topologie}
+\label{sec:annexe1:bugs:topo}
+
+\`A la création de la topologie mininet, il est nécessaire de donner
+des noms courts aux hôtes et aux switchs.\\
+
+Il n'est pas possible de créer deux liens entre les mêmes n\oe uds de
+la classe ``Topo''. Pour contourner cette limitation, il faut créé la
+topologie avec un seul lien puis dans la classe ``Mininet'', rajouter
+le second lien. C'est pourquoi, dans le fichier
+``\emph{pyMPTCP\_topo.py}'', il y a deux définitions pour la même
+topologie: une pour la classe Topo (\emph{topo()}) et une autre pour
+la classe Mininet (\emph{topo\_options(args,net)}) qui sera executé
+séquentiellement lors de la simulation.\\
+
+
+\subsubsection{mininet}
+\label{sec:annexe1:bugs:mininet}
+L'utilisation conjointe de la commande \emph{iperf} et de la commande
+ping dans une simulation produit une erreur du calcul du délai par la
+commande ping. Ce délai augmente exponentiellement vers environ
+1000\,ms. Si on analyse les traces enregistrés avec \emph{tcpdump},
+les réponses aux \emph{echo request} se produisent bien plus
+rapidement que ne laissent sugérer les résultats de la commande
+\emph{ping}. L'utilisation conjointe de ces deux applications marchent
+très bien entre la machine physique et la VM et il est probable que ce
+problème soit lié à mininet.\\
+
+Dans l'état des scripts, \emph{Iperf3} produit une erreur à la fin de
+la simulation et il n'est pas possible pour l'instant d'utiliser les
+scripts \emph{shell} pour effectuer plusieurs simulations.
+

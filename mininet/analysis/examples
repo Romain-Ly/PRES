@@ -1,0 +1,5 @@
+Rscript test.R /home/romain/M1/PRES/projet/mininet/analysis/test/ exp001_TC_TEST
+
+Rscript iperf.R /home/romain/M1/PRES/projet/mininet/analysis/bw-exp/ exp001_TC_runbw client 10 50
+
+Rscript bwm.R /home/romain/M1/PRES/projet/mininet/analysis/bw-exp/ exp001_TC_runbw h1 eth0 bytes_out_s

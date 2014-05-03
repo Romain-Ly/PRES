@@ -65,12 +65,15 @@ L'ordonnanceur par défaut est choisi à la compilation du noyau.
 \subsubsection{Taille de la fenêtre}
 \label{sec:annexe1:windowsize}
 
-Pour modifier la taille maximale de la fenêtre de réception et
-d'envoi, il faut modifier les fichiers suivants:
+Pour modifier la taille maximale de la fenêtre de réception
+(\emph{rmem}) et d'envoi \emph{wmem}, il faut modifier les fichiers
+suivants:
 
 \begin{verbatim}
 /proc/sys/net/core/wmem_max
 /proc/sys/net/core/rmem_max
+/proc/sys/net/core/rmem_default
+/proc/sys/net/core/rmem_default
 \end{verbatim}
 
 Pour une taille \emph{buffer} maximale de $\sim$16\,Mo:
@@ -78,6 +81,21 @@ Pour une taille \emph{buffer} maximale de $\sim$16\,Mo:
 sysctl -w net.core.wmem_max=16777216
 sysctl -w net.core.rmem_max=16777216
 \end{verbatim}
+
+Pour modifier les valeurs par défauts :
+\begin{verbatim}
+sysctl -w net.core.rmem_default=163840
+sysctl -w net.core.wmem_default=163840
+\end{verbatim}
+
+Pour modifier les valeurs d'\emph{auto-tuning}:
+\begin{verbatim}
+sysctl -w net.ipv4.tcp_wmem='4096 16384 4194304'
+sysctl -w net.ipv4.tcp_rmem='4096 87380 6291456'
+\end{verbatim}
+Les valeurs correspondent respectivement à la taille minimale, par
+défaut et maximale du buffer alloué (en octets) par socket TCP. La
+taille maximale ne peut dépasser celle indiquée dans \emph{net.core.}
 
 
 \subsection{Lancement scripts python}
@@ -125,6 +143,8 @@ tcpdump sera utilisé pour enregister les paquets. Pour plus de
 précisions voir \ref{sec:annexe1:commentaires_argument}.
 
 
+
+
 \input{section/annexe1/Argument_parser}
 
 \subsection{arguments mininet}
@@ -167,5 +187,66 @@ via le premier hôte.
 
 Pour l'instant, une méthode \og sale \fg est utilisée pour arrêter les
 démons sshd sur les hôtes.
+
+
+
+\subsection{scripts shell}
+\label{sec:annexe1:shell}
+Les scripts écrits en bash permettent de lancer plusieurs fois les
+simulation en utilisant des paramètres variables. Il est nécessaire de
+les lancer en mode super-utilisateur.
+
+\begin{verbatim}
+sudo bash shNAME.sh
+\end{verbatim}
+
+\begin{tabular}{lp{\linewidth - 4cm}}
+shKernelCheck.sh&Permet de visualiser l'algorithme de congestion et les taille des tampons\\
+shKernelDefault.sh&Permet de modifier les tailles des buffers\\
+shMPTCP.sh&lanceurs d'expériences\\
+\end{tabular}
+
+Le script shMPTCP permet de multiplier les expériences. Les fonctions
+écrites ne sont pas toutes utilisées cependant il y a 2 fonctions
+importantes qu'on peut décrire.
+
+\paragraph{clean}
+\begin{verbatim}
+sudo bash shMPTCP.sh clean
+\end{verbatim}
+Cette fonction envoie un signal d'arrêt aux fonctions qui sont
+utilisées pour les mesures: (ping, iperf, iperf3, bwm-ng, tcpdump),
+elle supprime tous les fichiers de sortie situés dans ./output/ et
+effectuer un nettoyage de ``mininet'' (mn -c) en supprimant les
+noeuds, liens hôtes créés.
+
+\paragraph{runMPTCP}
+Cette fonction exécute le script python est appelé à l'intérieur d'une
+boucle par d'autres fonctions.
+
+\vspace{1cm}
+
+Les autres fonctions appellent la fonction runMPTCP pour effectuer les
+simulations, exemple:
+\begin{verbatim}
+sudo bash shMPTCP.sh runbw
+\end{verbatim}
+
+\subsection{Scripts R}
+\label{sec:annexe1:R}
+Les scripts R ne sont pas totalement finalisés pour être exploitables
+facilement par autrui et pour certains, il faudra modifier les
+fichiers pour indiquer les dossiers contenant les résultats des
+expériences.
+
+Le dossier ./scripts/R contient les fonctions qui permettent d'analyser les
+fichiers produits par les scripts pythons. 
+
+Le dossier ./scripts/Analysis contient les fichiers expérimentaux et
+les fichiers R permettant de les analyser en faisant appel aux
+fonctions se trouvant dans le dossier ./scripts/R. Pour une question
+de stockage, les fichiers des différentes expériences ne sont pas sur
+le git.
+
 
 

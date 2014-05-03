@@ -1,0 +1,6 @@
+cur_wd <- getwd()
+setwd("/home/romain/M1/PRES/projet/mininet/R")#path to R files
+source("iperf_anal.R")
+source("ping_anal.R")
+source("bw_anal.R")
+setwd(cur_wd)

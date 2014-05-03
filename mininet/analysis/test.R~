@@ -1,1 +1,31 @@
-source("~/M1/projet/mininet/R/")# path to R files
+cur_wd <- getwd()
+setwd("/home/romain/M1/PRES/projet/mininet/R")#path to R files
+#path_files <- "/home/romain/M1/PRES/projet/mininet/analysis/test"
+source("ping_anal.R")
+setwd(cur_wd)
+
+
+args <- commandArgs(trailingOnly = TRUE)
+#arg 1 : path : "$PWD/folder/" must end with a "/"
+#arg 2 : prefix name example: "exp001_TC_runTC0"
+path <- args[1]
+fname <- args[2]
+
+fname_abs <- paste(path,fname,sep="")
+
+#RTT
+ping_list <- list.files(path=path,pattern=paste(fname,"_","ping",sep=""),full.names=TRUE)
+for(i in 1:length(ping_list)) {
+  print(ping_list[i])
+  print(ping_analysis(ping_list[i]))
+}
+
+
+
+
+
+
+
+
+
+          

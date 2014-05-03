@@ -150,11 +150,7 @@ observons une diminution du débit mesuré
 Fig. \ref{fig:mptcp:windowscale}.
 
 \begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
-    \centering
     \includegraphics[width=0.7\textwidth]{../figures/ws.pdf}
-  \end{changemargin}
-  \centering
   
   \caption{\textbf{Débit mesuré en fonction de la taille de la
       fenêtre}. La taille maximmale de la fenêtre TCP est modifiée
@@ -182,5 +178,143 @@ En effectuant des
 recherches\footnote{\url{https://github.com/mininet/mininet/wiki/Introduction-to-Mininet\#what-are-mininets-limitations}}\footnote{\url{https://mailman.stanford.edu/pipermail/mininet-discuss/2014-January/003901.html}},
 il semblerait que la limite du débit est lié aux n\oe uds Open vSwitch
 sur Ubuntu 13.04, ce qui pour une dizaine de liens limite la capacité
-à 100 Mbit/s. C'est pourquoi, nous utiliserons des débits de 10 Mbit/s
-environ pour les prochaines expériences.
+à 100 Mbit/s. C'est pourquoi, nous limiterons le débit maximal par
+lien à environ 10 Mbit/s.
+
+\subsubsection{Variation du délai par lien}
+\label{sec:compterendu:perf:délai}
+
+Afin d'évaluer l'influence du délai sur le débit enregistré, nous
+faisons varier le délai de tous les liens de manière symétriques. Le
+coût pour chaque sous-flot reste donc identique.
+
+Pour mesurer le délai pour chaque sous-flot, nous avons utilisé la
+commande \emph{ping}. Cette approche a été utilisé car elle est la
+plus facile à mettre en \oe uvre. Par manque d'espace disque (mémoire
+SSD), l'utilisation de \emph{tcpdump} est réservée pour les tests et
+la recherche d'erreur. Cependant, il sera nécessaire d'utiliser le
+délai par TCP car l'utilisation conjointe de \emph{ping} et
+d'\emph{iperf} produit une erreur (voir
+\pref{sec:annexe1:bugs:mininet}).\\
+
+
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../figures/rtt.pdf}
+  \centering
+  
+  \caption{\textbf{Débit maximal mesuré en fonction du délai}. Le
+    délai est du même ordre de grandeur pour tous les liens. Le RTT
+    est mesuré avec la commande \emph{ping} avant le test avec
+    \emph{iperf} qui dure 60\,s. Deux sous-flots sont utilisés.}
+  \label{fig:mptcp:rttisotrop}
+  
+\end{figure}
+
+Nous observons que la modification du délai n'entraîne pas de baisse
+de performances pour les liens à faible débits
+\fig{fig:mptcp:rttisotrop}. Ce qui est attendu vu que la taille des
+\emph{buffers} et la taille maximale de paquets attendant sur les
+routeurs sont largement suffisantes pour pallier à une augmentation de
+débit. Il reste alors à tester ces cas dans des
+conditions plus stringentes.\\
+
+Pour les liens à plus haut débits, l'augmentation de délai entraîne
+une diminution du débit. Pour 200\,Mbit/s et 400\,ms de RTT, il est
+nécessaire d'avoir 10\,Mo environ de tampon par sous-flot. Cependant,
+il est possible que cette diminution drastique pour le lien à
+200\,Mbit/s est liée aux problèmes de simulation des débits élévés
+avec mininet.\\
+\vspace{1cm}
+
+Nous constatons que la taille du tampon s'avère être un paramètre
+primordial dans pour les performances de MPTCP. L'algorithme de
+congestion utilisé ne semble pas être nécessaire dans ces cas
+particuliers. Dans une utilisation mobile, les deux sous-flots ont
+généralement des délais différents si on se base sur l'utilisation
+d'un accès wifi, 3G ou/et ethernet. Dans la figure
+\ref{fig:mptcp:rttetTC}, nous utilisons les mêmes paramètres que dans
+l'expérience précédente cependant le premier sous-flot a un délai
+(RTT) fixe d'une dizaine de millisecondes (expériences ``TC''). Nous
+observons aucune différence entre le cas où les deux sous-flots ont un
+délai variable et le cas où un seul sous-flot est variable sauf dans
+l'expérience ``200 TC'' où le débit est plus élevé que dans le cas à
+deux sous-flots variables ce qui confirme en partie le fait que la
+diminution de performance observée, pour ce cas, est lié à la taille
+du tampon.
+
+
+\begin{figure}[htb]
+    \includegraphics[width=0.7\textwidth]{../figures/prefixtc.pdf}
+  \centering
+  \caption{\textbf{Débit maximal mesuré en fonction du délai d'un lien}. Le
+    délai est modifiée pour le second lien dans la topologie A. Le RTT
+    est mesuré avec la commande \emph{ping} avant le test avec
+    \emph{iperf} qui dure 60\,s. Deux sous-flots sont utilisés.}
+  \label{fig:mptcp:rttetTC}
+\end{figure}
+
+\subsubsection{Choix du sous-flot en fonction du délai}
+\label{sec:compterendu:perf:5choix}
+
+
+Pour tester les sous-flots utilisés dans une connexion à \og faible
+\fg débit. Nous avons utilisé 5 sous-flots à délai variable. Le délai
+de chaque sous-flot suit une sigmoïde (équation \ref{eq:sigmoide}).
+
+\begin{equation}
+  \label{eq:sigmoide}
+  delay=min+\frac{max}{1+e^{\frac{x-x_{half}}{slope}}}
+\end{equation}
+
+Les paramètres\footnote{slope et $x_{half}$ ne sont pas utiles et
+  permettent de contraindre le nombre d'expériences et la courbure des
+  points d'inflexion.} utilisés sont les suivants:
+
+\vspace{1cm}
+%\begin{tabular}{lp{\linewidth - 4cm}} 
+\begin{tabular}{ll}
+\textbf{Paramètre}& \textbf{Valeur}\\
+\hline
+delay& délai par lien\\
+max& délai maximal par lien\\
+min& délai minimal par lien\\
+\end{tabular}
+\vspace{0.5cm}
+
+
+
+La commande \emph{iperf} envoie des paquets jusqu'à atteindre le débit
+maximum sur chaque sous-flot. Il est donc difficile de mesurer quels
+sont les sous-flots préférés par l'ordonnanceur. \emph{iperf} permet
+seulement de contraindre le débit d'UDP. Nous avons donc intégré
+\emph{iperf3\footnote{\url{https://github.com/esnet/iperf}}} à la VM
+mininet
+pour permettre de fixer le débit envoyer au serveur.\\
+
+L'utilisation d'\emph{iperf3} entraîne une erreur qui n'a pas été
+encore résolue à la fin de la simulation (voir
+\pref{sec:annexe1:bugs:mininet}) empêchant toutes simulations
+automatisées. Nous avons donc choisi deux résultats caractéristiques.
+
+\begin{figure}[htb]
+    \includegraphics[width=0.7\textwidth]{../figures/prefixtc.pdf}
+  \centering
+  \caption{\textbf{Débit maximal mesuré en fonction du délai d'un lien}. Le
+    délai est modifiée pour le second lien dans la topologie A. Le RTT
+    est mesuré avec la commande \emph{ping} avant le test avec
+    \emph{iperf} qui dure 60\,s. Deux sous-flots sont utilisés.}
+  \label{fig:mptcp:rttetTC}
+\end{figure}
+
+
+
+
+\subsubsection{Choix de l'algorithme}
+\label{sec:compterendu:perf:algo}
+
+La plupart des tests ont aussi été effectués avec l'algorithme de
+congestion de linux (\emph{cubic}) et certains avec l'algorithme
+\emph{OLIA}. L'utilisation de ces algorithmes entraînent des résultats
+grossièrement similaires cependant, des analyses plus poussées et des
+tests dans des conditions de plus grand stress devront être effectués.

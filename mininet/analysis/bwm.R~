@@ -1,0 +1,54 @@
+cur_wd <- getwd()
+setwd("/home/romain/M1/PRES/projet/mininet/R")#path to R files
+source("iperf_anal.R")
+source("ping_anal.R")
+source("bw_anal.R")
+setwd(cur_wd)
+
+
+args <- commandArgs(trailingOnly = TRUE)
+#arg 1 : path : "$PWD/folder/" must end with a "/"
+#arg 2 : prefix name example: "exp001_TC_runTC0"
+#arg 3 : "client" or "server"
+#arg 4 : start
+#arg 5 : end
+path <- args[1]
+fname <- args[2]
+host <- args[3]
+start <- args[4]
+end <- args[5]
+
+fname_abs <- paste(path,fname,sep="")
+host_grep <- paste("iperf_",host,sep="")
+
+pattern = paste("'","iperf_",args[3],"'",sep="")
+print(pattern)
+#iperf
+
+z <- pipe(paste("ls -rt ",path," | grep ",pattern),"")
+#z <- pipe(paste("ls -rt",""))
+iperf_list <- readLines(z)
+close(z)
+n <- length(iperf_list)
+iperf.df <- vector(length=n)
+
+for(i in 1:length(iperf_list)) {
+  file.path <- paste(args[1],iperf_list[i],sep="")
+  #print(file.path)
+  iperf_tp <- iperf_analysis(file.path)[args[4]:args[5],]
+  iperf.df[i] <- mean(iperf_tp$rate)
+  #print(iperf_tp)
+}
+pdf("toto.pdf")
+plot(iperf.df)
+print(iperf.df[4])
+dev.off()
+
+
+
+
+
+
+
+
+          
