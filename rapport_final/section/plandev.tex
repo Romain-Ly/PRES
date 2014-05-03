@@ -21,47 +21,67 @@ Les étapes du développement suivront les points suivants:
 
 
 
-
+\subsection{Descriptif du travail de Quentin Dubois et de Kevin Lam}
 \begin{figure}[!htb]
   \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
-    \includegraphics[width=1.2\textwidth]{../gantt/gant.jpg}
+    \includegraphics[width=1.2\textwidth]{../gantt/Kevin et Quentin.png}
   \end{changemargin}
   \centering
   
-  \caption{\textbf{Diagramme de Gantt général}. Les couleurs
-    correspondent à la répartition entre les membres de l'équipe : en
-    \emph{rouge} M. Ly, en \emph{jaune} M. Ravier et en \emph{vert}
-    M. Dubois et M. Lam, en \emph{orange} M. Ravier et M. Ly et en
-    \emph{noir} par tout le monde.}
+  \caption{\textbf{Diagramme de Gantt Kevin Lam et Quentin Dubois}. }
   \label{fig:gantt}
-  
 \end{figure}
+
+
+
 
 \vspace{2cm}
+\clearpage
+\subsection{Descriptif du travail de Romain Ly}
+\begin{figure}[!htb]
+  \begin{changemargin}{-2.0cm}{0.5cm}
+    \centering
+    \includegraphics[width=1.2\textwidth]{../gantt/romain.png}
+  \end{changemargin}
+  \centering
+  
+  \caption{\textbf{Diagramme de Gantt de Romain Ly.}}
+  \label{fig:gantt}
+  
+\end{figure}
+Mise en place du Git
+Compilation noyau MPTCP dans la VM mininet et tests simples de routines
+Topologie modifiée de Khalili et al.
+Scripts Python
+   - implémentation d'un parseur d'arguments
+   - intégration de ping, iperf, bwm-ng, sshd, tcpdump permettant le monitoring et l'étude du réseau
+Installation de TCP-reduce dans la VM pour vérifier les options de la connexion TCP.
+Scripts Bash pour générer de multiples simulations par l'intermédiaire de scripts Python
+Scripts R pour analyse des résultats et figures
+Débogages des scripts
+Expérimentations avec des liens isotropiques
+   - variation du nombre de sous flots, débit, latence
+
+\subsection{Descriptif du travail de Simon Ravier}
 
 \begin{figure}[!htb]
   \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
-    \includegraphics[width=1.2\textwidth]{../gantt/romain.jpg}
+    \includegraphics[width=1.2\textwidth]{../gantt/Simon.png}
   \end{changemargin}
   \centering
   
-  \caption{\textbf{Diagramme de Gantt personnalisée Romain Ly.}}
+  \caption{\textbf{Diagramme de Gantt de Simon Ravier.}}
   \label{fig:gantt}
-  
 \end{figure}
 
-\begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
-    \centering
-    \includegraphics[width=1.2\textwidth]{../gantt/kevin.jpg}
-  \end{changemargin}
-  \centering
-  
-  \caption{\textbf{Diagramme de Gantt personnalisée Kevin Lam et
-      Quentin Dubois.}}
-  \label{fig:gantt}
-  
-\end{figure}
-
+\vspace{1cm}
+\begin{tabular}{lp{12cm}}
+  03/03 au 30/03 & établissement de la topologie FatTree\\
+  31/03 au 06/04 & modification de la topologie FatTree (impossibilité technique de réaliser le premier modèle)\\
+  07/04 au 27/04 & Intégration de la topologie FatTree dans
+l'environnement de tests (configuration des hôtes, établissement des
+tables de routage) et réalisation des tests
+\end{tabular}
+\vspace{0.5cm}

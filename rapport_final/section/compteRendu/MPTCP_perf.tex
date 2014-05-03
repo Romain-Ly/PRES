@@ -283,28 +283,66 @@ min& délai minimal par lien\\
 \vspace{0.5cm}
 
 
+\begin{figure}[htb]
+    \includegraphics[width=0.7\textwidth]{../figures/TC5.pdf}
+  \centering
+  \caption{\textbf{Débit reçu par interface côté serveur en fonction
+      du RTT par sous-flot}. \emph{En haut}, RTT pour chaque
+    sous-flot. \emph{Au milieu}, débit (Mbit/s) par interface. En bas,
+    débit total (Mbit/s) enregistré au serveur.}
+  \label{fig:mptcp:sigmoid}
+\end{figure}
 
-La commande \emph{iperf} envoie des paquets jusqu'à atteindre le débit
-maximum sur chaque sous-flot. Il est donc difficile de mesurer quels
-sont les sous-flots préférés par l'ordonnanceur. \emph{iperf} permet
-seulement de contraindre le débit d'UDP. Nous avons donc intégré
+Nous observons que le débit reçu est équivalent pour chaque interface
+sauf pour l'interface ``eth4'' où son débit est inférieur à celles des
+autres pour des RTTs supérieur à 300\,ms. Le débit total n'est que
+faiblement diminué. En effet, la commande \emph{iperf} envoie des
+paquets jusqu'à atteindre le débit maximum sur chaque sous-flot. La
+légère diminution des débits pour les délais long est probablement
+liée au tampon de réception ou d'envoi.\\
+
+Il est donc difficile de prédire les sous-flots préférés par
+l'ordonnanceur. \emph{iperf} ne permet de contraindre le débit que
+pour des paquets UDP. Nous avons donc intégré
 \emph{iperf3\footnote{\url{https://github.com/esnet/iperf}}} à la VM
 mininet
-pour permettre de fixer le débit envoyer au serveur.\\
+pour permettre de fixer le débit.\\
 
 L'utilisation d'\emph{iperf3} entraîne une erreur qui n'a pas été
 encore résolue à la fin de la simulation (voir
 \pref{sec:annexe1:bugs:mininet}) empêchant toutes simulations
 automatisées. Nous avons donc choisi deux résultats caractéristiques.
 
-\begin{figure}[htb]
-    \includegraphics[width=0.7\textwidth]{../figures/prefixtc.pdf}
+\begin{figure}[!htb]
+    \includegraphics[width=0.7\textwidth]{../figures/bw-5_1_5_10_100_500.pdf}
   \centering
-  \caption{\textbf{Débit maximal mesuré en fonction du délai d'un lien}. Le
-    délai est modifiée pour le second lien dans la topologie A. Le RTT
-    est mesuré avec la commande \emph{ping} avant le test avec
-    \emph{iperf} qui dure 60\,s. Deux sous-flots sont utilisés.}
-  \label{fig:mptcp:rttetTC}
+  \caption{\textbf{Débit pour chaque interface}. Les RTTs pour les
+    interfaces de eth0 à eth5 sont de 34, 38,43, 137, 552\,ms. Chaque
+    lien a une capacité de 10\,Mbit/s et le débit total généré par
+    \emph{iperf3} a été fixé à 7,5\,Mbit/s.  }
+  \label{fig:mptcp:bw151050}
+\end{figure}
+
+Dans la figure \ref{fig:mptcp:bw151050} et
+\ref{fig:mptcp:bw1010500500500} nous observons que l'ordonnanceur
+envoie les paquets préférentiellement dans les sous-flots à délai
+court. Il équilibre les charges dans les sous-flots où le délai reste
+raisonnable (sous-flot à RTT de 147\,ms dans la figure
+\ref{fig:mptcp:bw151050}. Cependant pour les sous-flots à \og coûts
+\fg identiques, nous observons un effet de battement
+(\emph{flappiness}) qui peut être conséquent. Il serait utile de
+mesurer le RTT au cours du temps pour chaque sous-flot et d'établir si
+cet effet de battement est lié à une variation du délai et ce pour
+l'algorithme LIA et OLIA \cite{pareto2013}.
+
+\begin{figure}[!htb]
+    \includegraphics[width=0.7\textwidth]{../figures/bw-5_10_10_500_500_500.pdf}
+  \centering
+  \caption{\textbf{Débit pour chaque interface}. Les RTTs pour les
+    interfaces de eth0 à eth5 sont de 43, 43, 557, 557,
+    557\,ms. Chaque lien a une capacité de 10\,Mbit/s et le débit
+    total généré par \emph{iperf3} a été fixé à 7,5\,Mbit/s.  }
+  \label{fig:mptcp:bw1010500500500}
 \end{figure}
 
 
