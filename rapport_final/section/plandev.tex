@@ -16,7 +16,7 @@ Les étapes du développement suivront les points suivants:
   la concurrence entre MPTCP et TCP;
 \item Préparation d'une bibliothèque de tests et de mesures via l'API python;
 \item \'Ecriture d'un algorithme d'ordonnancement dans le noyau;
-\item Mesures de performance des différents algorithmes.
+\item Mesures de performance.
 \end{itemize}
 
 
@@ -50,18 +50,28 @@ Les étapes du développement suivront les points suivants:
   \label{fig:gantt}
   
 \end{figure}
-Mise en place du Git
-Compilation noyau MPTCP dans la VM mininet et tests simples de routines
-Topologie modifiée de Khalili et al.
-Scripts Python
-   - implémentation d'un parseur d'arguments
-   - intégration de ping, iperf, bwm-ng, sshd, tcpdump permettant le monitoring et l'étude du réseau
-Installation de TCP-reduce dans la VM pour vérifier les options de la connexion TCP.
-Scripts Bash pour générer de multiples simulations par l'intermédiaire de scripts Python
-Scripts R pour analyse des résultats et figures
-Débogages des scripts
-Expérimentations avec des liens isotropiques
-   - variation du nombre de sous flots, débit, latence
+
+\begin{itemize}
+\item Mise en place du Git
+\item Compilation noyau MPTCP dans la VM mininet et tests simples de routines
+\item Topologie modifiée de Khalili et al.
+\item Scripts Python
+  \begin{itemize}
+  \item implémentation d'un parseur d'arguments
+  \item intégration de ping, iperf, iperf3, bwm-ng, sshd, tcpdump
+    permettant le monitoring et l'étude du réseau
+  \end{itemize}
+\item Installation de TCP-reduce dans la VM pour vérifier les options de la connexion TCP.
+\item Scripts Bash pour générer de multiples simulations par l'intermédiaire de scripts Python
+\item Scripts R pour analyse des résultats et figures
+\item Débogages des scripts
+\item Expérimentations
+  \begin{itemize}
+  \item variation du nombre de sous flots, débits, latences, taille de
+    fenêtre, etc.
+  \end{itemize}
+\end{itemize}
+
 
 \subsection{Descriptif du travail de Simon Ravier}
 

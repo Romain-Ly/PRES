@@ -17,6 +17,8 @@ séquentiellement lors de la simulation.\\
 
 \subsubsection{mininet}
 \label{sec:annexe1:bugs:mininet}
+
+\paragraph{iperf et ping}
 L'utilisation conjointe de la commande \emph{iperf} et de la commande
 ping dans une simulation produit une erreur du calcul du délai par la
 commande ping. Ce délai augmente exponentiellement vers environ
@@ -27,7 +29,29 @@ rapidement que ne laissent sugérer les résultats de la commande
 très bien entre la machine physique et la VM et il est probable que ce
 problème soit lié à mininet.\\
 
+
+\paragraph{MSS}
+Lorsque nous fixons le \emph{Maximum Segment Size} à 1460 octets, nous
+obtenons ce message d'erreur:
+\begin{verbatim}
+  WARNING: attempt to set TCP maximum segment size to 1460, but got
+  536
+\end{verbatim}
+
+Cependant, si nous analysons les paquets enregistrés grâce à
+\emph{tcpdump}, nous observons que le MSS négocié pendant le
+\emph{handshake} de la connexion est bien de 1460 octets et que la
+taille des paquets de données est de 1428 octets.
+
+\paragraph{iperf3}
 Dans l'état des scripts, \emph{Iperf3} produit une erreur à la fin de
-la simulation et il n'est pas possible pour l'instant d'utiliser les
-scripts \emph{shell} pour effectuer plusieurs simulations.
+la simulation. Il est nécessaire de nettoyer la simulation et il n'est
+pas possible pour l'instant d'utiliser les scripts \emph{shell} pour
+effectuer des simulations automatisées.
+
+\begin{verbatim}
+sudo bash shMPTCP.sh clean
+\end{verbatim}
+
+
 

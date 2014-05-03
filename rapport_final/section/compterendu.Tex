@@ -4,19 +4,27 @@ L'état des scripts utilisées par l'équipe est mise à jour par un
 système de version utilisant git
 \url{https://github.com/Romain-Ly/PRES}.
 
-\subsection[Compilation MPTC]{Compilation MPTCP}
+\subsection[Compilation MPTC]{Compilation du noyau MPTCP (machine
+  test)}
 \label{subsec:etatavanc:mininet-mptcp}
 
-Pour la réalisation du projet, nous utilisons une machine virtuelle de
-mininet installé ubuntu 13.04 32 bits, disponible ici :
+Pour la réalisation du projet, nous utilisons une machine virtuelle
+ubuntu 13.04 (32 bits) où mininet est installé et est prêt pour
+utilisation :
 \url{https://bitbucket.org/mininet/mininet-vm-images/downloads}.
 
-La mise en place du noyau linux MPTCP (v0.88) dans une VM de mininet
-(v2.10) est à 100~\% terminé.
-
-Les paquets debian pour l'installation du noyau MTPCP sur une VM de
-mininet est disponible :
+Nous avons compilé le noyau linux contenant MPTCP (v0.88) dans une VM
+de mininet (v2.10). Les paquets debian pour l'installation du noyau
+MTPCP sur une VM de mininet est disponible :
 (\url{https://www.dropbox.com/sh/y4ykck8rg6908ps/7V3lsV6Ggg}).
+
+Cepedant, l'architecture des machines pouvant être différente, la VM
+n'est pas fonctionnelle sur certaines des machines des membres du
+projet. Par conséquent, il est préférable de compiler soit même MPTCP
+dans chaque machine. Le fichier ``.config'' est disponible sur le
+git. La seconde option est d'utiliser ``apt-repository'' selon les
+indications disponibles à cette adresse
+\url{http://multipath-tcp.org/pmwiki.php/Users/AptRepository}.
 
 
 \input{./section/compteRendu/Topologie}

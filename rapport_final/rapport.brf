@@ -9,9 +9,8 @@
 \backcite {raiciu2010}{{10}{3.2}{subsection.3.2}}
 \backcite {pareto2013}{{13}{5}{figure.5}}
 \backcite {pareto2013}{{13}{6}{figure.6}}
-\backcite {pareto2013}{{15}{6.4}{subsection.6.4}}
-\backcite {pareto2013}{{17}{7.3}{subsection.7.3}}
-\backcite {rfc6356}{{18}{7.4}{subsection.7.4}}
-\backcite {rfc6182}{{19}{7.4.2}{figure.9}}
-\backcite {rfc6824}{{20}{7.4.2}{figure.9}}
-\backcite {pareto2013}{{25}{7.4.4}{figure.14}}
+\backcite {pareto2013}{{16}{6.3}{subsection.6.3}}
+\backcite {rfc6356}{{16}{6.4}{subsection.6.4}}
+\backcite {rfc6182}{{18}{6.4.2}{figure.9}}
+\backcite {rfc6824}{{19}{6.4.2}{figure.9}}
+\backcite {pareto2013}{{24}{6.4.4}{figure.14}}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.27)  3 MAY 2014 12:38
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.27)  3 MAY 2014 19:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -472,18 +472,6 @@ LaTeX Warning: Label `subsec:utilisation' multiply defined.
 
 LaTeX Warning: Label `sec:etat-avancement' multiply defined.
 
-
-LaTeX Warning: Label `sec:etat-avancement' multiply defined.
-
-
-LaTeX Warning: Label `subsec:etatavanc:mininet-mptcp' multiply defined.
-
-
-LaTeX Warning: Label `subsec:etatavanc:git' multiply defined.
-
-
-LaTeX Warning: Label `subsec:etatavanc:mininet-mptcp' multiply defined.
-
 ) (./section/Annexe1.aux))
 \openout1 = `rapport.aux'.
 
@@ -561,14 +549,14 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 21.
+(epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<UPMC_sorbonne-eps-converted-to.pdf, id=231, 371.3875pt x 124.465pt>
+<UPMC_sorbonne-eps-converted-to.pdf, id=207, 371.3875pt x 124.465pt>
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-21.
+22.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
@@ -668,7 +656,7 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
 LaTeX Warning: File `../gantt/Kevin et Quentin.png' not found on input line 28.
 
 
-<../gantt/Kevin et Quentin.png, id=311, 1469.49pt x 167.62625pt>
+<../gantt/Kevin et Quentin.png, id=281, 1469.49pt x 167.62625pt>
 File: ../gantt/Kevin et Quentin.png Graphic file (type png)
 
 <use ../gantt/Kevin et Quentin.png>
@@ -703,7 +691,7 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
  [5
 
 
- <../gantt/Kevin et Quentin.png (PNG copy)>] <../gantt/romain.png, id=319, 1031
+ <../gantt/Kevin et Quentin.png (PNG copy)>] <../gantt/romain.png, id=289, 1031
 .855pt x 312.16624pt>
 File: ../gantt/romain.png Graphic file (type png)
 
@@ -715,45 +703,21 @@ Overfull \hbox (48.36829pt too wide) in paragraph at lines 45--46
  [] 
  []
 
-<../gantt/Simon.png, id=320, 1268.74pt x 167.62625pt>
+<../gantt/Simon.png, id=290, 1268.74pt x 167.62625pt>
 File: ../gantt/Simon.png Graphic file (type png)
  <use ../gantt/Simon.png>
-Package pdftex.def Info: ../gantt/Simon.png used on input line 71.
+Package pdftex.def Info: ../gantt/Simon.png used on input line 81.
 (pdftex.def)             Requested size: 546.2915pt x 72.17763pt.
 
-Overfull \hbox (48.36829pt too wide) in paragraph at lines 71--72
+Overfull \hbox (48.36829pt too wide) in paragraph at lines 81--82
  [] 
  []
 
 )
-Overfull \hbox (6.78064pt too wide) in paragraph at lines 80--5
+Overfull \hbox (6.78064pt too wide) in paragraph at lines 90--5
 [][]
  []
 
-
-Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
- Make it at least 70.65262pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 405180 bytes
-(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 5.
-Package epstopdf Info: Output file is already uptodate.
-File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
-<use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-5.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [6
-
- <../gantt/romain.png (PNG copy)> <../gantt/Simon.png (PNG copy)>]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -775,8 +739,33 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 6.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [7] (./section/contexte-techno.tex
-<../figures/mptcp.jpg, id=338, 652.4375pt x 390.45876pt>
+ [6
+
+ <../gantt/romain.png (PNG copy)>]
+
+Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
+ Make it at least 70.65262pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 405180 bytes
+(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 16894 bytes
+(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
+d-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 6.
+Package epstopdf Info: Output file is already uptodate.
+File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
+<use UPMC_sorbonne-eps-converted-to.pdf>
+Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
+6.
+(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
+ [7 <../gantt/Simon.png (PNG copy)>]
+(./section/contexte-techno.tex
+<../figures/mptcp.jpg, id=307, 652.4375pt x 390.45876pt>
 File: ../figures/mptcp.jpg Graphic file (type jpg)
 
 <use ../figures/mptcp.jpg>
@@ -873,14 +862,14 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
 11.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [11] (./section/conception.tex
-<../figures/khalili.jpg, id=371, 234.1548pt x 108.94702pt>
+<../figures/khalili.jpg, id=341, 234.1548pt x 108.94702pt>
 File: ../figures/khalili.jpg Graphic file (type jpg)
 
 <use ../figures/khalili.jpg>
 Package pdftex.def Info: ../figures/khalili.jpg used on input line 52.
 (pdftex.def)             Requested size: 273.14922pt x 127.10507pt.
 
-<../figures/khaliliB.jpg, id=375, 142.55258pt x 111.11513pt>
+<../figures/khaliliB.jpg, id=345, 142.55258pt x 111.11513pt>
 File: ../figures/khaliliB.jpg Graphic file (type jpg)
 
 <use ../figures/khaliliB.jpg>
@@ -901,12 +890,12 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 76.
+(epstopdf)             \includegraphics on input line 87.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-76.
+87.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [12
 
@@ -947,6 +936,28 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 16.
+Package epstopdf Info: Output file is already uptodate.
+File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
+<use UPMC_sorbonne-eps-converted-to.pdf>
+Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
+16.
+(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
+ [14]
+
+Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
+ Make it at least 70.65262pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 405180 bytes
+(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 16894 bytes
+(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
+d-to.pdf UPMC_sorbonne.eps>
 (epstopdf)             \includegraphics on input line 21.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
@@ -954,65 +965,25 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 21.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [14] (./section/etat_avancement.tex)
-
-Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
- Make it at least 70.65262pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 405180 bytes
-(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 26.
-Package epstopdf Info: Output file is already uptodate.
-File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
-<use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-26.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [15
 
-]
-
-Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
- Make it at least 70.65262pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 405180 bytes
-(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 26.
-Package epstopdf Info: Output file is already uptodate.
-File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
-<use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-26.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [16] (./section/compterendu.Tex
-Overfull \hbox (24.95238pt too wide) in paragraph at lines 10--13
-\T1/cmr/m/n/12 ubuntu 13.04 32 bits, disponible ici : [][]$\T1/cmtt/m/n/12 http
-s : / / bitbucket . org / mininet / mininet-[]vm-[]images /
+] (./section/compterendu.Tex
+Overfull \hbox (4.55887pt too wide) in paragraph at lines 21--28
+\T1/cmr/m/n/12 tion-nelle sur cer-taines des ma-chines des mem-bres du pro-jet.
+ Par con-séquent, il est préférable
  []
 
 (./section/compteRendu/Topologie.tex
-<../figures/mptcp_tcp/mptcp_tcp.pdf, id=423, 420.57124pt x 200.75pt>
+Underfull \hbox (badness 10000) in paragraph at lines 6--10
+
+ []
+
+<../figures/mptcp_tcp/mptcp_tcp.pdf, id=378, 420.57124pt x 200.75pt>
 File: ../figures/mptcp_tcp/mptcp_tcp.pdf Graphic file (type pdf)
 
 <use ../figures/mptcp_tcp/mptcp_tcp.pdf>
 Package pdftex.def Info: ../figures/mptcp_tcp/mptcp_tcp.pdf used on input line 
-15.
+14.
 (pdftex.def)             Requested size: 318.66946pt x 152.11209pt.
 ) (./section/compteRendu/MPTCP_perf.tex
 
@@ -1029,21 +1000,21 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 9.
+(epstopdf)             \includegraphics on input line 26.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-9.
+26.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [17
+ [16
 
- <../figures/mptcp_tcp/mptcp_tcp.pdf>] <../figures/bw-single.pdf, id=451, 361.3
-5pt x 361.35pt>
+]
+<../figures/bw-single.pdf, id=400, 361.35pt x 361.35pt>
 File: ../figures/bw-single.pdf Graphic file (type pdf)
 
 <use ../figures/bw-single.pdf>
-Package pdftex.def Info: ../figures/bw-single.pdf used on input line 71.
+Package pdftex.def Info: ../figures/bw-single.pdf used on input line 60.
 (pdftex.def)             Requested size: 318.66946pt x 318.67268pt.
 
 
@@ -1060,19 +1031,19 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 82.
+(epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-82.
+73.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [18]
-<../figures/bw-coupled.pdf, id=461, 505.89pt x 505.89pt>
+ [17 <../figures/mptcp_tcp/mptcp_tcp.pdf>] <../figures/bw-coupled.pdf, id=418, 
+505.89pt x 505.89pt>
 File: ../figures/bw-coupled.pdf Graphic file (type pdf)
 
 <use ../figures/bw-coupled.pdf>
-Package pdftex.def Info: ../figures/bw-coupled.pdf used on input line 93.
+Package pdftex.def Info: ../figures/bw-coupled.pdf used on input line 82.
 (pdftex.def)             Requested size: 318.66946pt x 318.67378pt.
 
 
@@ -1089,14 +1060,14 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 116.
+(epstopdf)             \includegraphics on input line 108.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-116.
+108.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [19 <../figures/bw-single.pdf>]
+ [18 <../figures/bw-single.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -1111,18 +1082,18 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 137.
+(epstopdf)             \includegraphics on input line 128.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-137.
+128.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [20 <../figures/bw-coupled.pdf>]
-<../figures/ws.pdf, id=495, 505.89pt x 505.89pt>
+ [19 <../figures/bw-coupled.pdf>]
+<../figures/ws.pdf, id=454, 505.89pt x 505.89pt>
 File: ../figures/ws.pdf Graphic file (type pdf)
  <use ../figures/ws.pdf>
-Package pdftex.def Info: ../figures/ws.pdf used on input line 153.
+Package pdftex.def Info: ../figures/ws.pdf used on input line 144.
 (pdftex.def)             Requested size: 318.66946pt x 318.67378pt.
 
 
@@ -1139,61 +1110,39 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 175.
+(epstopdf)             \includegraphics on input line 166.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-175.
+166.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [21 <../figures/ws.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+ [20 <../figures/ws.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 169--169
 [][][]\T1/cmr/m/n/10 .[][][][]$\T1/cmtt/m/n/10 https : / / github . com / minin
 et / mininet / wiki / Introduction-[]to-[]Mininet #
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--199
+Underfull \hbox (badness 10000) in paragraph at lines 182--190
 
  []
 
-<../figures/rtt.pdf, id=516, 505.89pt x 578.16pt>
+<../figures/rtt.pdf, id=475, 505.89pt x 578.16pt>
 File: ../figures/rtt.pdf Graphic file (type pdf)
  <use ../figures/rtt.pdf>
-Package pdftex.def Info: ../figures/rtt.pdf used on input line 203.
+Package pdftex.def Info: ../figures/rtt.pdf used on input line 194.
 (pdftex.def)             Requested size: 318.66946pt x 364.19861pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--221
+Underfull \hbox (badness 10000) in paragraph at lines 205--212
 
  []
 
-
-Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
- Make it at least 70.65262pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 405180 bytes
-(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
-(epstopdf)                    date: 2014-03-26 13:06:46
-(epstopdf)                    size: 16894 bytes
-(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
-d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 245.
-Package epstopdf Info: Output file is already uptodate.
-File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
-<use UPMC_sorbonne-eps-converted-to.pdf>
-Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-245.
-(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [22]
-<../figures/prefixtc.pdf, id=529, 505.89pt x 578.16pt>
+<../figures/prefixtc.pdf, id=478, 505.89pt x 578.16pt>
 File: ../figures/prefixtc.pdf Graphic file (type pdf)
 
 <use ../figures/prefixtc.pdf>
-Package pdftex.def Info: ../figures/prefixtc.pdf used on input line 248.
+Package pdftex.def Info: ../figures/prefixtc.pdf used on input line 238.
 (pdftex.def)             Requested size: 318.66946pt x 364.19861pt.
 
 
@@ -1210,26 +1159,48 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 284.
+(epstopdf)             \includegraphics on input line 246.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-284.
+246.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [23 <../figures/rtt.pdf>]
-<../figures/TC5.pdf, id=549, 433.62pt x 578.16pt>
+ [21]
+
+Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
+ Make it at least 70.65262pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 405180 bytes
+(epstopdf)             Output file: <UPMC_sorbonne-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-03-26 13:06:46
+(epstopdf)                    size: 16894 bytes
+(epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
+d-to.pdf UPMC_sorbonne.eps>
+(epstopdf)             \includegraphics on input line 276.
+Package epstopdf Info: Output file is already uptodate.
+File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
+<use UPMC_sorbonne-eps-converted-to.pdf>
+Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
+276.
+(pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
+ [22 <../figures/rtt.pdf>]
+<../figures/TC5.pdf, id=508, 433.62pt x 578.16pt>
 File: ../figures/TC5.pdf Graphic file (type pdf)
  <use ../figures/TC5.pdf>
-Package pdftex.def Info: ../figures/TC5.pdf used on input line 287.
+Package pdftex.def Info: ../figures/TC5.pdf used on input line 278.
 (pdftex.def)             Requested size: 318.66946pt x 424.91162pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--303
+Underfull \hbox (badness 10000) in paragraph at lines 287--295
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--310
+Underfull \hbox (badness 10000) in paragraph at lines 296--302
 
  []
 
@@ -1247,28 +1218,28 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 310.
+(epstopdf)             \includegraphics on input line 302.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-310.
+302.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [24 <../figures/prefixtc.pdf>]
-<../figures/bw-5_1_5_10_100_500.pdf, id=566, 578.16pt x 578.16pt>
+ [23 <../figures/prefixtc.pdf>]
+<../figures/bw-5_1_5_10_100_500.pdf, id=524, 578.16pt x 578.16pt>
 File: ../figures/bw-5_1_5_10_100_500.pdf Graphic file (type pdf)
 
 <use ../figures/bw-5_1_5_10_100_500.pdf>
 Package pdftex.def Info: ../figures/bw-5_1_5_10_100_500.pdf used on input line 
-317.
+309.
 (pdftex.def)             Requested size: 318.66946pt x 318.66827pt.
 
-<../figures/bw-5_10_10_500_500_500.pdf, id=571, 578.16pt x 578.16pt>
+<../figures/bw-5_10_10_500_500_500.pdf, id=529, 578.16pt x 578.16pt>
 File: ../figures/bw-5_10_10_500_500_500.pdf Graphic file (type pdf)
 
 <use ../figures/bw-5_10_10_500_500_500.pdf>
 Package pdftex.def Info: ../figures/bw-5_10_10_500_500_500.pdf used on input li
-ne 339.
+ne 331.
 (pdftex.def)             Requested size: 318.66946pt x 318.66827pt.
 ))
 
@@ -1292,7 +1263,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 31.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [25]
+ [24]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -1314,7 +1285,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 31.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [26 <../figures/TC5.pdf>]
+ [25 <../figures/TC5.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -1336,7 +1307,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 31.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [27 <../figures/bw-5_1_5_10_100_500.pdf>]
+ [26 <../figures/bw-5_1_5_10_100_500.pdf>]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -1358,7 +1329,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 31.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [28 <../figures/bw-5_10_10_500_500_500.pdf>])
+ [27 <../figures/bw-5_10_10_500_500_500.pdf>])
 \openout2 = `section/Annexe1.aux'.
 
  (./section/Annexe1.tex (./section/annexe1/scripts.tex
@@ -1388,7 +1359,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 75.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [29
+ [28
 
 
 
@@ -1419,7 +1390,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 136.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [30]
+ [29]
 (./section/annexe1/Argument_parser.tex
 Overfull \hbox (1.59436pt too wide) in paragraph at lines 8--8
 []\T1/cmtt/m/n/12 usage: sudo mptc_khal.py [h] [--cli] --bw BW [--delay DELAY] 
@@ -1458,7 +1429,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 166.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [31]
+ [30]
 
 LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 173.
 
@@ -1496,7 +1467,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 232.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [32]) (./section/annexe1/bugs.tex
+ [31]) (./section/annexe1/bugs.tex
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
@@ -1507,7 +1478,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--16
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--29
+Underfull \hbox (badness 10000) in paragraph at lines 22--31
 
  []
 
@@ -1525,14 +1496,14 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 30.
+(epstopdf)             \includegraphics on input line 33.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-30.
+33.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [33]) (./section/experiment.tex
+ [32]) (./section/experiment.tex
 Underfull \hbox (badness 10000) in paragraph at lines 2--3
 
  []
@@ -1569,7 +1540,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 146.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [34] (./rapport.bbl (./rapport.brf)
+ [33] (./rapport.bbl (./rapport.brf)
 \tf@brf=\write5
 \openout5 = `rapport.brf'.
 
@@ -1597,7 +1568,7 @@ File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
 154.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
- [35
+ [34
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
@@ -1605,50 +1576,62 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 154.
 (./corps.aux) (./section/Annexe1.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 154.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 154.
-Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 4399E9D4099CB5653284580285279360;3931.
-Package rerunfilecheck Info: File `rapport.brf' has not changed.
-(rerunfilecheck)             Checksum: 8EC3DA91BF1BF1AB21371A3D431F7A80;793.
 
+
+Package rerunfilecheck Warning: File `rapport.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `rapport.out':
+(rerunfilecheck)             Before: DE92BB52E25850823102AB528942278B;3518
+(rerunfilecheck)             After:  8EB2F32348630331215EC5A7C526A5F9;3431.
+Package rerunfilecheck Info: File `rapport.brf' has not changed.
+(rerunfilecheck)             Checksum: 02D62D7E1DBBC164CA7F403A5CA2D9A0;743.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 154.
  ) 
 Here is how much of TeX's memory you used:
- 8798 strings out of 495059
- 126146 string characters out of 3182029
- 233720 words of memory out of 3000000
- 11588 multiletter control sequences out of 15000+200000
- 22091 words of font info for 62 fonts, out of 3000000 for 9000
+ 8771 strings out of 495059
+ 125692 string characters out of 3182029
+ 230644 words of memory out of 3000000
+ 11571 multiletter control sequences out of 15000+200000
+ 20546 words of font info for 56 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,15n,46p,965b,577s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/
-romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/romain/.te
-xmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/romain/.texmf-var/fo
-nts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/romain/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm0800.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecbx1728.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
-1440.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk
-> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/r
-omain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/romain/.tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/romain/.texmf-var/fon
-ts/pk/ljfour/jknappen/ec/eccc1200.600pk></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on rapport.pdf (35 pages, 749430 bytes).
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
+st, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsubsection.6.4.5} has been referenced but does n
+ot exist, replaced by a fixed one
+
+ </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/ro
+main/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/romain/.texm
+f-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </home/romain/.texmf-var/font
+s/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/romain/.texmf-var/fonts/pk/ljfou
+r/jknappen/ec/ecrm0800.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen
+/ec/ecbx1728.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx14
+40.600pk> </home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> 
+</home/romain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2074.600pk> </home/rom
+ain/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/romain/.texmf
+-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/romain/.texmf-var/fonts
+/pk/ljfour/jknappen/ec/eccc1200.600pk></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on rapport.pdf (34 pages, 744446 bytes).
 PDF statistics:
- 1288 PDF objects out of 1440 (max. 8388607)
- 692 compressed objects within 7 object streams
- 129 named destinations out of 1000 (max. 500000)
- 497 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1242 PDF objects out of 1440 (max. 8388607)
+ 651 compressed objects within 7 object streams
+ 122 named destinations out of 1000 (max. 500000)
+ 449 words of extra memory for PDF output out of 10000 (max. 10000000)
 
