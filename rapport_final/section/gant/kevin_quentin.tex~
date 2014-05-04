@@ -1,0 +1,20 @@
+Quentin Dubois et Kevin Lam
+
+Analyse de la structure de l'implémentation :
+   Déterminer globalement les fichiers à lire ;
+   Définir les headers et structures liés à l'utilisation de mptcp.
+
+Lecture et Compréhension du code :
+   Lecture de tous les fichiers contenus dans \$(SRC_NOYAU)/net/mptcp ;
+   Lecture de certains fichiers contenus dans \$(SRC_NOYAU)/net/sched ;
+   Lecture de tous les types/structures utilisés ;
+   Relecture du code après avoir compris tous le types/structures.
+
+Définition des parties modifiables de l'ordonnanceur :
+   Vérifier les correspondances entre mptcp_output.c et mptcp_input.c ;
+   Voir si l'utilisation du contrôle de congestion (mptcp_olia.c et mptcp_coupled.c) a des effets de bord sur les sockets ;
+   Voir les différences entre les différents modes du path_manager.
+
+Implémenter / Tests d'algorithmes pour l'ordonnanceur
+   Avec l'aide de Matthieu Coudron, modification uniquement dans \$(SRC_NOYAU)/net/mptcp/mptcp_output.c ;
+   Tests des implémentations avec le travail de Romain LY et comparer les résultats obtenus.

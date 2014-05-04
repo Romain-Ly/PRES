@@ -1,0 +1,75 @@
+\documentclass[a4paper, 10 pt]{article}                        % Type de document
+ 
+\usepackage[utf8]{inputenc}  
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\begin{document}
+Une partie de ce projet consistait dans un premier temps en l'étude du code de MPTCP et de la compréhension de son fonctionnement, puis dans l'implémentation d'un nouvel ordonnanceur de notre choix. Après discutions, nous avons décidé de placer deux personnes sur l'étude du code de MPTCP car il nous semblait important d'avoir une bonne connaissance du fonctionnement du code et des principales structures pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
+\section*{Etude de MPTCP}
+
+
+
+ 	\subsubsection*{Explication de l'ordonnanceur}
+ 	Lors de l'étude du code de MPTCP, nous avons étudié l'ordonnanceur déjà implémenté. Nous avons remarqué que l'ordonnanceur de MPTCP tenait dans une fonction get\_available\_subflow qui retourne sa socket sur laquelle sera envoyée le prochain segment de données. Nous allons vous expliquer comment marche cet algorithme.\\
+ 	Mais pour cela il faut déjà connaitre les structures principales que nous allons vous expliquer avant de commenter l'ordonnanceur.\\
+ 	Tout d'abord la structure mptcp\_cb signifie \textit{MPTCP control block} c'est la pierre angulaire de MPTCP. Elle est utlisé dans pratiquement toutes les fonctions de MPTCP. Cette structure permet de superviser les différents sous-flots utilisés pour une connection MPTCP. Elle permet aussi de décider si il faut ouvrir ou fermer un sous-flot, elle réordonne les données reçues afin que l'application qui a besoin de ces données les obtienne dans le bon ordre.\\
+ 	L'ordonnanceur implémenté dans MPTCP se sert de l'algorithme de congestion(OLIA) afin de choisir sur quel sous-flot envoyer les données.\\
+ 	 OLIA augmente la taille de la fenêtre pour chaque ACK reçu en faisant min ($\frac{\alpha}{cwnd_{tot}},\frac{1}{cwnd_i}$) où $cwnd_{tot}$ est la fenêtre de congestion total de tous les sous-flots de cette connection. $\alpha$ est calculé de la manière suivante:
+ 	 $$\alpha = cwnd_{tot}\frac{max_i(\frac{cwnd_i*mss_i^2}{RTT_i^2})}{(\sum \frac{cwnd_i*mss_i}{RTT_i})^2}$$
+ 	 On peut voir que OLIA choisit la taille en fonction du RTT? Plus le RTT est faible, plus la fenêtre augmente et plus le nombres de paquets envoyé sur ce sous-flot augmente. De ce fait, OLIA contrôle de débit sur les sous-flots afin d'éviter les congestions.
+ 	 \bigbreak
+ 	 Nous allons maintenant nous intéresser à la fonction get\_available\_subflow qui est l'ordonnanceur en fonction de l'algorithme de congestion OLIA.\\
+ 	 L'algorithme se déroule de la fonction suivante:
+ 	 \begin{itemize}
+\item Tout d'abord on regarde combien il y a de sous-flots ouverts dans la connection MPTCP. On peut savoir combien de sous-flots sont ouverts grâce à la structure mptcp\_cb( $mpcb->cnt\_subflows$ ). Ceci permet de savoir combien il y a de sous-flots dans cette connection. Mais ce n'est pas suffisant pour pouvoir envoyer des données sur un sous-flot, il faut aussi tester si il est capable de le envoyer des données via la fonction \textit{mptcp\_is\_available}. Si la fonction renvoie \textit{true} alors le sous flot peut envoyer des données. Après cela si il n'y a qu'un sous-flot établit et qu'il peut envoyer des données la question ne se pose pas et on retourne la socket de ce sous-flot. On peut récupérer les sockets via la structure $mpcb->connection\_list$ qui liste les sockets associés aux sous-flots. 
+\item Sinon on regarde toutes les sockets associées à la connection MPTCP et on distingue trois types de sockets: les backup sockets, lowpriority sockets et les autres.\\
+Dans cet algorithme, il y a des sockets qui ont une priorité basse et qui ne serviront que si il n'existe pas de sockets avec une priorité plus grande que cette priorité. C'est ce qu'on appelle les lowpriority sockets. Parmi toutes les sockets on choisit celle qui a le plus petit RTT. Et on la sotcke dans la variable \textit{lowpriosk}.
+\item Si il y a d'autres sockets qui non pas une faible priorité, on compare le RTT de ces sockets et on garde la socket avec le RTT le plus faible. et on la stocke dans la variable \textit{bestsk}.\\
+Il y a aussi une backup socket qui sert au cas ou aucune socket ne peut envoyer un segment de données, ça sera elle qui sera chargé de le faire.Elle sera stockée dans la variable \textit{backupsk}. 
+\item Maintenant que nous avons défini les différents types de sockets, il faut savoir sur laquelle des trois sockets on va envoyer les données; Si il n'y a que des sockets de basse priorité ou de backup on envoye les données sur la \textit{lowpriosk}. Sinon on envoie les données sur la \textit{bestsk}. Et si il n'y a pas de  \textit{bestsk}, on utilise \textit{backupsk}.  
+\end{itemize} 
+ 	\subsection*{Choix de l'ordonnanceur}
+Pour le projet, il fallait choisir et implémenter un nouvel ordonnanceur. Nous avions émis plusieurs hypothèses pour ce nouvel algorithme. En accord avec les encadrants, nous avons choisit de ne pas tenir compte de l'algorithme OLIA car cela semblait très délicat. Nous avons donc choisit de juste utiliser le RTT des sockets. 
+\bigbreak
+Dans un premier temps, nous avons pensé implémenter un algorithme assez simpliste mais qui permettait d'augmenter la sécurité contre les attaques de type \textit{Man In The Middle}. C'est à dire que notre algorithme allait envoyer les segments de manière équitable sur chaque sous-flots permettant l'envoi de données. Cet algorithme avait pour vocation de rendre plus difficile la récupération d'informations en écoutant un sous-flot car avec l'algorithme actuel, si un attaquant voulait récupérer un maximum d'informations, il lui suffisait d'écouter le sous-flot qui a le RTT le plus faible. C'est ce que nous voulions éviter avec notre algorithme. Cependant après de plus amples réflexions, nous avons remarqué que notre algorithme avait un grand nombre de défauts.\\
+Tout d'abord, MPTCP a été développer afin d'avoir une amélioration des débits mais cet algorithme aurai empêcher cela si le débit d'un sous-flot était vraiment faible comparé aux autres sous-flots alors toute la connection MPTCP ressentirait ce débit faible et cela influerai beaucoup sur les performances de MPTCP.\\ Nous avons donc décidé de ne pas développer cet algorithme.
+\bigbreak
+Nous avons décidé de faire un compromis entre sécurité et performances. Nous avons choisit de sélectionner les \textit{k} meilleurs sous-flots d'un point de vue du RTT et de faire un Round-Robin sur ces k sous-flots. \textit{k} étant laissé à notre appréciation. Cet algorithme est le meilleur compromis que nous ayons trouvé car il permet de ne pas envoyé de données sur un sous-flot si son RTT est trop grand, ce qui permet de garder une certaine rapidité dans la transmission de données et de garder une certaine sécurité car le trafic passe de manière équitable sur les \textit{k} meilleurs sous-flots.
+\subsection*{Implémentation de l'ordonnanceur}
+Afin de pouvoir stocker les \textit{k} meilleurs sous-flots, on avait 2 choix.
+\begin{itemize}
+\item Soit un tableau.
+\item Soit une liste chainée.
+\end{itemize}
+Après en avoir discuté entre nous, nous avons décidé d'utiliser une liste chainée car les listes chainées permettent une plus grande flexibilité de manipulation. Nous avons donc déclaré dans \textit{mptcp.h}, une structure:
+\begin{verbatim}
+struct selected_sk{
+  struct sock *sk;
+  struct selected_sk *next;
+};
+\end{verbatim}
+Cette structure permet de pointer sur une socket et de d'avoir un lien vers la socket suivante ce qui permet de naviguer très facilement entre les différentes sockets sélectionnées. Ce qui est très utile pour le Round-Robin.
+\bigbreak
+Une fois que l'on avait déclaré cette structure, il fallait aussi implémenter des fonctions afin de pouvoir faire une liste chainée en fonction des RTT. Notre liste chainée sera organisée de telle sorte:\\
+On aura une \textit{selected\_sk} qui sera appelée \textit{bssk}. C'est la "best selected socket". Ca sera la socket sélectionnée qui aura le meilleur RTT, puis son attribut next pointera sur la deuxième sockets avec le meilleur RTT. Et la $k^{eme}$ socket aura pour \textit{next} la \textit{bssk}. Cela formera une boucle.
+Les fonctions que l'on a créés sont:\\
+\begin{itemize}
+\item \textit{static void ssk\_insertion\_sort(struct selected\_sk *bssk, int ssk\_size);} : qui permet de faire en sorte que la liste chainée soit triée en fonction du SRTT des sockets.
+\item \textit{static u32 ssk\_max\_srtt(struct selected\_sk *bssk);} : permet de retourner la valeur maximale du SRTT de la liste chainée, c'est à dire le RTT de la socket qui a pour\textit{next} la bssk passée en argument.
+\item \textit{static int belongto\_ssk(struct sock *sk, struct selected\_sk *bssk, int ssk\_size);} : permet de savoir si la socket sk passée en argument appartient à la liste chainée.
+\item \textit{static struct selected\_sk *bssk\_prev(struct selected\_sk *bssk);} : permet d'obtenir la socket ayant le plus grand SRTT de la liste chainée. C'est la socket précédent la \textit{bssk}.
+\item \textit{static void ssk\_checkup(struct sk\_buff *skb, struct selected\_sk *bssk, int ssk\_size);} : permet de retirer une socket de la liste chainée si la socket n'est pas capable d'envoyer des données ($!mptcp\_is\_available(it->sk, skb, \&this\_mss)$) et si on a déjà mis dans la queue de la socket le buffer \textit{skb} ($mptcp\_dont\_reinject\_skb(tp, skb)$).
+\end{itemize}
+Où $ssk->size$ est le nombre de socket qui forme la liste chainée.
+\bigbreak
+Avec ces fonctions nous pouvons créer la fonction principal que l'on placera dans \\
+\textit{static struct sock *get\_available\_subflow(struct sock *meta\_sk,
+struct sk\_buff *skb,
+unsigned int *mss\_now); }\\
+ Nous allons maintenant expliquer comment fonctionne la fonction principale:
+ 
+
+
+
+\end{document}

@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {2}Plan de d\'eveloppement}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Descriptif du travail de Quentin Dubois et de Kevin Lam}{5}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Descriptif du travail de Romain Ly}{6}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Descriptif du travail de Simon Ravier}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.3}Descriptif du travail de Simon Ravier}{7}{subsection.2.3}
 \contentsline {section}{\numberline {3}Contexte technologique}{8}{section.3}
 \contentsline {subsection}{\numberline {3.1}Fonctionnement de MPTCP}{8}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Utilisation r\'eelle de MPTCP}{10}{subsection.3.2}
@@ -30,23 +30,27 @@
 \contentsline {subsubsection}{\numberline {6.4.2}Variation du d\'ebit maximal par lien}{18}{subsubsection.6.4.2}
 \contentsline {subsubsection}{\numberline {6.4.3}Variation du d\'elai par lien}{21}{subsubsection.6.4.3}
 \contentsline {subsubsection}{\numberline {6.4.4}Choix du sous-flot en fonction du d\'elai}{22}{subsubsection.6.4.4}
-\contentsline {section}{\numberline {7}Annexe1}{28}{section.7}
-\contentsline {subsection}{\numberline {7.1}Utilisation des scripts pythons}{28}{subsection.7.1}
-\contentsline {subsubsection}{\numberline {7.1.1}Activation MPTCP}{28}{subsubsection.7.1.1}
-\contentsline {subsubsection}{\numberline {7.1.2}Choix de l'algorithme congestion}{28}{subsubsection.7.1.2}
-\contentsline {subsubsection}{\numberline {7.1.3}Taille de la fen\^etre}{29}{subsubsection.7.1.3}
-\contentsline {subsection}{\numberline {7.2}Lancement scripts python}{29}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}R\'esum\'e des arguments pour le parseur}{30}{subsection.7.3}
-\contentsline {subsection}{\numberline {7.4}arguments mininet}{30}{subsection.7.4}
-\contentsline {subsubsection}{\numberline {7.4.1}ssh}{31}{subsubsection.7.4.1}
-\contentsline {subsection}{\numberline {7.5}scripts shell}{31}{subsection.7.5}
-\contentsline {paragraph}{clean}{31}{section*.2}
-\contentsline {paragraph}{runMPTCP}{32}{section*.3}
-\contentsline {subsection}{\numberline {7.6}Scripts R}{32}{subsection.7.6}
-\contentsline {subsection}{\numberline {7.7}Bugs}{32}{subsection.7.7}
-\contentsline {subsubsection}{\numberline {7.7.1}Topologie}{32}{subsubsection.7.7.1}
-\contentsline {subsubsection}{\numberline {7.7.2}mininet}{32}{subsubsection.7.7.2}
-\contentsline {paragraph}{iperf et ping}{32}{section*.4}
-\contentsline {paragraph}{MSS}{33}{section*.5}
-\contentsline {paragraph}{iperf3}{33}{section*.6}
-\contentsline {subsection}{\numberline {7.8}Exp\'eriences}{33}{subsection.7.8}
+\contentsline {subsection}{\numberline {6.5}Etude de l'algorihme de MPTCP}{27}{subsection.6.5}
+\contentsline {subsubsection}{\numberline {6.5.1}Explication de l'ordonnanceur}{27}{subsubsection.6.5.1}
+\contentsline {subsection}{\numberline {6.6}Choix de l'ordonnanceur}{28}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}Impl\'ementation de l'ordonnanceur}{29}{subsection.6.7}
+\contentsline {section}{\numberline {7}Annexe1}{31}{section.7}
+\contentsline {subsection}{\numberline {7.1}Utilisation des scripts pythons}{31}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Activation MPTCP}{31}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}Choix de l'algorithme congestion}{31}{subsubsection.7.1.2}
+\contentsline {subsubsection}{\numberline {7.1.3}Taille de la fen\^etre}{32}{subsubsection.7.1.3}
+\contentsline {subsection}{\numberline {7.2}Lancement scripts python}{32}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}R\'esum\'e des arguments pour le parseur}{33}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}arguments mininet}{33}{subsection.7.4}
+\contentsline {subsubsection}{\numberline {7.4.1}ssh}{34}{subsubsection.7.4.1}
+\contentsline {subsection}{\numberline {7.5}scripts shell}{34}{subsection.7.5}
+\contentsline {paragraph}{clean}{34}{section*.2}
+\contentsline {paragraph}{runMPTCP}{35}{section*.3}
+\contentsline {subsection}{\numberline {7.6}Scripts R}{35}{subsection.7.6}
+\contentsline {subsection}{\numberline {7.7}Bugs}{35}{subsection.7.7}
+\contentsline {subsubsection}{\numberline {7.7.1}Topologie}{35}{subsubsection.7.7.1}
+\contentsline {subsubsection}{\numberline {7.7.2}mininet}{35}{subsubsection.7.7.2}
+\contentsline {paragraph}{iperf et ping}{35}{section*.4}
+\contentsline {paragraph}{MSS}{36}{section*.5}
+\contentsline {paragraph}{iperf3}{36}{section*.6}
+\contentsline {subsection}{\numberline {7.8}Exp\'eriences}{36}{subsection.7.8}

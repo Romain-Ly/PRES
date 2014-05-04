@@ -40,10 +40,10 @@ en Annexe 1: voir sections \ref{sec:annexe1:usepyth} page
 page \pageref{sec:annexe1:mininetParserargs}.
 
 \vspace{0.5cm} Le RTT entre h1 et sv\_mp1 est de 44\,$\pm$\,11\,ms
-(mesuré avec la commande \emph{ping}), ce qui correspond au délai
-attendu pour traverser deux liens. La moyenne ici tient compte du RTT
-du premier paquet qui est envoyé vers le contrôleur pour que celui-ci
-établisse le chemin vers le serveur.
+(mesuré avec la commande \emph{ping}), ce qui correspond au RTT
+attendu pour traverser deux liens aller-retour. La moyenne ici tient
+compte du RTT du premier paquet qui est envoyé vers le contrôleur pour
+que celui-ci établisse le chemin vers le serveur.
 
 L'argument ``-\,-bwm\_ng'' permet de lancer Bandwidth Monitor
 NG\footnote{\url{http://www.gropp.org/?id=projects&sub=bwm-ng} }
@@ -51,9 +51,9 @@ NG\footnote{\url{http://www.gropp.org/?id=projects&sub=bwm-ng} }
 d'octets, de paquets, le débit entrant ou sortant passant par chacune
 des interfaces de l'hôte sondé. La figure \ref{fig:MPTCP-perfbwm-ng}
 représente le débi entrant enregistré au serveur pour ses deux
-interfaces. Nous observons que pour deux sous-flots aux capacités
-identiques et au coût identique, le débit mesuré est quasi similaire
-(une différence de quelques paquets est observée).
+interfaces. Nous observons pour deux sous-flots aux capacités
+identiques et au coût identique, que le débit mesuré est quasi
+similaire (une différence de quelques paquets est observée).
 
 \begin{figure}[htb]
     \centering
@@ -169,22 +169,22 @@ En effectuant des
 recherches\footnote{\url{https://github.com/mininet/mininet/wiki/Introduction-to-Mininet\#what-are-mininets-limitations}}\footnote{\url{https://mailman.stanford.edu/pipermail/mininet-discuss/2014-January/003901.html}},
 il semblerait que la limite du débit est lié aux n\oe uds Open vSwitch
 sur Ubuntu 13.04, ce qui pour une dizaine de liens, limite la capacité
-à 100 Mbit/s. C'est pourquoi, nous limiterons la capacité des liens à
-de faibles valeurs.
+maximale à environ 100 Mbit/s. C'est pourquoi, nous limiterons la
+capacité des liens à de faibles valeurs.
 
 \subsubsection{Variation du délai par lien}
 \label{sec:compterendu:perf:délai}
 
-Afin d'évaluer l'influence du délai sur le débit enregistré, nous
-faisons varier le délai de tous les liens de manière symétrique. Le
-coût pour chaque sous-flot reste donc identique.
+Afin d'évaluer l'influence du délai sur le débit enregistré, le délai
+de tous les liens varie de manière symétrique. Le coût pour chaque
+sous-flot reste donc identique.
 
-Pour mesurer le délai pour chaque sous-flot, nous avons utilisé la
+Pour mesurer le délai de chaque sous-flot, nous avons utilisé la
 commande \emph{ping}. Cette approche a été utilisée car elle est la
 plus facile à mettre en \oe uvre. Par manque d'espace disque (mémoire
 SSD), l'utilisation de \emph{tcpdump} est réservée pour les tests et
 la recherche d'erreur. Cependant, il sera nécessaire d'utiliser le
-délai par TCP car cette méthode est plus fiable et l'utilisation
+délai avec TCP car cette méthode est plus fiable et l'utilisation
 conjointe de \emph{ping} et d'\emph{iperf} produit une erreur (voir
 \pref{sec:annexe1:bugs:mininet}).\\
 
@@ -217,20 +217,21 @@ il est possible que cette diminution drastique pour le lien à
 200\,Mbit/s est en partie liée aux problèmes de simulation des débits
 élévés
 avec mininet.\\
-\vspace{1cm}
+
 
 Nous constatons que la taille du tampon s'avère être un paramètre
-primordial dans pour les performances de MPTCP. Dans une utilisation
-mobile, les deux sous-flots ont généralement des délais différents si
-on se base sur l'utilisation conjointe d'un accès wifi, 3G ou/et
-ethernet. Dans la figure \ref{fig:mptcp:rttetTC}, nous utilisons les
-mêmes paramètres que dans l'expérience précédente cependant le premier
-sous-flot a un RTT fixe égal à une dizaine de millisecondes
-(expériences ``TC''). Nous observons aucune différence entre le cas où
-les deux sous-flots ont un RTT variable et le cas où un seul sous-flot
-possède un RTT sauf dans l'expérience ``200 TC'' où le débit est plus
-élevé. Nous concluons que la diminution de performance observée pour
-la capacité à 200\,Mbit/s est lié à la taille du tampon.
+primordial dans les performances de MPTCP. Dans une utilisation
+mobile, les deux sous-flots ont généralement des délais différents
+(par exemple, si on se base sur l'utilisation conjointe d'un accès
+wifi, 3G ou/et ethernet). Dans la figure \ref{fig:mptcp:rttetTC}, nous
+utilisons les mêmes paramètres que dans l'expérience précédente
+cependant le premier sous-flot aura le même RTT (une dizaine de
+millisecondes) pour toutes les expériences (expériences ``TC''). Nous
+n'observons aucune différence notable entre le cas où les deux
+sous-flots ont un RTT variable et dans le cas où un seul des
+sous-flots possède un RTT variable. L'expérience ``200 TC'' montre que
+le débit est plus élevé que l'expérience ``200'', cette différence
+peut être expliquer par une taille du tampon insuffisante.
 
 
 
@@ -274,7 +275,7 @@ min& délai minimal par lien\\
 \end{tabular}
 \vspace{0.5cm}
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \includegraphics[width=0.7\textwidth]{../figures/TC5.pdf}
   \centering
   \caption{\textbf{Débit reçu par interface côté serveur en fonction
@@ -305,7 +306,7 @@ encore résolue à la fin de la simulation (voir
 \pref{sec:annexe1:bugs:mininet}) empêchant toutes simulations
 automatisées. Nous avons donc choisi deux résultats caractéristiques.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
     \includegraphics[width=0.7\textwidth]{../figures/bw-5_1_5_10_100_500.pdf}
   \centering
   \caption{\textbf{Débit mesuré pour chaque interface}. Les RTTs pour
@@ -327,7 +328,7 @@ temps pour chaque sous-flot et d'établir si cet effet de battement est
 lié à une variation du délai et ce pour l'algorithme LIA et OLIA
 \cite{pareto2013}.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
     \includegraphics[width=0.7\textwidth]{../figures/bw-5_10_10_500_500_500.pdf}
   \centering
   \caption{\textbf{Débit mesuré pour chaque interface}. Les RTTs pour

@@ -1,0 +1,150 @@
+
+Une partie de ce projet consistait dans un premier temps en l'étude du
+code de MPTCP et de la compréhension de son fonctionnement, puis dans
+l'implémentation d'un nouvel ordonnanceur de notre choix. Après
+discussions, nous avons décidé de placer deux personnes sur l'étude du
+code de MPTCP car il nous semblait important d'avoir une bonne
+connaissance du fonctionnement du code et des principales structures
+pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
+
+\subsection{Etude de  l'algorihme de MPTCP}
+ 	\subsubsection{Explication de l'ordonnanceur}
+ 	Lors de l'étude du code de MPTCP, nous avons étudié l'ordonnanceur déjà implémenté. L'ordonnanceur de MPTCP tient dans la fonction get\_available\_subflow(), qui se trouve dans (\$SRC NOYAU)/net/mptcp/mptcp.output.c. Cela nous a été confirmé par Matthieu Coudron lorsqu'il a choisi l'ordonnanceur à implémenter. Cette fonction retourne la socket sur laquelle sera envoyée le prochain segment de données et définit la taille du Maximum Segment Size (MSS). Nous allons vous expliquer comment marche cet algorithme. Mais pour cela il faut connaitre d'avance les structures principales que nous allons vous expliquer avant de commenter l'ordonnanceur.\\
+ 	Tout d'abord la structure mptcp\_cb signifie \emph{MPTCP control block} c'est la pierre angulaire de MPTCP. Elle est utilisée dans pratiquement toutes les fonctions de MPTCP. Cette structure permet de superviser les différents sous-flots utilisés pour une connexion MPTCP. Elle permet aussi de décider s'il faut ouvrir ou fermer un sous-flot, elle réordonne les données reçues afin que l'application qui a besoin de ces données les obtienne dans le bon ordre.\\
+ 	La structure sock (socket) et la structure sk\_buff (socket
+        buffer) sont les mêmes que dans TCP. La socket permet de créer
+        une liaison entre les machines : elle détient les informations
+        nécessaires à la transmission des données; quant au socket
+        buffer, elle permet de définir ce que doit envoyer une socket
+        et permet de faire un tri sur les données reçues grâce au
+        timestamps.  L'ordonnanceur implémenté dans MPTCP utilise,
+        comme dans notre implémentation, le Smoothed Rount Trip Time
+        (SRTT) pour déterminer quelle socket enverra les données. De
+        ce fait, si le SRTT est petit, l'ordonnanceur utilisera plus
+        souvent cette socket. C'est ce qui crée une faiblesse dans la
+        sécurité de la transmission alors qu'avec MPTCP, comme il y a
+        plusieurs chemins, la complexité peut être accrue s'il y a un
+        équilibrage dans l'envoie des données entre les sous-flots.
+        \bigbreak
+        Nous allons maintenant nous intéresser à la fonction get\_available\_subflow() qui est l'ordonnanceur.\\
+        L'algorithme se déroule de la fonction suivante:
+ 	 \begin{itemize}
+         \item Tout d'abord, il y a une vérification sur le nombre de
+           sous-flots ouverts dans la connexion MPTCP. Il est possible
+           de récupérer cette valeur grâce à la structure mptcp\_cb(
+           $mpcb->cnt\_subflows$ ). On effectue ce test au préalable
+           dans le cas où il n'y aurait qu'un seul sous-flot, au quel
+           cas, il suffit de renvoyer l'unique socket s'il est
+           disponible. Pour tester la disponibilité d'une socket, la
+           fonction \emph{mptcp\_is\_available()} existe déjà. Elle
+           vérifie qu'elle peut envoyer (vérification des champs de la
+           socket), que la connexion est totalement établie, que la
+           socket soit éligible et, que sa fenêtre d'envoi est
+           suffisante. Si la fonction renvoie \emph{true} alors le
+           sous-flot peut être éligible pour envoyer des données. On
+           peut récupérer les sockets via la structure
+           $mpcb->connection\_list$ qui liste les sockets associées
+           aux sous-flots.
+         \item Sinon on regarde toutes les sockets associées à la connexion MPTCP et on distingue trois types de sockets: les backup sockets, lowpriority sockets et la meilleure socket.\\
+           Dans cet algorithme, il y a des sockets qui ont une
+           priorité basse et qui ne serviront que s'il n'existe pas de
+           sockets avec une priorité plus grande que cette
+           priorité. C'est ce qu'on appelle les lowpriority
+           sockets. Parmi toutes les sockets, on choisit celle qui a
+           le plus petit SRTT. Et on la stocke dans la variable
+           \emph{lowpriosk}. Bien qu'elle soit nommée lowpriority,
+           elle a une fonction de backup mais c'est une socket
+           éligible contrairement à la backup socket.
+\item Si il y a d'autres sockets qui non pas une faible priorité, on compare le SRTT de ces sockets et on garde la socket avec le RTT le plus faible. Elle est stockée dans la variable \emph{bestsk}.\\
+Il y a aussi une backup socket qui sert au cas ou aucune des sockets décrites ci-dessus ne peuvent envoyer un segment de données : c'est le dernier recours car celle-ci est désignée alors qu'elle ne permet pas la réinjection de données. Elle sera stockée dans la variable \emph{backupsk}. 
+\item Maintenant que nous avons défini les différents types de
+  sockets, il faut savoir sur laquelle des trois sockets on va envoyer
+  les données; Si il n'y a que des sockets de backup, on envoie les
+  données sur la \emph{lowpriosk}. Sinon on envoie les données sur
+  la \emph{bestsk} si elle existe. Et s'il n'y a pas de
+  \emph{bestsk}, on utilise \emph{backupsk}.
+\end{itemize} 
+
+ 	\subsection{Choix de l'ordonnanceur}
+        Pour le projet, il fallait choisir et implémenter un nouvel
+        ordonnanceur. Nous avions émis plusieurs hypothèses pour ce
+        nouvel algorithme. En accord avec les encadrants, il a été
+        décidé de juste utiliser le SRTT des sockets pour faire notre
+        implémentation.  \bigbreak
+        Dans un premier temps, nous avons pensé implémenter un algorithme assez simpliste mais qui permettait d'augmenter la sécurité contre les attaques de type \emph{Man In The Middle}. C'est à dire que notre algorithme allait envoyer les segments de manière équitable sur chaque sous-flots permettant l'envoi de données. Cet algorithme avait pour vocation de rendre plus difficile la récupération d'informations en écoutant un sous-flot car avec l'algorithme actuel, si un attaquant voulait récupérer un maximum d'informations, il lui suffisait d'écouter le sous-flot qui a le SRTT le plus faible. C'est ce que nous voulions éviter avec notre algorithme. Cependant après de plus amples réflexions, nous avons remarqué que notre algorithme avait un grand nombre de défauts.\\
+        En effet, MPTCP a été développé afin d'avoir une amélioration
+        des débits mais cet algorithme aurai empêché cela si le débit
+        d'un sous-flot était vraiment faible comparé aux autres
+        sous-flots alors toute la connexion MPTCP ressentirait ce
+        débit faible et cela influerai beaucoup sur les performances
+        de MPTCP. C'est pourquoi cet algorithme n'a pas été choisi.
+        \bigbreak Un compromis entre sécurité et performances est
+        nécessaire pour que l'utilité de MPTCP soit avantageuse par
+        rapport à TCP. Il nous a été proposé de sélectionner les
+        \emph{k} meilleurs sous-flots d'un point de vue du SRTT et de
+        faire un Round-Robin sur ces k sous-flots. \emph{k} étant
+        laissé à notre appréciation. Cet algorithme est le meilleur
+        compromis trouvé car il permet de ne pas envoyer de données
+        sur un sous-flot si son SRTT est trop grand, ce qui permet de
+        garder une certaine rapidité dans la transmission de données
+        et de garder une certaine sécurité car le trafic passe de
+        manière équitable sur les \emph{k} meilleurs sous-flots.
+\subsection{Implémentation de l'ordonnanceur}
+Afin de pouvoir stocker les \emph{k} meilleurs sous-flots, on avait 2 choix.
+\begin{itemize}
+\item Soit un tableau.
+\item Soit une liste chainée.
+\end{itemize}
+Après en avoir discuté entre nous, nous avons décidé d'utiliser une liste chainée car les listes chainées permettent une plus grande flexibilité de manipulation. Nous avons donc déclaré dans \emph{mptcp.h}, une structure:
+\begin{verbatim}
+struct selected_sk{
+  struct sock *sk;
+  struct selected_sk *next;
+};
+\end{verbatim}
+Cette structure permet de pointer sur une socket et de d'avoir un lien
+vers la socket suivante ce qui permet de naviguer très facilement
+entre les différentes sockets sélectionnées. Ce qui est très utile
+pour le Round-Robin.  \bigbreak
+Une fois que l'on avait déclaré cette structure, il fallait aussi implémenter des fonctions afin de pouvoir faire une liste chainée en fonction des RTT. Notre liste chainée sera organisée de telle sorte:\\
+On aura une \emph{selected\_sk} qui sera appelée
+\emph{bssk}. C'est la "best selected socket". Ca sera la socket
+sélectionnée qui aura le meilleur RTT, puis son attribut next pointera
+sur la deuxième sockets avec le meilleur RTT. Et la $k^{eme}$ socket
+aura pour \emph{next} la \emph{bssk}. Cela formera une boucle.
+Les fonctions que l'on a créés sont:\\
+\begin{itemize}
+\item \emph{static void ssk\_insertion\_sort(struct selected\_sk *bssk, int ssk\_size);} : qui permet de faire en sorte que la liste chainée soit triée en fonction du Smoothed RTT (SRTT) des sockets.
+\item \emph{static u32 ssk\_max\_srtt(struct selected\_sk *bssk);} : permet de retourner la valeur maximale du SRTT de la liste chainée, c'est à dire le RTT de la socket qui a pour\emph{next} la bssk passée en argument.
+\item \emph{static int belongto\_ssk(struct sock *sk, struct
+    selected\_sk *bssk, int ssk\_size);} : permet de savoir si la
+  socket sk passée en argument appartient à la liste chainée.
+\item \emph{static struct selected\_sk *bssk\_prev(struct
+    selected\_sk *bssk);} : permet d'obtenir la socket ayant le plus
+  grand SRTT de la liste chainée. C'est la socket précédent la
+  \emph{bssk}.
+\item \emph{static void ssk\_checkup(struct sk\_buff *skb, struct
+    selected\_sk *bssk, int ssk\_size);} : permet de retirer les
+  sockets de la liste chainée si elles ne sont pas capable d'envoyer
+  des données ($!mptcp\_is\_available(it->sk, skb, \&this\_mss)$) et
+  si on a déjà mis dans la queue de la socket le buffer \emph{skb}
+  ($mptcp\_dont\_reinject\_skb(tp, skb)$).
+\end{itemize}
+Où $ssk\_size$ est le nombre de socket qui forme la liste chainée.
+\bigbreak
+Avec ces fonctions nous pouvons créer la fonction principal que l'on placera dans \\
+\emph{static struct sock *get\_available\_subflow(struct sock
+  *meta\_sk, struct sk\_buff *skb,
+  unsigned int *mss\_now); }\\
+Nous allons maintenant expliquer comment fonctionne la fonction
+principale: On vérifie tout d'abord si tous les sockets de la liste
+chainée ont envoyé une fois (si elles existent toujours) et si oui, on
+recalcule la liste chainée.  Dans cette boucle qui permet d'établir
+cette liste chainée, on teste chaque socket si elle est disponible. Si
+la socket a un meilleur SRTT ou qu'il reste de la place dans les k
+meilleures sockets, on rajoute cette socket dans la liste. Pour cela,
+une insertion est effectuée en gardant la liste triée. Par contre, si
+le SRTT est plus grand que ceux de la liste chainée et qu'il y a déjà
+k sockets, on passe à la socket suivante.
+
+
