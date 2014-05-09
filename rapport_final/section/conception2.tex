@@ -1,77 +1,79 @@
 
 \subsection[Outil de coordination: git]{Outil de coordination: git}
 \label{subsec:conception2:git}
-L'Ã©tat des scripts utilisÃ©s par l'Ã©quipe est mise Ã  jour par un
-systÃ¨me de version utilisant git
+L'état des scripts utilisés par l'équipe est mise à jour par un
+système de version utilisant git
 \url{https://github.com/Romain-Ly/PRES}. Le noyau contenant les
 modifications de MPTCP est disponible ici :
 \url{https://github.com/Finaler/mptcp/tree/mptcp_pres_test1}
 
+Ce système permet de distribuer l'état de scripts à l'ensemble de
+l'équipe afin d'être opérationnel sur leurs sous-projets respectifs.
 
 \subsection{Mininet}
 \label{sec:conce:Mininet}
 
-Nous avons utilisÃ© trois langages pour les scripts.
+Nous avons utilisé trois langages pour les scripts.
 
 \paragraph{python}
-Dans un premier temps, nous avons utilisÃ© python pour pouvoir intÃ©grer
+Dans un premier temps, nous avons utilisé python pour pouvoir intégrer
 les fonctions de l'API python et remplir les fonctions suivantes:
 \begin{itemize}
-\item crÃ©er des topologies
-\item crÃ©er des expÃ©riences variÃ©es
-\item intÃ©grer des outils pour la mesure des performances
-\item intÃ©grer un parseur d'argument pour automatiser les procÃ©dures
+\item créer des topologies
+\item créer des expériences variées
+\item intégrer des outils pour la mesure des performances
+\item intégrer un parseur d'argument pour automatiser les procédures
 \end{itemize}
 
-L'axe d'Ã©criture des scripts est de pouvoir intÃ©grer des topologies,
-des expÃ©riences Ã  la volÃ©e et de permettre d'Ã©crire des fichiers de
-sorties diffÃ©renciÃ©s afin de rendre l'analyse plus facile. Une
-expÃ©rience peut se dÃ©finir comme l'ensemble des contraintes apportÃ©s Ã 
-la topologie (dÃ©lai d'un ou de plusieurs liens, tests utilisÃ©es,
-dÃ©roulement des mesures).
+Le but des scripts est de pouvoir intégrer des topologies, des
+expériences à la volée et de permettre d'écrire des fichiers de
+sorties différenciés afin de rendre l'analyse plus facile. Une
+expérience peut se définir comme l'ensemble des contraintes apportés à
+la topologie (délai d'un ou de plusieurs liens, tests utilisées,
+déroulement des mesures).
 
-Une description plus dÃ©taillÃ©e est effectuÃ©e dans le compte-rendu (voir
+Une description plus détaillée est effectuée dans le compte-rendu (voir
 \pref{sec:compterendu}) et dans l'annexe (voir \pref{sec:annexe1:annexe1}).
 
 \paragraph{bash}
-Pour multiplier les expÃ©riences, nous utilisons des scripts
-\emph{bash} exÃ©cutant les scripts pythons en sÃ©rie.
+Pour multiplier les expériences, nous utilisons des scripts
+\emph{bash} exécutant les scripts pythons en série.
 
 \paragraph{R}
 Pour analyser les fichiers de sortie (iperf, bwm-ng, ping, ...) et
-pour les figures nous avons utilisÃ© R.
-
-
+pour les figures nous avons utilisé R\cite{Rcite}.
 
 \subsection{Performances de MPTCP}
 \label{sec:conce:perfMPTCP}
+Pour mesurer les performances de MPTCP, nous avons utilisé des outils
+disponibles sur linux comme \emph{iperf, iperf3, bwm_ng et ping}.
 
 
-
-\subsection{Conception algorithme sÃ©curisÃ©}
+\subsection{Conception algorithme sécurisé}
 \label{sec:conc:algosec}
 
-AprÃ¨s avoir Ã©tudiÃ© le code de MPTCP, nous nous sommes demandÃ©s comment
-nous pouvions avoir un rendement maximal afin d'implÃ©menter
-l'ordonnanceur. Nous avons donc discutÃ© de nos mÃ©thodes
-d'implÃ©mentation pour essayer de s'accorder mais comme nos idÃ©es
-diffÃ©raient sur la faÃ§on de procÃ©der pour la rÃ©alisation de cet
-ordonnanceur, nous avons dÃ©cidÃ©, dans un premier temps, de coder un
-ordonnanceur chacun de notre cÃ´tÃ©. Une fois que nos ordonnanceurs ont
-Ã©tÃ© codÃ©s, nous avons confrontÃ©s nos versions et choisi de n'en garder
-qu'une seule car elle semblait mieux structurÃ©e ce qui Ã©tait un atout
-si nous devions apporter des modifications Ã  cet algorithme.
+Après l'étude du code de MPTCP, nous avons étudié et discuté sur la
+manière d'obtenir un rendement maximal dans l'implémentation de
+l'ordonnanceur. Les discussions n'ont pas aboutit sur un consensus,
+nous avons décidé dans un premier temps de coder une version de
+l'ordonnanceur chacun de notre côté.
+
+
+Ce développpement concurrentiel a permis de développer des idées
+différentes et de permettre de les confronter directement dans le
+noyau. Au final, nous avons gardé la version la mieux structurée qui
+était la plus apte aux modifications et à un développement à deux.
 \\
 
-AprÃ¨s avoir fini notre ordonnanceur, nous avons constatÃ© qu'il y avait
-des erreurs dans le code que nous avons corrigÃ©s et ensuite
-synchronisÃ© grÃ¢ce au git.  Une fois que notre code compilait, nous
-avons du tester si il effectuait se que nous voulions. Pour cela, nous
-nous sommes encore partagÃ© le travail en testant le code chacun de
-notre cÃ´tÃ© et en utilisant diffÃ©rents moyens afin de comprendre ce qui
-ne marchait pas dans notre algorithme.
+Par la suite, nous avons corrigé les nombreuses erreurs dans le code.
+Une fois que notre code était compilé, nous avons testé si les tâches
+demandées étaient réalisées selon nos souhaits. Pour cela, nous nous
+sommes partagé le travail en testant le code chacun de notre côté et
+en utilisant différents moyens afin de comprendre ce qui ne marchait
+pas dans notre algorithme.
 \\
+
 Afin de ne pas perdre de temps et de rester le plus productif
-possible, nous partagions tout ce que nous avions rencontrÃ©s avec les
-autres membres du groupe afin de savoir si quelqu'un avait dÃ©jÃ  eu ce
-problÃ¨me ou pour nous donner une idÃ©e de rÃ©solution.
+possible, nous partagions les erreurs et les problèmes rencontrés avec
+les autres membres du groupe afin de savoir si quelqu'un avait déjà eu
+ce problème ou pour nous donner une idée de solution.
