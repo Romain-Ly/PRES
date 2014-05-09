@@ -1,20 +1,106 @@
-\subsection{Performance de MPTCP sur \emph{fat-tree}}
+\subsection{Topologie \emph{fat-tree}}
+\label{sec:fattree}
+
+
+\subsubsection{Simulation d'une topologie de Datacenter}
+
+Nous avions le choix entre plusieurs topologies pour réaliser des
+tests plus « réalistes ». Bcube, VL2, FatTree sont autant de
+topologies utilisées dans les \emph{data center} aujourd'hui. Pour des
+raisons de facilités techniques, nous avons choisi d'implémenter une
+topologie FatTree.  Suite à notre recherche de documentation, nous
+nous sommes retrouvés confrontés à un choix : plusieurs définitions du
+FatTree sont ressorties, et certains détails constituaient de très
+nettes différences au niveau de l'implémentation selon le modèle
+choisi.  La simplicité d'implémentation de cette topologie repose sur
+le fait qu'il s'agit d'un arbre dont la connectivité entre les n\oe
+uds augmente lorsqu'on se rapproche de sa racine.  Pour commencer,
+nous nous sommes proposé de choisir l'approche la plus générale
+possible en considérant un FatTree à 3 niveaux (Core, Edge, Hosts) :
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../figures/RAPPORT-FatTree1st.png}
+    \caption{\textbf{Modélisation d'une topologie \emph{Fat-tree}}}
+  \label{fig:topofattreeB}
+  
+\end{figure}
+
+
+Cette modélisation considère que les switches sont tous identiques, et
+possèdent tous 36 ports.  Chacun des 2 switches du niveau racine
+(\emph{Core switches}) dispose du même nombre de liens vers chacun des
+4 switches du niveau intermédiaire, à savoir 9 liens vers chacun d'eux
+(\emph{Edge switches}).  Ainsi, la moitié des ports de chaque
+\emph{Edge} switch, à savoir 18, sont dédiés au niveau supérieur. Cela
+laisse donc l'autre moitié pour y connecter autant d'hôtes, à raison
+d'un lien chacun. Le réseau peut donc atteindre un maximum de 72
+hôtes.  Cette représentation a été choisie en raison de sa grande
+flexibilité. On peut aisément manipuler l'envergure du réseau de test
+(nombre d'hôtes, diversité des chemins d'un hôte à un autre) en
+fonction du nombre de \emph{Core switches} ou de \emph{Edge switches}
+ainsi que du nombre de ports sur chaque switch.  Cependant, nous nous
+sommes heurtés à une difficulté technique lors de l'implémentation de
+cette version du \emph{FatTree}. En effet, mininet ne supporte pas les
+liens multiples entre switches, ce qui a résulté en une diversité de
+chemins entre hôtes insuffisante pour donner de l'intérêt à une
+simulation de MPTCP. Nous avons donc du revoir nos plans et nous
+pencher sur un
+nouveau modèle de \emph{FatTree}.\\
+
+
+
+
+Dans la nouvelle version de notre topologie, il n'y a plus lieu de
+parler de multiples liens entre switches ; ils sont tous
+interconnectés par des liens uniques. Le problème de la diversité des
+chemins est résolu par la transformation du \emph{FatTree} à 3 niveaux
+en un \emph{FatTree} à 4 niveaux. Nous avons effectué la séparation du
+niveau intermédiaire (\emph{Edge}) en 2 sous-niveaux. Les switches
+connectés au niveau 1 (\emph{Core}) seront appelés \emph{Aggregation
+  switches}, et ceux connectés aux hôtes resteront les \emph{Edge
+  switches}. La topologie ainsi obtenue est schématisée ci-dessous.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../figures/RAPPORT-finalfattree.png}
+  \caption{\textbf{Modélisation d'une topologie \emph{Fat-tree}}}
+  \label{fig:topofattreeB2}
+  
+\end{figure}
+
+
+Nous avons désormais 4 \emph{Core switches}, 8 switches de niveau 2
+(\emph{Aggregation}) et autant au niveau 3 (\emph{Edge}), ainsi que 2
+hôtes pour chaque \emph{Edge switch} pour un total de 16
+hôtes. L'interconnexion entre les sous-niveaux 2 et 3 est quelque peu
+particulière : sont regroupés par clusters de 2 les \emph{Aggregation
+  switches}, puis associés à un cluster de 2 \emph{Edge switches}. On
+obtient ainsi 4 clusters de 4 switches répartis sur les niveaux 2 et
+3. Dans chacun de ces clusters, les 2 \emph{Edge switches} sont
+connectés aux 2 \emph{Aggregation switches} (il n'y a bien sûr pas
+d'interconnexion entre switches de même niveau, il s'agit d'une
+structure arborescente), résultant en une duplication du nombre de
+chemins possibles. De plus, les \emph{Aggregation switches} sont
+chacun connectés à 2 des 4 \emph{Core switches}, dupliquant à nouveau
+le nombre de chemins possibles. En résulte que chaque cluster peut
+s'assimiler à un \emph{Edge switch} du modèle précédant, offrant une
+connectivité directe vers les hôtes autant que vers chacun des
+\emph{Core switches}.
+
+
+\subsubsection{Performance de MPTCP sur \emph{fat-tree}}
 \label{sec:CR:perfMPTCP:fattree}
-
-
-Nous avons effectué divers tests de connectivité en utilisant MPTCP
-sur la topologie \emph{fat-tree}.
-
-
-3- Routage Multipath
 
 Après documentation, nous avons découvert qu'il existait déjà des
 solutions à ce problème de routage. Mise à disposition du public sur
-github, une implémentation d'un contrôleur conçu à l'intention des
+github, une implémentation d'un contrôleur conçue à l'intention des
 réseaux de Datacenter, et plus particulièrement pour des topologies de
-type FatTree, nous a permis de faire fonctionner MPTCP dans notre
-réseau, ainsi que d'effectuer nos tests de performance. Voici la
-commande permettant de lancer ce contrôleur :
+type \emph{FatTree}, nous a permis de faire fonctionner MPTCP dans
+notre réseau, ainsi que d'effectuer nos tests de performance. Voici la
+commande permettant de lanqcer ce contrôleur :
 
 
 \begin{verbatim}
@@ -22,19 +108,32 @@ commande permettant de lancer ce contrôleur :
 \end{verbatim}
 
 
-~/pox/pox.py : fichier python d'exécution du contrôleur OpenFlow
-riplpox.riplpox : contrôleur Openflow destiné à la topologie FatTree décrite plus haut (supposé fonctionner également sur une topologie VL2)
---topo=ft,4 : sélection de la topologie FatTree décrite plus haut
---routing=random : sélection du type de routage (3 possibilités : random, hashed, Spanning Tree)
---mode=reactive : sélection du mode d'exécution du contrôleur (3 possibilités : reactive, proactive, hybrid)
-
-
+\begin{verbatim}
+~/pox/pox.py 
+\end{verbatim}
+fichier python d'exécution du contrôleur OpenFlow
+\begin{verbatim}
+riplpox.riplpox 
+\end{verbatim}
+contrôleur Openflow destiné à la topologie FatTree décrite plus haut (supposé fonctionner également sur une topologie VL2)
+\begin{verbatim}
+--topo=ft,4 
+\end{verbatim}
+sélection de la topologie FatTree décrite plus haut
+\begin{verbatim}
+--routing=random 
+\end{verbatim}
+sélection du type de routage (3 possibilités : random, hashed, Spanning Tree)
+\begin{verbatim}
+--mode=reactive 
+\end{verbatim}
+sélection du mode d'exécution du contrôleur (3 possibilités : reactive, proactive, hybrid)
 
 
 Le fonctionnement de ce contrôleur openflow (appelé riplpox) est
 relativement simple : il se base sur une description statique du
 réseau afin d'établir la liste des chemins possibles entre chaque
-hôtes. Par conséquent, il faut s'assurer qu'il analyse exactement la
+hôte. Par conséquent, il faut s'assurer qu'il analyse exactement la
 même topologie que celle virtualisée par Mininet.  Il peut être lancé
 dans plusieurs modes différents. Le mode proactive se contente de
 référencer tous les chemins possibles à l'instant où les switches sont
@@ -48,49 +147,38 @@ modifié l'état des liens entre des phases de test successives, se
 serait révélé nécessaire.
 
 
+\subsubsection{Exécution des tests}
 
-
-
-
-
-
-
-
-
-2/ Exécution des tests
-
-Une fois finies la conception, la création et la configuration de
-cette topologie plus complexe, nous nous sommes attelés à intégrer
-cette topologie dans notre environnement de tests. Suite aux
-conclusions tirées des simulations effectuées sur la topologie A, nous
-nous contenterons d'effectuer des tests avec une bande passante par
-lien, passée en paramètre au script python lançant Mininet puis les
-simulations (pyMPTCP.py), à 10 Mbit/s. De plus, notre topologie limite
-l'usage de MPTCP à 4 sous-flots. Nous allons donc étudier le débit
-total de sortie en fonction du nombre de sous-flots actifs, et le
-comparer au débit maximal théorique et aux performances de TCP.
+Suite aux conclusions tirées des simulations effectuées sur la
+topologie simple, nous nous contenterons d'effectuer des tests avec
+une bande passante par lien, passée en paramètre au script python
+lançant Mininet puis les simulations (pyMPTCP.py), à 10 Mbit/s. De
+plus, notre topologie limite l'usage de MPTCP à 4 sous-flots. Nous
+allons donc étudier le débit total de sortie en fonction du nombre de
+sous-flots actifs, et le comparer au débit maximal théorique et aux
+performances de TCP.
 
 On s'attend à retrouver des résultats en corrélation avec les tests
-menés sur la topologie A. En théorie, l'évolution du débit total en
-fonction du nombre de sous-flots devrait être linéaire ; en effet, sa
-valeur se résume à l'addition des débits des différents
-sous-flots. Cependant, suite aux résultats déjà obtenus, on pourrait
-penser que l'augmentation du nombre de sous-flots a des conséquences
-non désirables sur la rapidité de transmission. Étant donné le manque
-de fiabilité croissant de notre outil de simulation, Mininet, à
-l'approche d'un débit de 100 Mbit/s et au-delà, et bien que nous nous
+déjà menés. En théorie, l'évolution du débit total en fonction du
+nombre de sous-flots devrait être linéaire ; en effet, sa valeur se
+résume à l'addition des débits des différents sous-flots. Cependant,
+suite aux résultats déjà obtenus, on pourrait penser que
+l'augmentation du nombre de sous-flots a des conséquences non
+désirables sur la rapidité de transmission. Étant donné le manque de
+fiabilité croissant de notre outil de simulation, Mininet, à
+l'approche d'un débit de 100\,Mbit/s et au-delà, et bien que nous nous
 arrêtions à un débit maximal théorique de 40\,Mbit/s, il est
 envisageable que, même à ce stade, la progression de notre courbe s'en
 retrouve affectée.
 
 
-
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{../figures/RAPPORT-Perffattree.jpg}
-  \caption{\textbf{Testbed MPTCP vs TCP\cite{pareto2013}}.}
+  \includegraphics[width=0.7\textwidth]{../figures/RAPPORT-Perffattree.jpg}
+  \caption{\textbf{Résultat expérience \emph{fat-tree}}.}
   \label{fig:khalili}
 \end{figure}
+
 
 En utilisant, comme nous l'avons fait, des liens de 10\,Mbit/s, le
 débit total est en théorie limité à 10*N, N étant le nombre de
@@ -98,26 +186,12 @@ sous-flots utilisés. De la même manière, une connexion TCP étant
 équivalente à une connexion MPTCP à un seul sous-flot, celle-ci reste
 constamment à 10\,Mbit/s. Nous avons choisi de représenter ces bornes
 autour de notre courbe afin de mettre en valeur l'intérêt de
-l'utilisation de MPTCP par rapport au Single-Path TCP, tout en
-essayant de constater les pertes induites par Mininet, dont nous
-connaissons la teneur suite aux expérimentations précédemment
-effectuées.  Suite à l'exploitation des chiffres obtenus par nos tests
-sur cette topologie FatTree, nous constatons plusieurs faits qui
-méritent d'être mentionnés. Tout d'abord, Nous avons remarqué que le
-débit moyen de MPTCP avec 1 sous-flot est légèrement inférieur au
-débit moyen du Single-Path TCP. Ceci peut s'expliquer par le fait que
-MPTCP effectue de nombreux traitements supplémentaires, lesquels sont
-totalement inutiles dans le cas de l'utilisation d'un unique
-sous-flot. De plus, nous notons également qu'à partir d'un débit
+l'utilisation de MPTCP par rapport au Single-Path TCP. Suite à
+l'exploitation des chiffres obtenus par nos tests sur cette topologie
+FatTree, nous constatons plusieurs faits qui méritent d'être
+mentionnés. De plus, nous notons également qu'à partir d'un débit
 d'environ 40Mbit/s, le débit expérimental de MPTCP commence à
 s'éloigner significativement de la courbe du débit théorique. Ceci
 confirme que, outre le fait que la capacité totale de chaque lien soit
 moins bien exploitée par MPTCP, notre simulateur atteint assez
 rapidement ses limites.
-
-Dans la pratique, MPTCP s'est révélé capable d'atteindre un débit
-total de plus de 50Gbit/s en utilisant des liens à
-10Gbit/s. Malheureusement, les limitations de Mininet ne nous
-permettront guère de dépasser les 100Mbits/s. Cependant, il est avéré
-que MPTCP permet effectivement d'exploiter une diversité de chemins
-afin de multiplier le débit total d'une connexion pair à pair.
