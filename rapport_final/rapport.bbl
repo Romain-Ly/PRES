@@ -45,4 +45,11 @@ C.~Raiciu, C.~Pluntke, S.~Barre, A.~Greenhalgh, D.~Wischik, and M.~Handley,
 {R Core Team}, {\em R: A Language and Environment for Statistical Computing}.
 \newblock R Foundation for Statistical Computing, Vienna, Austria, 2014.
 
+\bibitem{PKB13}
+C.~Paasch, R.~Khalili, and O.~Bonaventure, ``On the benefits of applying
+  experimental design to improve multipath tcp,'' in {\em Conference on
+  emerging Networking EXperiments and Technologies (CoNEXT)}, ACM, December
+  2013.
+\newblock Available from http://dl.acm.org/authorize?6960036.
+
 \end{thebibliography}
