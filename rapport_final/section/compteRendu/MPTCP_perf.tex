@@ -169,8 +169,10 @@ En effectuant des
 recherches\footnote{\url{https://github.com/mininet/mininet/wiki/Introduction-to-Mininet\#what-are-mininets-limitations}}\footnote{\url{https://mailman.stanford.edu/pipermail/mininet-discuss/2014-January/003901.html}},
 il semblerait que la limite du débit est lié aux n\oe uds Open vSwitch
 sur Ubuntu 13.04, ce qui pour une dizaine de liens, limite la capacité
-maximale à environ 100 Mbit/s. C'est pourquoi, nous limiterons la
-capacité des liens à de faibles valeurs.
+maximale à environ 100 Mbit/s. De plus, il semblerait que l'activation
+de \emph{auto-tuning} pour les tailles des tampons entraînent une
+basse significative des performances de MPTCP \cite{PKB13}. C'est pourquoi,
+nous limiterons la capacité des liens à de faibles valeurs.
 
 \subsubsection{Variation du délai par lien}
 \label{sec:compterendu:perf:délai}

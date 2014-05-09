@@ -51,7 +51,7 @@
 \contentsline {section}{\numberline {7}Conclusions}{38}{section.7}
 \contentsline {section}{\numberline {8}Perspectives}{38}{section.8}
 \contentsline {section}{\numberline {9}Remerciements}{38}{section.9}
-\contentsline {section}{\numberline {10}Annexe1}{39}{section.10}
+\contentsline {section}{\numberline {10}Annexe}{39}{section.10}
 \contentsline {subsection}{\numberline {10.1}Utilisation des scripts pythons}{39}{subsection.10.1}
 \contentsline {subsubsection}{\numberline {10.1.1}Activation MPTCP}{39}{subsubsection.10.1.1}
 \contentsline {subsubsection}{\numberline {10.1.2}Choix de l'algorithme congestion}{39}{subsubsection.10.1.2}
@@ -71,3 +71,4 @@
 \contentsline {paragraph}{sshd}{44}{section*.11}
 \contentsline {paragraph}{MSS}{45}{section*.12}
 \contentsline {paragraph}{iperf3}{45}{section*.13}
+\contentsline {part}{Bibliographie}{46}{section*.14}
