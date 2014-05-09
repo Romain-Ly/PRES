@@ -22,7 +22,7 @@ d'augmenter la résilience de la connexion\cite{rfc6182,rfc6824,
 
 Les performances de MPTCP ne doivent pas être inférieures à celles de
 TCP et son l'utilisation ne doit pas diminuer le débit des autres
-utilisateurs s ur le méme réseau. Les performances de MPTCP dépendent
+utilisateurs sur le méme réseau. Les performances de MPTCP dépendent
 en partie de l'algorithme utilisé pour la répartition des données
 entre les différents sous-flots ouverts \cite{pareto2013}. Pour
 caractériser les performances de l'ordonnanceur de MPTCP, nous allons
@@ -43,7 +43,7 @@ de MPTCP dans les topologies réseaux utilisées précédemment.
 \subsection{Méthodes}
 \label{sec:charges:methodes}
 
-La réalisation du projet peut être subdivisé en trois parties :
+La réalisation du projet peut être subdivisée en trois parties :
 \begin{itemize}
 \item la simulation de réseaux à topologies différentes,
 \item l'analyse des performances de MPTCP,
@@ -58,6 +58,6 @@ simples où les différents sous-flots sont asymétriques et diffèrent
 par une propriété à la fois : latence, débit, pertes... Nous testerons
 différents algorithmes de répartition de charge entre sous-flots :
 l'algorithme implémenté par défaut (LIA), celui qui satisfait
-l'optimum de pareto par rapport aux objectifs de MPTCP, ou encore un
-algorithme de répartition équilibrée de la charge réseau entre les
-différents sous-flots.
+l'optimum de pareto par rapport aux objectifs de MPTCP
+\cite{pareto2013,rfc6182}, ou encore un algorithme de répartition équilibrée
+de la charge réseau entre les différents sous-flots.
