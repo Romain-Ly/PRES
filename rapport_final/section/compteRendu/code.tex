@@ -18,7 +18,7 @@ pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
         buffer, elle permet de définir ce que doit envoyer une socket
         et permet de faire un tri sur les données reçues grâce au
         timestamps.  L'ordonnanceur implémenté dans MPTCP utilise,
-        comme dans notre implémentation, le Smoothed Rount Trip Time
+        comme dans notre implémentation, le Smoothed Round Trip Time
         (SRTT) pour déterminer quelle socket enverra les données. De
         ce fait, si le SRTT est petit, l'ordonnanceur utilisera plus
         souvent cette socket. C'est ce qui crée une faiblesse dans la
