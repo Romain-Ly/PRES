@@ -49,7 +49,7 @@ fonctions nécessaires à MPTCP de fonctionner (découverte et gestion
 des chemins, ordonnancement des paquets, contrôle de congestion) et la
 couche inférieure correspond aux sous-flots établis.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../figures/mptcp_stack/mptcp_stack.png}
     \caption{\textbf{Schéma de la pile MPTCP} \cite{PB14}.}
@@ -73,13 +73,8 @@ la connexion \cite{rfc6182}:
 \item le contrôleur de congestion  ou \emph{congestion controller}.
 \end{itemize}
 
-<<<<<<< HEAD
-Le sous-flot prend en charge les segments de l'ordonnanceur 
-pour l'envoyer sur un chemin disponible. Le sous-flot agit comme une
-=======
 Le sous-flot prend en charge les segments de l'ordonnanceur pour
 l'envoyer sur un chemin disponible. Le sous-flot agit comme une
->>>>>>> d7a9d0cd542d6d8b1100d27e3fbd60f74b1da9a6
 connexion TCP classique et dispose de cette manière des fonctions de
 ce protocole de transport assurant d'envoyer des paquets de manière
 fiable et séquencée. \`A la réception, le sous-flot envoie les
