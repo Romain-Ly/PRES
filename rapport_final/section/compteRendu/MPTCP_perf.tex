@@ -3,7 +3,7 @@
 \label{sec:CR:perfMPTCP:base}
 
 Après la compilation du noyau, pour vérifier le fonctionnement de
-MPTCP nous avons mesurer le débit moyen en utilisant \emph{iperf} sur
+MPTCP nous avons mesuré le débit moyen en utilisant \emph{iperf} sur
 la topologie A.
 
 Les paramètres\footnote{paramètres par défaut dans le noyau Linux}
@@ -95,7 +95,7 @@ les liens aux capacités supérieures à 100\,Mbit/s, les performances
 décroissent rapidement et tombent en dessous des performances d'une
 simple connexion TCP ce qui viole la nature même de MPTCP .
 
-Ce problème pourrait être expliquer par une utilisation non optimale
+Ce problème pourrait être expliqué par une utilisation non optimale
 de la capacité des sous-flots. Le \emph{bandwidth delay product} (BDP)
 implique une taille minimale du tampon de réception. Pour un débit de
 1000\,Mo et un RTT de 44\,ms, la taille minimale du tampon est de
@@ -203,7 +203,7 @@ conjointe de \emph{ping} et d'\emph{iperf} produit une erreur (voir
 \end{figure}
 
 Nous observons que la modification du délai n'entraîne pas de
-diminution des performances pour les liens à faibles capacits
+diminution des performances pour les liens à faibles capacités
 \fig{fig:mptcp:rttisotrop}. Ce qui est attendu vu que la taille des
 \emph{buffers} et la capacité des routeurs sont largement suffisantes
 pour satisfaire à une augmentation de débit. Il reste alors à tester

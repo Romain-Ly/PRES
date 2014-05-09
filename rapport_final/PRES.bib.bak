@@ -48,6 +48,29 @@
   url = {http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6583272}
 }
 
+@ARTICLE{PB14,
+  author = {Christoph Paasch and Olivier Bonaventure},
+  title = {Multipath TCP},
+  journal = {Communications of the ACM},
+  year = {2014},
+  volume = {57},
+  pages = {51-57},
+  number = {4},
+  month = {April},
+  note = {See http://queue.acm.org/detail.cfm?id=2591369},
+  owner = {romain},
+  timestamp = {2014.05.09}
+}
+
+@ARTICLE{rfc6356,
+  author = {Raiciu, C. and Handly, M. and Wischik, D.},
+  title = {Coupled Congestion Control for Multipath Transport Protocols},
+  journal = {RFC 6356},
+  year = {October 2011},
+  owner = {pix},
+  timestamp = {2014.01.24}
+}
+
 @INPROCEEDINGS{raiciu2010,
   author = {Raiciu, C. and Pluntke, C. and Barre, S. and Greenhalgh, A. and Wischik,
 	D. and Handley, M.ndley, M.},
@@ -58,6 +81,15 @@
   organization = {IEEE},
   owner = {romain},
   timestamp = {2014.03.09}
+}
+
+@MANUAL{,
+  title = {R: A Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address = {Vienna, Austria},
+  year = {2014},
+  url = {http://www.R-project.org}
 }
 
 @ARTICLE{rfcsctp,

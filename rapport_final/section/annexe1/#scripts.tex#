@@ -1,0 +1,209 @@
+
+\subsection{Utilisation des scripts pythons}
+\label{sec:annexe1:usepyth}
+
+\subsubsection{Activation MPTCP}
+\label{sec:annexe1:MPTCP}
+
+
+Il y a deux fichiers qui nous intéressent:
+\begin{verbatim}
+/proc/sys/net/mptcp_path_manager
+/proc/sys/net/mptcp_enabled
+\end{verbatim}
+
+Le fichier enabled permet d'activer (\emph{1}) ou de désactiver
+(\emph{0}) MPTCP sur la machine.
+
+Le fichier path\_manager influence sur la méthode d'annonce des
+sous-flots. Deux valeurs nous intéressent: \emph{fullmesh}, et
+\emph{default}. La valeur \emph{default}, il n'y a pas d'annonces des
+sous-flots disponibles tandis que \emph{fullmesh} permet la création
+d'un \emph{mesh} de sous-flots parmi tous ceux disponibles.
+
+Pour modifier la valeur du fichier, il suffit d'utiliser sysctl en utilisant la forme ``nom=valeur''
+
+\begin{verbatim}
+sudo sysctl -w net.mptcp.mptcp_path_manager=fullmesh
+sudo sysctl -w net.mptcp.mptcp_enabled=1
+\end{verbatim}
+
+Attention, selon les choix lors de la compilation du noyau, la valeur
+par défaut du path\_manager peut être mise sur ``default''.
+
+\subsubsection{Choix de l'algorithme congestion}
+\label{sec:annexe1:MPTCPcongestion}
+Pour choisir l'algorithme de congestion, il est nécessaire de modifier
+le fichier suivant :
+
+\begin{verbatim}
+/proc/sys/net/ipv4/tcp_congestion_control
+\end{verbatim}
+
+Pour l'algorithme LIA:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=coupled
+\end{verbatim}
+
+Pour l'algorithme OLIA:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=olia
+\end{verbatim}
+
+Pour l'algorithme par défaut:
+\begin{verbatim}
+sudo sysctl -w net.ipv4.tcp_congestion_control=cubic
+\end{verbatim}
+
+Pour afficher les algorithmes disponibles:
+\begin{verbatim}
+sudo sysctl net.ipv4.tcp_available_congestion_control
+\end{verbatim}
+
+L'ordonnanceur par défaut est choisi à la compilation du noyau.
+
+\subsubsection{Taille de la fenêtre}
+\label{sec:annexe1:windowsize}
+
+Pour modifier la taille maximale de la fenêtre de réception
+(\emph{rmem}) et d'envoi \emph{wmem}, il faut modifier les fichiers
+suivants:
+
+\begin{verbatim}
+/proc/sys/net/core/wmem_max
+/proc/sys/net/core/rmem_max
+/proc/sys/net/core/rmem_default
+/proc/sys/net/core/rmem_default
+\end{verbatim}
+
+Pour une taille \emph{buffer} maximale de $\sim$16\,Mo:
+\begin{verbatim}
+sysctl -w net.core.wmem_max=16777216
+sysctl -w net.core.rmem_max=16777216
+\end{verbatim}
+
+Pour modifier les valeurs par défauts :
+\begin{verbatim}
+sysctl -w net.core.rmem_default=163840
+sysctl -w net.core.wmem_default=163840
+\end{verbatim}
+
+Pour modifier les valeurs d'\emph{auto-tuning}:
+\begin{verbatim}
+sysctl -w net.ipv4.tcp_wmem='4096 16384 4194304'
+sysctl -w net.ipv4.tcp_rmem='4096 87380 6291456'
+\end{verbatim}
+Les valeurs correspondent respectivement à la taille minimale, par
+défaut et maximale du buffer alloué (en octets) par socket TCP. La
+taille maximale ne peut dépasser celle indiquée dans \emph{net.core.}
+
+
+\subsection{Lancement scripts python}
+\label{sec:annexe1:python}
+
+Les fichiers permettant de lancer la topologie et d'exécuter les tests
+se nomment en commençant par ``pyMPTCP'' et se situent sur le git pour
+l'instant dans ``./mininet/python/TCPvsMPTCP''
+
+\begin{verbatim}
+pyMPTCP.py
+pyMPTCP_parser.py
+pyMPTCP_topo.py
+pyMPTCP_options.py
+\end{verbatim}
+
+pyMPTCP.py contient le \emph{main} et doit être modifié pour choisir
+la topologie (objet \emph{topo} dans la fonction \emph{main} et objet
+\emph{net} dans la fonction \emph{runMPTCP}).
+
+pyMPTCP\_topo.py contient les définitions des topologies utilisées. La
+classe \emph{Topo} sera utilisée par mininet pour la création du
+réseau. La classe \emph{Topo->names} contient les noms des hôtes et
+des switches qui seront utiles pour les tests.
+
+pyMPTCP\_parser.py contient le parseur d'argument voir section
+\ref{sec:annexe1:commentaires_argument}.
+
+pyMPTCP\_options.py contient les fonctions qui seront lancées selon les
+arguments utilisés.
+
+La fonction options permet de modifier la topologie après la création
+des n\oe uds. \`A cause d'un bug de mininet ,pour l'instant encore non
+résolu, il est nécessaire d'utiliser la classe \emph{mininet} pour
+pouvoir créer plus d'un lien entre deux mêmes n\oe uds.
+
+Exemple d'utilisation:
+\begin{verbatim}
+sudo python ./pyMPTCP.py -O exp001_TC --bw 10 --mptcp -n 5 -t 60 --shark
+\end{verbatim}
+Ici nous lançons la topologie A, avec l'expérience exp001\_TC avec un
+débit maximal par lien de 10\,Mbit/s, en utilisant MPTCP, avec 5
+sous-flots et \emph{iperf} sera utilisé pendant 60 secondes, et
+tcpdump sera utilisé pour enregister les paquets. Pour plus de
+précisions voir \ref{sec:annexe1:commentaires_argument}.
+
+
+
+
+\input{section/annexe1/Argument_parser}
+
+\subsection{scripts shell}
+\label{sec:annexe1:shell}
+Les scripts écrits en bash permettent de lancer plusieurs fois les
+simulation en utilisant des paramètres variables. Il est nécessaire de
+les lancer en mode super-utilisateur.
+
+\begin{verbatim}
+sudo bash shNAME.sh
+\end{verbatim}
+
+\begin{tabular}{lp{\linewidth - 4cm}}
+shKernelCheck.sh&Permet de visualiser l'algorithme de congestion et les taille des tampons\\
+shKernelDefault.sh&Permet de modifier les tailles des buffers\\
+shMPTCP.sh&lanceurs d'expériences\\
+\end{tabular}
+
+Le script shMPTCP permet de multiplier les expériences. Les fonctions
+écrites ne sont pas toutes utilisées cependant il y a 2 fonctions
+importantes qu'on peut décrire.
+
+\paragraph{clean}
+\begin{verbatim}
+sudo bash shMPTCP.sh clean
+\end{verbatim}
+Cette fonction envoie un signal d'arrêt aux fonctions qui sont
+utilisées pour les mesures: (ping, iperf, iperf3, bwm-ng, tcpdump),
+elle supprime tous les fichiers de sortie situés dans ./output/ et
+effectuer un nettoyage de ``mininet'' (mn -c) en supprimant les
+noeuds, liens hôtes créés.
+
+\paragraph{runMPTCP}
+Cette fonction exécute le script python est appelé à l'intérieur d'une
+boucle par d'autres fonctions.
+
+\vspace{1cm}
+
+Les autres fonctions appellent la fonction runMPTCP pour effectuer les
+simulations, exemple:
+\begin{verbatim}
+sudo bash shMPTCP.sh runbw
+\end{verbatim}
+
+\subsection{Scripts R}
+\label{sec:annexe1:R}
+Les scripts R ne sont pas totalement finalisés pour être exploitables
+facilement par autrui et pour certains, il faudra modifier les
+fichiers pour indiquer les dossiers contenant les résultats des
+expériences.
+
+Le dossier ./scripts/R contient les fonctions qui permettent d'analyser les
+fichiers produits par les scripts pythons. 
+
+Le dossier ./scripts/Analysis contient les fichiers expérimentaux et
+les fichiers R permettant de les analyser en faisant appel aux
+fonctions se trouvant dans le dossier ./scripts/R. Pour une question
+de stockage, les fichiers des différentes expériences ne sont pas sur
+le git.
+
+
+

@@ -1,0 +1,51 @@
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+Au cours de ce projet, nous avons
+
+\begin{itemize}
+\item compilé le noyau MPTCP dans une machine virtuelle contenant
+  mininet
+\item créé une plateforme de tests par des scripts python et bash
+\item testé le fonctionnement de MPTCP sur une topologie simple et sur
+  la topologie \emph{fat-tree}
+\item testé les capacités et les limites de la virtualisation de
+  réseaux
+\item puis mesuré les performances de MPTCP sur des liens à délai
+  variables
+\item enfin, nous avons écrit un nouvel algorithme d'ordonnancement
+\item et nous avons compilé le noyau avec ce nouvel algorithme
+\end{itemize}
+
+\section{Perspectives}
+\label{sec:perspectives}
+Le sujet est très intéressant et les pistes pour continuer le projet
+sont nombreuses.
+
+Dans un premier temps, il serait profitable de terminer les scripts de
+base en intégrant des moyens pour mesurer la charge CPU par conteneur
+(\emph{cpuacct}) ou de mesurer le RTT par la connexion TCP. Ensuite,
+il serait utile de faire varier d'autres paramètres comme la
+probabilité d'erreur, la gigue sur chacun des liens pour ensuite,
+effectuer des expériences sur des liens congestionnés où plusieurs
+utilisateurs sont en concurrence pour la ressource. Ces tests
+stringents seront utiles pour mesurer la performance des algorithmes
+contenus dans le noyau et pour les comparer avec le nouvel algorithme.
+
+
+
+
+
+
+\section{Remerciements}
+\label{sec:remerciements}
+
+Ce projet a été réalisé dans le cadre du Master I Réseau, à
+l'Université Pierre et Marie Curie.
+
+Nous tenons à remercier Stefano Secci pour nous avoir permis de
+réaliser ce projet.  
+
+Et nous remercions Yacine Benchaïb et Matthieu Coudron pour les
+discussions autour du projet.

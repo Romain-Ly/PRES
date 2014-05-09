@@ -1,14 +1,15 @@
 \subsection{Topologie}
 \label{subsec:CR:topologie}
 
-Nous utilisons principalement deux topologies (A et B).
+\subsubsection{Topologie simple}
+\label{sec:simpletopo}
 
-La topologie A est inspiré du \emph{testbed} de l'article de
+La première topologie est inspirée du \emph{testbed} de l'article de
 R. Khalili \cite{pareto2013}, voir \fig{fig:topoMPTCP:A}. Nous avons
 ajouté, à cette topologie, des routeurs privés entre le client et le
 serveur \emph{MPTCP} pour disposer d'un nombre de sous-flots supérieur à deux.\\
 
-\begin{figure}[!htb]
+\begin{figure}[H]
   \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
     \includegraphics[width=0.7\textwidth]{../figures/mptcp_tcp/mptcp_tcp.pdf}
@@ -27,5 +28,91 @@ serveur \emph{MPTCP} pour disposer d'un nombre de sous-flots supérieur à deux.\\
   
 \end{figure}
 
+\subsubsection{FatTree}
+\label{sec:fattree}
 
-La topologie B correspond au \emph{fat tree}.
+Nous avions le choix entre plusieurs topologies pour réaliser des
+tests plus « réalistes ». Bcube, VL2, FatTree sont autant de
+topologies utilisées dans les \emph{data center} aujourd'hui. Pour des
+raisons de facilités techniques, nous avons choisi d'implémenter une
+topologie FatTree.  Suite à notre recherche de documentation, nous
+nous sommes retrouvés confrontés à un choix : plusieurs définitions du
+FatTree sont ressorties, et certains détails constituaient de très
+nettes différences au niveau de l'implémentation selon le modèle
+choisi.  La simplicité d'implémentation de cette topologie repose sur
+le fait qu'il s'agit d'un arbre dont la connectivité entre les n\oe
+uds augmente lorsqu'on se rapproche de sa racine.  Pour commencer,
+nous nous sommes proposé de choisir l'approche la plus générale
+possible en considérant un FatTree à 3 niveaux (Core, Edge, Hosts) :
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../figures/RAPPORT-FatTree1st.png}
+    \caption{\textbf{Modélisation d'une topologie \emph{Fat-tree}}}
+  \label{fig:topofattreeB}
+  
+\end{figure}
+
+
+Cette modélisation considère que les switches sont tous identiques, et
+possèdent tous 36 ports.  Chacun des 2 switches du niveau racine
+(\emph{Core switches}) dispose du même nombre de liens vers chacun des
+4 switches du niveau intermédiaire, à savoir 9 liens vers chacun d'eux
+(\emph{Edge switches}).  Ainsi, la moitié des ports de chaque
+\emph{Edge} switch, à savoir 18, sont dédiés au niveau supérieur. Cela
+laisse donc l'autre moitié pour y connecter autant d'hôtes, à raison
+d'un lien chacun. Le réseau peut donc atteindre un maximum de 72
+hôtes.  Cette représentation a été choisie en raison de sa grande
+flexibilité. On peut aisément manipuler l'envergure du réseau de test
+(nombre d'hôtes, diversité des chemins d'un hôte à un autre) en
+fonction du nombre de \emph{Core switches} ou de \emph{Edge switches}
+ainsi que du nombre de ports sur chaque switch.  Cependant, nous nous
+sommes heurtés à une difficulté technique lors de l'implémentation de
+cette version du \emph{FatTree}. En effet, mininet ne supporte pas les
+liens multiples entre switches, ce qui a résulté en une diversité de
+chemins entre hôtes insuffisante pour donner de l'intérêt à une
+simulation de MPTCP. Nous avons donc du revoir nos plans et nous
+pencher sur un
+nouveau modèle de \emph{FatTree}.\\
+
+
+
+
+Dans la nouvelle version de notre topologie, il n'y a plus lieu de
+parler de multiples liens entre switches ; ils sont tous
+interconnectés par des liens uniques. Le problème de la diversité des
+chemins est résolu par la transformation du \emph{FatTree} à 3 niveaux
+en un \emph{FatTree} à 4 niveaux. Nous avons effectué la séparation du
+niveau intermédiaire (\emph{Edge}) en 2 sous-niveaux. Les switches
+connectés au niveau 1 (\emph{Core}) seront appelés \emph{Aggregation
+  switches}, et ceux connectés aux hôtes resteront les \emph{Edge
+  switches}. La topologie ainsi obtenue est schématisée ci-dessous.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../figures/RAPPORT-finalfattree.png}
+  \caption{\textbf{Modélisation d'une topologie \emph{Fat-tree}}}
+  \label{fig:topofattreeB2}
+  
+\end{figure}
+
+
+Nous avons désormais 4 Core switches, 8 switches de niveau 2
+(\emph{Aggregation}) et autant au niveau 3 (\emph{Edge}), ainsi que 2
+hôtes pour chaque \emph{Edge switch} pour un total de 16
+hôtes. L'interconnexion entre les sous-niveaux 2 et 3 est quelque peu
+particulière : sont regroupés par clusters de 2 les \emph{Aggregation
+  switches}, puis associés à un cluster de 2 \emph{Edge switches}. On
+obtient ainsi 4 clusters de 4 switches répartis sur les niveaux 2 et
+3. Dans chacun de ces clusters, les 2 \emph{Edge switches} sont
+connectés aux 2 \emph{Aggregation switches} (il n'y a bien sûr pas
+d'interconnexion entre switches de même niveau, il s'agit d'une
+structure arborescente), résultant en une duplication du nombre de
+chemins possibles. De plus, les \emph{Aggregation switches} sont
+chacun connectés à 2 des 4 \emph{Core switches}, dupliquant à nouveau
+le nombre de chemins possibles. En résulte que chaque cluster peut
+s'assimiler à un \emph{Edge switch} du modèle précédant, offrant une
+connectivité directe vers les hôtes autant que vers chacun des
+\emph{Core switches}.

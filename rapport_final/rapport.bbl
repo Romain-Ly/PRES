@@ -27,6 +27,11 @@ R.~Stewart, ``Stream control transmission protocol,'' {\em RFC 4960}, September
 D.~Thaler, Microsoft, C.~Hopps, and N.~Technologies, ``Multipath issues in
   unicast and multicast next-hop selection,'' {\em RFC 2991}, November 2000.
 
+\bibitem{PB14}
+C.~Paasch and O.~Bonaventure, ``Multipath tcp,'' {\em Communications of the
+  ACM}, vol.~57, pp.~51--57, April 2014.
+\newblock See http://queue.acm.org/detail.cfm?id=2591369.
+
 \bibitem{rfc6356}
 C.~Raiciu, M.~Handly, and D.~Wischik, ``Coupled congestion control for
   multipath transport protocols,'' {\em RFC 6356}, October 2011.
