@@ -2,21 +2,21 @@
 \section{Conclusions}
 \label{sec:conclusions}
 
-Au cours de ce projet, nous avons
+Au cours de ce projet, nous avons :
 
 \begin{itemize}
 \item compilé le noyau MPTCP dans une machine virtuelle contenant
-  mininet
-\item créé une plateforme de tests par des scripts python et bash
+  mininet;
+\item créé une plateforme de tests par des scripts python et bash;
 \item testé le fonctionnement de MPTCP sur une topologie simple et sur
-  la topologie \emph{fat-tree}
+  la topologie \emph{fat-tree};
 \item testé les capacités et les limites de la virtualisation de
-  réseaux
+  réseaux;
 \item puis mesuré les performances de MPTCP sur des liens à délai
-  variables
-\item enfin, nous avons écrit un nouvel algorithme d'ordonnancement
+  variables;
+\item enfin, nous avons écrit un nouvel algorithme d'ordonnancement;
 \item et nous avons compilé le noyau avec ce nouvel algorithme
-\end{itemize}
+\end{itemize} (bien qu'il ne soit pas encore opérationnel).
 
 \section{Perspectives}
 \label{sec:perspectives}
@@ -32,7 +32,7 @@ effectuer des expériences sur des liens congestionnés où plusieurs
 utilisateurs sont en concurrence pour la ressource. Ces tests
 stringents seront utiles pour mesurer la performance des algorithmes
 contenus dans le noyau et pour les comparer avec le nouvel algorithme.
-
+Concernant l'implémentation de l'ordonnanceur qui est toujours en cours de correction, terminer cet algorithme et comparer les résultats des deux algorithmes serait bénéfique : modifier, par la suite, les critères d'ordonnancement selon les résultats obtenus pour l'optimiser.
 
 
 
