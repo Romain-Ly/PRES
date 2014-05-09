@@ -78,7 +78,7 @@ pour l'envoyer sur un chemin disponible. Le sous-flot agit comme une
 connexion TCP classique et dispose de cette manière des fonctions de
 ce protocole de transport assurant d'envoyer des paquets de manière
 fiable et séquencée. \`A la réception, le sous-flot envoie les
-segments à la couche ordonnanceur de paquet pour le réassemblage.
+segments à la couche ordonnanceur de paquet pour le réassemblage. Mais, le réassemblage est d'autant plus rapide si les paquets reçus sont déjà bien ordonnés. Dans ce cas, avoir un ordonnanceur, qui permet d'estimer le temps d'arrivée des paquets selon un sous-flot pour que le récepteur reçoive tous les paquets des différents sous-flots de façon ordonnée permettrait d'augmenter les performances de MPTCP. En effet, les données dans le buffer seraient traités plus efficacement. Cela affecte donc sur la quantité de données pouvant \^etre envoyées et/ou sur le nombre de sous-flots exploitables.
 
 Le gestionnaire des chemins est le mécanisme permettant de détecter et
 d'utiliser les chemins disponibles par l'intermédiaire de multiples
