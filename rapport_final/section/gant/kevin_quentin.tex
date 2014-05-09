@@ -1,20 +1,27 @@
 Analyse de la structure de l'implémentation :\\
-   Déterminer globalement les fichiers à lire ;\\
-   Définir les headers et structures liés à l'utilisation de mptcp.\\
+	\begin{itemize}
+		\item Déterminer globalement les fichiers à lire ;
+		\item Définir les headers et structures liés à l'utilisation de mptcp.
+	\end{itemize}
 
 Lecture et Compréhension du code :\\
-   Lecture de tous les fichiers contenus dans \$(SRC\_NOYAU)/net/mptcp ;\\
-   Lecture de certains fichiers contenus dans \$(SRC\_NOYAU)/net/sched ;\\
-   Lecture de tous les types/structures utilisés ;\\
-   Relecture du code après avoir compris tous le types/structures.\\
+	\begin{itemize}
+   		\item Lecture de tous les fichiers contenus dans \$(SRC\_NOYAU)/net/mptcp ;
+   		\item Lecture de certains fichiers contenus dans \$(SRC\_NOYAU)/net/sched ;
+	   \item Lecture de tous les types/structures utilisés ;
+	   \item Relecture du code après avoir compris tous le types/structures.
+	\end{itemize}
 
 Définition des parties modifiables de l'ordonnanceur :\\
-   Vérifier les correspondances entre mptcp\_output.c et mptcp\_input.c ;\\
-   Voir si l'utilisation du contrôle de congestion (mptcp\_olia.c et mptcp\_coupled.c) a des effets de bord sur les sockets ;\\
-   Voir les différences entre les différents modes du path\_manager.\\
+	\begin{itemize}
+	   \item Vérifier les correspondances entre mptcp\_output.c et mptcp\_input.c ;\\
+	   \item Voir si l'utilisation du contrôle de congestion (mptcp\_olia.c et mptcp\_coupled.c) a des effets de bord sur les sockets ;\\
+	   \item Voir les différences entre les différents modes du path\_manager.\\
+	\end{itemize}
 
-Implémenter / Tests d'algorithmes pour l'ordonnanceur\\ Avec l'aide de
-   Matthieu Coudron, modification dans
-   \$(SRC\_NOYAU)/net/mptcp/mptcp\_output.c ;\\ Tests des
-   implémentations avec le travail de Romain LY et comparer les
-   résultats obtenus.\\
+Implémentation / Tests d'algorithmes pour l'ordonnanceur\\ 
+	\begin{itemize}
+		\item Avec l'aide de Matthieu Coudron, modification dans
+   \$(SRC\_NOYAU)/net/mptcp/mptcp\_output.c ;
+	   \item Tests des implémentations avec le travail de Romain LY et comparer les résultats obtenus.
+   	\end{itemize}
