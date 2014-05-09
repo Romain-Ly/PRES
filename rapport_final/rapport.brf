@@ -9,7 +9,7 @@
 \backcite {pareto2013}{{12}{3.1}{figure.4}}
 \backcite {pareto2013}{{12}{3.1}{figure.4}}
 \backcite {coudroncross2013}{{12}{3.2}{subsection.3.2}}
-\backcite {raiciu2010}{{12}{3.2}{subsection.3.2}}
+\backcite {raiciu2010}{{13}{3.2}{subsection.3.2}}
 \backcite {pareto2013}{{14}{4.1.3}{figure.5}}
 \backcite {pareto2013}{{15}{5}{figure.5}}
 \backcite {pareto2013}{{15}{6}{figure.6}}
@@ -18,4 +18,5 @@
 \backcite {rfc6356}{{20}{6.3}{subsection.6.3}}
 \backcite {rfc6182}{{21}{6.3.2}{figure.9}}
 \backcite {rfc6824}{{21}{6.3.2}{figure.9}}
+\backcite {PKB13}{{24}{6.3.2}{figure.10}}
 \backcite {pareto2013}{{28}{6.3.4}{figure.14}}
