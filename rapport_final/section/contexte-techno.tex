@@ -15,22 +15,27 @@ A et B via les sous-flots connectés.
 
 Il existe déjà plusieurs protocoles proposant d'utiliser plusieurs
 chemins. Nous en citerons que deux: SCTP et ECMP. SCTP (\emph{Stream
-  Control Transmission Protocol}) allie l'avantage de TCP et UDP et
-permet de multiplexer les flux sur plusieurs interfaces
-\cite{rfcsctp}. ECMP (\emph{Equal Cost MultiPath}) est un protocole
-qui semblait prometteur dans les data center. Lors d'une connexion
-entre deux hôtes, le routeur peut transférer les paquets sur plusieurs
-meilleurs chemins à coûts \og égaux \fg{}
-\cite{rfcecmp}. L'inconvénient de SCTP est la nécessité que tous les
-hôtes terminaux puissent comprendre le protocole ; il est donc
-nécessaire de modifier la couche application pour pouvoir
-l'utiliser. ECMP nécessite le travail des routeurs pour connaître les
-chemins et l'augmentation de performance n'est pas forcément
-significative. L'avantage de MPTCP est d'être transparent par rapport
-à TCP, c'est à dire que si un hôte n'est pas compatible avec MPTCP, la
-connexion retournera vers une connexion TCP classique. L'autre
-avantage est qu'il est totalement transparent pour les routeurs, c'est
-une connexion \emph{end to end}.
+  Control Transmission Protocol}) allie l'avantage de TCP et UDP
+(utilisation de datagrammes) et permet de multiplexer les flux sur
+plusieurs interfaces \cite{rfcsctp}. ECMP (\emph{Equal Cost
+  MultiPath}) est un sous-protocole dans le cadre de divers protocoles
+de routages (comme OSPF, TRILL, ...) et qui est utilisé dans les
+\emph{data-centers}: lors d'une connexion entre deux hôtes, le routeur
+peut transférer les paquets sur plusieurs meilleurs chemins à coûts
+\og égaux \fg{} \cite{rfcecmp}. \\
+Les inconvénients de SCTP est la nécessité que tous les hôtes
+terminaux puissent comprendre le protocole ; il est donc nécessaire de
+modifier la couche application pour pouvoir l'utiliser. De plus, les
+\emph{middle boxes} (pare-feu, NAT, \ldots) ne reconnaissent pas le
+protocole et rejettent donc tous les paquets SCTP. ECMP utilise les
+routeurs pour connaître les chemins et l'augmentation de performance
+lié à son utilisation n'est pas significative.
+
+L'avantage principal de MPTCP est d'être rétrocompatible par rapport à
+TCP.  Si un hôte n'est pas compatible avec MPTCP, la connexion
+utilisera TCP résolvant les problèmes des \emph{middle boxes}. Le
+scond avantage est qu'il est totalement transparent pour les routeurs,
+c'est une connexion \emph{end to end}.
 
 
 \subsection{Fonctionnement de MPTCP}
@@ -45,13 +50,9 @@ des chemins, ordonnancement des paquets, contrôle de congestion) et la
 couche inférieure correspond aux sous-flots établis.
 
 \begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
-    \includegraphics[width=0.7\textwidth]{../figures/mptcp.jpg}
-  \end{changemargin}
-  \centering
-  
-  \caption{\textbf{Schéma de la pile MPTCP}. source : \url{www.cisco.org}}
+    \includegraphics[width=0.8\textwidth]{../figures/mptcp_stack/mptcp_stack.png}
+    \caption{\textbf{Schéma de la pile MPTCP} \cite{PB14}.}
   \label{fig:mptcpstack}
   
 \end{figure}
@@ -65,11 +66,11 @@ connexion TCP entre les deux terminaux. Cette approche permet de
 répartir les charges sur les ressources disponibles.
 
 MPTCP implémente plusieurs fonctions pour contrôler les sous-flots de
-la connexion \cite{rfc6182}
+la connexion \cite{rfc6182}:
 \begin{itemize}
-\item le gestionnaire de chemin ou \emph{path manager}
-\item l'ordonnanceur de paquets (\emph{packet scheduling})
-\item le contrôleur de congestion 
+\item le gestionnaire de chemin ou \emph{path manager} 
+\item l'ordonnanceur de paquets ou \emph{packet scheduling} puis
+\item le contrôleur de congestion  ou \emph{congestion controller}.
 \end{itemize}
 
 Le sous-flot prend en charge les segments de l'ordonnaceur 
@@ -103,8 +104,13 @@ Le contrôle de congestion nécessite un algorithme performant pour que
 l'utilisation de MPTCP à la place de TCP puisse effectivement
 augmenter le débit de l'utilisateur sans influencer le débit des
 autres utilisateurs sur les mêmes chemins, c'est à dire qu'il doit
-garantir l'optimalité de pareto. L'algorithme de MPTCP est donc un
-point central dans les performances de MPTCP sur le réseau.
+garantir l'optimalité de pareto (c'est à dire que l'allocation des
+ressources est réalisée de manière ce qu'il soit impossible
+d'augmenter le débit d'un utilisateur sans diminuer le débit d'un
+tiers ou sans augmenter le coût de la congestion. Il garantit aussi la
+répartition équitable de la capacité du lien entre les utilisateurs
+\cite{pareto2013}).  L'algorithme de MPTCP est donc un point central
+dans les performances de MPTCP sur le réseau.
 
 Lors des choix des sous-flots, l'algorithme doit effectuer un
 compromis entre équilibre des charges dans les différents sous-flots
@@ -175,28 +181,36 @@ différents. L'intérêt du multi-chemin prend alors tout son
 sens. Cependant ce n'est pas le seul avantage, on peut réfléchir à
 plusieurs moyens d'augmenter la sécurité par l'utilisation du
 multi-chemin conjoitement avec une modification des protocoles de
-sécurité.
+sécurité. Voici quelques idées personnelles d'une implémentation d'une
+combinaison de MPTCP et de sécurité.
 
-Par exemple, l'utilisation de chiffrement de type CBC (\emph{Cipher
-  Block Chaining}) compliquera l'attaquant car il sera nécessaire
-d'obtenir le bloc n-1 pour déchiffrer le bloc n. AES-CBC est utilisé
-couramment dans des communications de type HTTPS/SSL. L'attaquant
-devra disposer de tous les paquets sans exception pour pouvoir
-déchiffrer le message en supposant qu'il possède la clé adéquate.
+\begin{itemize}
+\item l'utilisation d'une méthode de chiffrement par bloc de type CBC
+  (\emph{Cipher Block Chaining}) compliquera la tâche de l'attaquant
+  car il sera nécessaire d'obtenir le bloc n-1 pour déchiffrer le bloc
+  n. Par exemple, AES-CBC est utilisé couramment dans des
+  communications utilisant SSL/TLS. L'attaquant devra disposer de tous
+  les paquets sans exception pour pouvoir déchiffrer la totalité du
+  message en supposant qu'il possède la clé secrète.
 
-De plus, si les protocoles de sécurité sont conscients de
-l'utilisation de MPTCP, il pourrait y avoir une entente
-\emph{cross-layer}. Par exemple, en distribuant les informations des
-MAC (\emph{Message Authentication Code}) de chaque paquet entre les
-différents sous-flots de manière à éviter les \emph{man in the
-  middle}: sous flot 1 = message 1 + HMAC (message 2); sous flot 2 =
-message 2 + HMAC (message 1).  Un autre exemple serait de négocier les
-clés pour le chiffrement de la communication d'un sous-flot (par
-exemple en utilisant IPSec) dans le sous-flot adjacent.
+\item De plus, si les protocoles de sécurité sont conscients de
+  l'utilisation de MPTCP, il pourrait y avoir une entente
+  \emph{cross-layer}. Par exemple, en distribuant les informations des
+  MAC (\emph{Message Authentication Code}) de chaque paquet entre les
+  différents sous-flots de manière à éviter les \emph{man in the
+    middle}: sous flot 1 = message 1 + HMAC (message 2); sous flot 2 =
+  message 2 + HMAC (message 1).  
+
+\item Un autre exemple serait de négocier les clés pour le chiffrement
+  de la communication d'un sous-flot (par exemple en utilisant IPSec)
+  dans le sous-flot adjacent.
+\end{itemize}
 
 
 Dans tous les cas, il est donc nécessaire que MPTCP dans une optique
-sécurité utilise au mininum deux sous-flots. Dans une première
-approche simpliste, il serait intéressant de forcer l'algorithme de
-MPTCP à répartir les paquets équitablement sur plusieurs sous-flots,
-quitte à diminuer les performances de MPTCP.
+sécurité utilise au mininum deux sous-flots et donc de modifier
+l'algorithme de congestion de MPTCP.  Dans une première approche
+simpliste, il serait intéressant de forcer l'algorithme de MPTCP à
+répartir les paquets équitablement sur plusieurs sous-flots, quitte à
+diminuer les performances de MPTCP, c'est l'idée que nous avons décidé
+d'utiliser pour le nouvel algorithme d'ordonnancement.

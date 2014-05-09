@@ -1,8 +1,11 @@
 
-La première partie est de consuitre les topologies virtualisées et de
-tester les performances de MTPCP en faisant varier les paramètres des
-sous-flots. La seconde partie est de construire un alogrithme
-d'ordonnancement répondant à des critères de sécurité.
+La première partie est de consuitre les topologies de différents
+réseaux virtuels et de tester les performances de MTPCP en faisant
+varier les paramètres des sous-flots. La seconde partie est de
+construire un algorithme d'ordonnancement répondant à un critère de
+sécurité simple: rendre le \emph{sniffing} des paquets plus
+difficile à réaliser.
+
 \vspace{0.5cm}
 
 Les étapes du développement suivront les points suivants:
@@ -11,32 +14,64 @@ Les étapes du développement suivront les points suivants:
 \item Préparation d'une machine mininet avec le noyau MPTCP compilé
   pour l'ensemble de l'équipe:
 \item Lecture, compréhension et commentaires du code de MPTCP;
-\item Préparation de plusieurs topologies : \emph{fat tree} pour
-  simuler un \emph{data center} et une topologie permettant de tester
-  la concurrence entre MPTCP et TCP;
+\item Préparation de plusieurs topologies : une topologie simple à
+  plusieurs n\oe uds et un \emph{fat tree} pour simuler un \emph{data
+    center};
 \item Préparation d'une bibliothèque de tests et de mesures via l'API python;
 \item \'Ecriture d'un algorithme d'ordonnancement dans le noyau;
 \item Mesures de performance.
 \end{itemize}
 
+\vspace{1cm}
+
+Le développement sera divisé en trois sous-projets:
+
+\paragraph{Scripts de tests mininet} Le but de ce sous-projet est
+d'établir une base pour tester les performances de MPTCP en fonction
+des paramètres du réseau virtuel. Cette base sera réutilisée pour les
+topologies plus complexe (sous-projet \emph{fat-tree}) ou pour la
+mesure de performances du nouvel algorithme
+d'ordonnancement. (sous-projet algorithme d'ordonnancement).
+
+\vspace{1cm}
+\textbf{Responsable du sous-projet}: M. Ly.
+
+\begin{itemize}
+\item Création d'une machine virtuelle contenant le noyau MPTCP;
+\item écriture des scripts pour les simulations et l'analyse;
+\item tests sur une topologie simple.
+\end{itemize}
+
+\paragraph{\emph{fat tree}}
+Ce sous-projet vise à mesurer les performances sur une topologie
+complexe où MPTCP a une utilité substantielle.
 
 
-\subsection{Descriptif du travail de Quentin Dubois et de Kevin Lam}
-\begin{figure}[!htb]
-  \begin{changemargin}{-2.0cm}{0.5cm}
-    \centering
-    \includegraphics[width=1.2\textwidth]{../gantt/KevinQuentin.png}
-  \end{changemargin}
-  \centering
-  
-  \caption{\textbf{Diagramme de Gantt Kevin Lam et Quentin Dubois}. }
-  \label{fig:gantt}
-\end{figure}
+\vspace{1cm}
+\textbf{Responsable du sous-projet}: M. Ravier.
 
-\input{section/gant/kevin_quentin}
+\begin{itemize}
+\item Création d'une topologie \emph{fat tree};
+\item tests.
+\end{itemize}
+
+\paragraph{\'Ecriture d'un algorithme d'ordonnancement}
+Ce sous-projet vise à c
 
 
-\subsection{Descriptif du travail de Romain Ly}
+\vspace{1cm}
+\textbf{Responsables du sous-projet}: M. Lam et M. Dubois.
+
+\begin{itemize}
+\item Création d'une topologie \emph{fat tree};
+\item tests.
+\end{itemize}
+
+
+
+
+
+\subsection{Scripts de tests mininet}
 \begin{figure}[!htb]
   \begin{changemargin}{-2.0cm}{0.5cm}
     \centering
@@ -71,7 +106,7 @@ Les étapes du développement suivront les points suivants:
 \end{itemize}
 
 
-\subsection{Descriptif du travail de Simon Ravier}
+\subsection{Topologie \emph{fat-tree}}
 
 \begin{figure}[!htb]
   \begin{changemargin}{-2.0cm}{0.5cm}
@@ -93,3 +128,17 @@ l'environnement de tests (configuration des hôtes, établissement des
 tables de routage) et réalisation des tests
 \end{tabular}
 \vspace{0.5cm}
+
+\subsection{\'Ecriture d'un nouvel algorithme d'ordonnancement}
+\begin{figure}[!htb]
+  \begin{changemargin}{-2.0cm}{0.5cm}
+    \centering
+    \includegraphics[width=1.2\textwidth]{../gantt/KevinQuentin.png}
+  \end{changemargin}
+  \centering
+  
+  \caption{\textbf{Diagramme de Gantt Kevin Lam et Quentin Dubois}. }
+  \label{fig:gantt}
+\end{figure}
+
+\input{section/gant/kevin_quentin}

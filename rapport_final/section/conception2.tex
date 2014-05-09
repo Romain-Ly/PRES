@@ -1,0 +1,77 @@
+
+\subsection[Outil de coordination: git]{Outil de coordination: git}
+\label{subsec:conception2:git}
+L'état des scripts utilisés par l'équipe est mise à jour par un
+système de version utilisant git
+\url{https://github.com/Romain-Ly/PRES}. Le noyau contenant les
+modifications de MPTCP est disponible ici :
+\url{https://github.com/Finaler/mptcp/tree/mptcp_pres_test1}
+
+
+\subsection{Mininet}
+\label{sec:conce:Mininet}
+
+Nous avons utilisé trois langages pour les scripts.
+
+\paragraph{python}
+Dans un premier temps, nous avons utilisé python pour pouvoir intégrer
+les fonctions de l'API python et remplir les fonctions suivantes:
+\begin{itemize}
+\item créer des topologies
+\item créer des expériences variées
+\item intégrer des outils pour la mesure des performances
+\item intégrer un parseur d'argument pour automatiser les procédures
+\end{itemize}
+
+L'axe d'écriture des scripts est de pouvoir intégrer des topologies,
+des expériences à la volée et de permettre d'écrire des fichiers de
+sorties différenciés afin de rendre l'analyse plus facile. Une
+expérience peut se définir comme l'ensemble des contraintes apportés à
+la topologie (délai d'un ou de plusieurs liens, tests utilisées,
+déroulement des mesures).
+
+Une description plus détaillée est effectuée dans le compte-rendu (voir
+\pref{sec:compterendu}) et dans l'annexe (voir \pref{sec:annexe1:annexe1}).
+
+\paragraph{bash}
+Pour multiplier les expériences, nous utilisons des scripts
+\emph{bash} exécutant les scripts pythons en série.
+
+\paragraph{R}
+Pour analyser les fichiers de sortie (iperf, bwm-ng, ping, ...) et
+pour les figures nous avons utilisé R.
+
+
+
+\subsection{Performances de MPTCP}
+\label{sec:conce:perfMPTCP}
+
+
+
+\subsection{Conception algorithme sécurisé}
+\label{sec:conc:algosec}
+
+Après avoir étudié le code de MPTCP, nous nous sommes demandés comment
+nous pouvions avoir un rendement maximal afin d'implémenter
+l'ordonnanceur. Nous avons donc discuté de nos méthodes
+d'implémentation pour essayer de s'accorder mais comme nos idées
+différaient sur la façon de procéder pour la réalisation de cet
+ordonnanceur, nous avons décidé, dans un premier temps, de coder un
+ordonnanceur chacun de notre côté. Une fois que nos ordonnanceurs ont
+été codés, nous avons confrontés nos versions et choisi de n'en garder
+qu'une seule car elle semblait mieux structurée ce qui était un atout
+si nous devions apporter des modifications à cet algorithme.
+\\
+
+Après avoir fini notre ordonnanceur, nous avons constaté qu'il y avait
+des erreurs dans le code que nous avons corrigés et ensuite
+synchronisé grâce au git.  Une fois que notre code compilait, nous
+avons du tester si il effectuait se que nous voulions. Pour cela, nous
+nous sommes encore partagé le travail en testant le code chacun de
+notre côté et en utilisant différents moyens afin de comprendre ce qui
+ne marchait pas dans notre algorithme.
+\\
+Afin de ne pas perdre de temps et de rester le plus productif
+possible, nous partagions tout ce que nous avions rencontrés avec les
+autres membres du groupe afin de savoir si quelqu'un avait déjà eu ce
+problème ou pour nous donner une idée de résolution.

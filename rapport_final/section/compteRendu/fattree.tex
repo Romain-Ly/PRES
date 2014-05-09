@@ -1,0 +1,123 @@
+\subsection{Performance de MPTCP sur \emph{fat-tree}}
+\label{sec:CR:perfMPTCP:fattree}
+
+
+Nous avons effectué divers tests de connectivité en utilisant MPTCP
+sur la topologie \emph{fat-tree}.
+
+
+3- Routage Multipath
+
+Après documentation, nous avons découvert qu'il existait déjà des
+solutions à ce problème de routage. Mise à disposition du public sur
+github, une implémentation d'un contrôleur conçu à l'intention des
+réseaux de Datacenter, et plus particulièrement pour des topologies de
+type FatTree, nous a permis de faire fonctionner MPTCP dans notre
+réseau, ainsi que d'effectuer nos tests de performance. Voici la
+commande permettant de lancer ce contrôleur :
+
+
+\begin{verbatim}
+~/pox/pox.py riplpox.riplpox --topo=ft,4 --routing=random --mode=reactive
+\end{verbatim}
+
+
+~/pox/pox.py : fichier python d'exécution du contrôleur OpenFlow
+riplpox.riplpox : contrôleur Openflow destiné à la topologie FatTree décrite plus haut (supposé fonctionner également sur une topologie VL2)
+--topo=ft,4 : sélection de la topologie FatTree décrite plus haut
+--routing=random : sélection du type de routage (3 possibilités : random, hashed, Spanning Tree)
+--mode=reactive : sélection du mode d'exécution du contrôleur (3 possibilités : reactive, proactive, hybrid)
+
+
+
+
+Le fonctionnement de ce contrôleur openflow (appelé riplpox) est
+relativement simple : il se base sur une description statique du
+réseau afin d'établir la liste des chemins possibles entre chaque
+hôtes. Par conséquent, il faut s'assurer qu'il analyse exactement la
+même topologie que celle virtualisée par Mininet.  Il peut être lancé
+dans plusieurs modes différents. Le mode proactive se contente de
+référencer tous les chemins possibles à l'instant où les switches sont
+créés. Le mode reactive, plus intéressant, actualise la liste des
+chemins pour chaque nouveau flot. Dans le cadre de notre simulation,
+la différence est obsolète puisque nous ne modifierons pas la
+topologie pendant les tests. Cependant, l'un des objectifs de MPTCP
+est d'assurer une meilleure réaction face à ce genre de problème ;
+nous avons donc préféré utiliser le mode reactive qui, si nous avions
+modifié l'état des liens entre des phases de test successives, se
+serait révélé nécessaire.
+
+
+
+
+
+
+
+
+
+
+
+2/ Exécution des tests
+
+Une fois finies la conception, la création et la configuration de
+cette topologie plus complexe, nous nous sommes attelés à intégrer
+cette topologie dans notre environnement de tests. Suite aux
+conclusions tirées des simulations effectuées sur la topologie A, nous
+nous contenterons d'effectuer des tests avec une bande passante par
+lien, passée en paramètre au script python lançant Mininet puis les
+simulations (pyMPTCP.py), à 10 Mbit/s. De plus, notre topologie limite
+l'usage de MPTCP à 4 sous-flots. Nous allons donc étudier le débit
+total de sortie en fonction du nombre de sous-flots actifs, et le
+comparer au débit maximal théorique et aux performances de TCP.
+
+On s'attend à retrouver des résultats en corrélation avec les tests
+menés sur la topologie A. En théorie, l'évolution du débit total en
+fonction du nombre de sous-flots devrait être linéaire ; en effet, sa
+valeur se résume à l'addition des débits des différents
+sous-flots. Cependant, suite aux résultats déjà obtenus, on pourrait
+penser que l'augmentation du nombre de sous-flots a des conséquences
+non désirables sur la rapidité de transmission. Étant donné le manque
+de fiabilité croissant de notre outil de simulation, Mininet, à
+l'approche d'un débit de 100 Mbit/s et au-delà, et bien que nous nous
+arrêtions à un débit maximal théorique de 40\,Mbit/s, il est
+envisageable que, même à ce stade, la progression de notre courbe s'en
+retrouve affectée.
+
+
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../figures/RAPPORT-Perffattree.jpg}
+  \caption{\textbf{Testbed MPTCP vs TCP\cite{pareto2013}}.}
+  \label{fig:khalili}
+\end{figure}
+
+En utilisant, comme nous l'avons fait, des liens de 10\,Mbit/s, le
+débit total est en théorie limité à 10*N, N étant le nombre de
+sous-flots utilisés. De la même manière, une connexion TCP étant
+équivalente à une connexion MPTCP à un seul sous-flot, celle-ci reste
+constamment à 10\,Mbit/s. Nous avons choisi de représenter ces bornes
+autour de notre courbe afin de mettre en valeur l'intérêt de
+l'utilisation de MPTCP par rapport au Single-Path TCP, tout en
+essayant de constater les pertes induites par Mininet, dont nous
+connaissons la teneur suite aux expérimentations précédemment
+effectuées.  Suite à l'exploitation des chiffres obtenus par nos tests
+sur cette topologie FatTree, nous constatons plusieurs faits qui
+méritent d'être mentionnés. Tout d'abord, Nous avons remarqué que le
+débit moyen de MPTCP avec 1 sous-flot est légèrement inférieur au
+débit moyen du Single-Path TCP. Ceci peut s'expliquer par le fait que
+MPTCP effectue de nombreux traitements supplémentaires, lesquels sont
+totalement inutiles dans le cas de l'utilisation d'un unique
+sous-flot. De plus, nous notons également qu'à partir d'un débit
+d'environ 40Mbit/s, le débit expérimental de MPTCP commence à
+s'éloigner significativement de la courbe du débit théorique. Ceci
+confirme que, outre le fait que la capacité totale de chaque lien soit
+moins bien exploitée par MPTCP, notre simulateur atteint assez
+rapidement ses limites.
+
+Dans la pratique, MPTCP s'est révélé capable d'atteindre un débit
+total de plus de 50Gbit/s en utilisant des liens à
+10Gbit/s. Malheureusement, les limitations de Mininet ne nous
+permettront guère de dépasser les 100Mbits/s. Cependant, il est avéré
+que MPTCP permet effectivement d'exploiter une diversité de chemins
+afin de multiplier le débit total d'une connexion pair à pair.
