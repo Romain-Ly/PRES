@@ -9,16 +9,36 @@ pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
 
 \subsection{Etude de  l'algorithme de MPTCP}
  	\subsubsection{Explication de l'ordonnanceur}
- 	Lors de l'étude du code de MPTCP, nous avons étudié l'ordonnanceur déjà implémenté. L'ordonnanceur de MPTCP tient dans la fonction get\_available\_subflow(), qui se trouve dans (\$SRC NOYAU)/net/mptcp/mptcp.output.c. Cela nous a été confirmé par Matthieu Coudron lorsqu'il a choisi l'ordonnanceur à implémenter. Cette fonction retourne la socket sur laquelle sera envoyée le prochain segment de données et définit la taille du Maximum Segment Size (MSS). Nous allons vous expliquer comment marche cet algorithme. Mais pour cela il faut connaitre d'avance les structures principales que nous allons vous expliquer avant de commenter l'ordonnanceur.\\
- 	Tout d'abord la structure mptcp\_cb signifie \emph{MPTCP control block} c'est la pierre angulaire de MPTCP. Elle est utilisée dans pratiquement toutes les fonctions de MPTCP. Cette structure permet de superviser les différents sous-flots utilisés pour une connexion MPTCP. Elle permet aussi de décider s'il faut ouvrir ou fermer un sous-flot, elle réordonne les données reçues afin que l'application qui a besoin de ces données les obtienne dans le bon ordre.\\
+ 	Lors de l'étude du code de MPTCP, nous avons étudié
+        l'ordonnanceur déjà implémenté. L'ordonnanceur de MPTCP tient
+        dans la fonction get\_available\_subflow(), qui se trouve dans
+        (\$SRC NOYAU)/net/mptcp/mptcp.output.c. Cela nous a été
+        confirmé par Matthieu Coudron lorsqu'il a choisi
+        l'ordonnanceur à implémenter. Cette fonction retourne la
+        socket sur laquelle sera envoyée le prochain segment de
+        données et définit la taille du Maximum Segment Size
+        (MSS). Nous allons vous expliquer comment marche cet
+        algorithme. Mais pour cela il faut connaitre d'avance les
+        structures principales que nous allons vous expliquer avant de
+        commenter l'ordonnanceur.
+        \\
+ 	Tout d'abord la structure mptcp\_cb signifie \emph{MPTCP
+          control block} c'est la pierre angulaire de MPTCP. Elle est
+        utilisée dans pratiquement toutes les fonctions de
+        MPTCP. Cette structure permet de superviser les différents
+        sous-flots utilisés pour une connexion MPTCP. Elle permet
+        aussi de décider s'il faut ouvrir ou fermer un sous-flot, elle
+        réordonne les données reçues afin que l'application qui a
+        besoin de ces données les obtienne dans le bon ordre.
+        \\
  	La structure sock (socket) et la structure sk\_buff (socket
         buffer) sont les mêmes que dans TCP. La socket permet de créer
         une liaison entre les machines : elle détient les informations
         nécessaires à la transmission des données; quant au socket
         buffer, elle permet de définir ce que doit envoyer une socket
-        et permet de faire un tri sur les données reçues grâce au
+        et permet de faire un tri sur les données reçues grâce aux
         timestamps.  L'ordonnanceur implémenté dans MPTCP utilise,
-        comme dans notre implémentation, le Smoothed Rount Trip Time
+        comme dans notre implémentation, le Smoothed Round Trip Time
         (SRTT) pour déterminer quelle socket enverra les données. De
         ce fait, si le SRTT est petit, l'ordonnanceur utilisera plus
         souvent cette socket. C'est ce qui crée une faiblesse dans la
@@ -55,8 +75,13 @@ pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
            \emph{lowpriosk}. Bien qu'elle soit nommée lowpriority,
            elle a une fonction de backup mais c'est une socket
            éligible contrairement à la backup socket.
-\item Si il y a d'autres sockets qui non pas une faible priorité, on compare le SRTT de ces sockets et on garde la socket avec le RTT le plus faible. Elle est stockée dans la variable \emph{bestsk}.\\
-Il y a aussi une backup socket qui sert au cas ou aucune des sockets décrites ci-dessus ne peuvent envoyer un segment de données : c'est le dernier recours car celle-ci est désignée alors qu'elle ne permet pas la réinjection de données. Elle sera stockée dans la variable \emph{backupsk}. 
+         \item Si il y a d'autres sockets qui n'ont pas une faible priorité, on compare le SRTT de ces sockets et on garde la socket avec le RTT le plus faible. Elle est stockée dans la variable \emph{bestsk}.\\
+           Il y a aussi une backup socket qui sert au cas où aucune
+           des sockets décrites ci-dessus ne peuvent envoyer un
+           segment de données : c'est le dernier recours car celle-ci
+           est désignée alors qu'elle ne permet pas la réinjection de
+           données. Elle sera stockée dans la variable
+           \emph{backupsk}.
 \item Maintenant que nous avons défini les différents types de
   sockets, il faut savoir sur laquelle des trois sockets on va envoyer
   les données; Si il n'y a que des sockets de backup, on envoie les
@@ -70,15 +95,27 @@ Il y a aussi une backup socket qui sert au cas ou aucune des sockets décrites ci
         ordonnanceur. Nous avions émis plusieurs hypothèses pour ce
         nouvel algorithme. En accord avec les encadrants, il a été
         décidé de juste utiliser le SRTT des sockets pour faire notre
-        implémentation.  \bigbreak
-        Dans un premier temps, nous avons pensé implémenter un algorithme assez simpliste mais qui permettait d'augmenter la sécurité contre les attaques de type \emph{Man In The Middle}. C'est à dire que notre algorithme allait envoyer les segments de manière équitable sur chaque sous-flots permettant l'envoi de données. Cet algorithme avait pour vocation de rendre plus difficile la récupération d'informations en écoutant un sous-flot car avec l'algorithme actuel, si un attaquant voulait récupérer un maximum d'informations, il lui suffisait d'écouter le sous-flot qui a le SRTT le plus faible. C'est ce que nous voulions éviter avec notre algorithme. Cependant après de plus amples réflexions, nous avons remarqué que notre algorithme avait un grand nombre de défauts.\\
-        En effet, MPTCP a été développé afin d'avoir une amélioration
-        des débits mais cet algorithme aurai empêché cela si le débit
-        d'un sous-flot était vraiment faible comparé aux autres
-        sous-flots alors toute la connexion MPTCP ressentirait ce
-        débit faible et cela influerai beaucoup sur les performances
-        de MPTCP. C'est pourquoi cet algorithme n'a pas été choisi.
-        \bigbreak Un compromis entre sécurité et performances est
+        implémentation.  \bigbreak Dans un premier temps, nous avons
+        pensé implémenter un algorithme assez simpliste mais qui
+        permettait d'augmenter la sécurité contre les attaques de type
+        \emph{Man In The Middle}. C'est à dire que notre algorithme
+        allait envoyer les segments de manière équitable sur chaque
+        sous-flot permettant l'envoi de données. Cet algorithme avait
+        pour vocation de rendre plus difficile la récupération
+        d'informations en écoutant un sous-flot car avec l'algorithme
+        actuel, si un attaquant voulait récupérer un maximum
+        d'informations, il lui suffisait d'écouter le sous-flot qui a
+        le SRTT le plus faible. C'est ce que nous voulions éviter avec
+        notre algorithme. Cependant après de plus amples réflexions,
+        nous avons remarqué que notre algorithme avait un grand nombre
+        de défauts.
+        \\
+        En effet, MPTCP a été développé afin d'améliorer les
+        débits. Cet algorithme n'aurai pas eu l'effet escompté si le
+        débit d'un sous-flot était vraiment faible comparé aux autres
+        sous-flots alors, ce qui influencerait sur les performances de
+        MPTCP. C'est pourquoi cet algorithme n'a pas été choisi.
+        \bigbreak Un compromis entre sécurité et performance est
         nécessaire pour que l'utilité de MPTCP soit avantageuse par
         rapport à TCP. Il nous a été proposé de sélectionner les
         \emph{k} meilleurs sous-flots d'un point de vue du SRTT et de
@@ -89,13 +126,18 @@ Il y a aussi une backup socket qui sert au cas ou aucune des sockets décrites ci
         garder une certaine rapidité dans la transmission de données
         et de garder une certaine sécurité car le trafic passe de
         manière équitable sur les \emph{k} meilleurs sous-flots.
-\subsection{Implémentation de l'ordonnanceur}
-Afin de pouvoir stocker les \emph{k} meilleurs sous-flots, on avait 2 choix.
+
+        \subsection{Implémentation de l'ordonnanceur}
+        Afin de pouvoir stocker les \emph{k} meilleurs sous-flots, on
+        avait 2 choix.
 \begin{itemize}
 \item Soit un tableau.
 \item Soit une liste chainée.
 \end{itemize}
-Après en avoir discuté entre nous, nous avons décidé d'utiliser une liste chainée car les listes chainées permettent une plus grande flexibilité de manipulation. Nous avons donc déclaré dans \emph{mptcp.h}, une structure:
+Après en avoir discuté entre nous, nous avons décidé d'utiliser une
+liste chainée car les listes chainées permettent une plus grande
+flexibilité de manipulation. Nous avons donc déclaré dans
+\emph{mptcp.h}, une structure:
 \begin{verbatim}
 struct selected_sk{
   struct sock *sk;
@@ -107,12 +149,12 @@ vers la socket suivante ce qui permet de naviguer très facilement
 entre les différentes sockets sélectionnées. Ce qui est très utile
 pour le Round-Robin.  \bigbreak
 Une fois que l'on avait déclaré cette structure, il fallait aussi implémenter des fonctions afin de pouvoir faire une liste chainée en fonction des RTT. Notre liste chainée sera organisée de telle sorte:\\
-On aura une \emph{selected\_sk} qui sera appelée
-\emph{bssk}. C'est la "best selected socket". Ca sera la socket
-sélectionnée qui aura le meilleur RTT, puis son attribut next pointera
-sur la deuxième sockets avec le meilleur RTT. Et la $k^{eme}$ socket
-aura pour \emph{next} la \emph{bssk}. Cela formera une boucle.
-Les fonctions que l'on a créés sont:\\
+On aura une \emph{selected\_sk} qui sera appelée \emph{bssk}. C'est la
+"best selected socket". Ce sera la socket sélectionnée qui aura le
+meilleur RTT, puis son attribut next pointera sur la deuxième socket
+avec le meilleur RTT. Et la $k^{eme}$ socket aura pour \emph{next} la
+\emph{bssk}. Cela formera une boucle.
+Les fonctions créées sont:\\
 \begin{itemize}
 \item \emph{static void ssk\_insertion\_sort(struct selected\_sk *bssk, int ssk\_size);} : qui permet de faire en sorte que la liste chainée soit triée en fonction du Smoothed RTT (SRTT) des sockets.
 \item \emph{static u32 ssk\_max\_srtt(struct selected\_sk *bssk);} : permet de retourner la valeur maximale du SRTT de la liste chainée, c'est à dire le RTT de la socket qui a pour\emph{next} la bssk passée en argument.
@@ -147,4 +189,16 @@ une insertion est effectuée en gardant la liste triée. Par contre, si
 le SRTT est plus grand que ceux de la liste chainée et qu'il y a déjà
 k sockets, on passe à la socket suivante.
 \subsection{Debug de l'ordonnanceur implémenté}
-On a implémenté un ordonnanceur mais il faut le tester dans les topologies virtualisées. Divers problèmes ont été rencontrés avec la machine virtuelle mininet lorsque l'on a voulu utiliser MPTCP. En effet, à cause de l'hétérogénéité de nos machines physiques, nous devions chacun faire nos propres corrections pour compiler le noyau (problèmes de drivers à la compilation, de machine virtuelle, de package openvswitch). Mais après les avoir corrigés, nous avons une implémentation pas encore fonctionnelle. En effet, lors de l'exécution du script python de test de MPTCP, on obtient un "kernel panic" sur la fonction d'ordonnancement. Cette fonction est toujours en correction, à l'aide de User Mode Linux (UML). Nous espérons qu'elle sera opérationnel d'ici la soutenance et que l'on pourra mener quelques tests de performances sur notre implémentation.
+On a implémenté un ordonnanceur mais il faut le tester dans les
+topologies virtualisées. Divers problèmes ont été rencontrés avec la
+machine virtuelle mininet lorsque l'on a voulu utiliser MPTCP. En
+effet, à cause de l'hétérogénéité de nos machines physiques, nous
+devions chacun faire nos propres corrections pour compiler le noyau
+(problèmes de drivers à la compilation, de machine virtuelle, de
+package openvswitch). Mais après les avoir corrigés, nous avons une
+implémentation pas encore fonctionnelle. En effet, lors de l'exécution
+du script python de test de MPTCP, on obtient un "kernel panic" sur la
+fonction d'ordonnancement. Cette fonction est toujours en correction,
+à l'aide de User Mode Linux (UML). Nous espérons qu'elle sera
+opérationnelle d'ici la soutenance et que l'on pourra mener quelques
+tests de performances sur notre implémentation.
