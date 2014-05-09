@@ -1,13 +1,13 @@
 
-Une partie de ce projet consistait dans un premier temps en l'étude du
-code de MPTCP et de la compréhension de son fonctionnement, puis dans
+Une partie de ce projet consiste dans un premier temps en l'étude du
+code de MPTCP et de la compréhension de son fonctionnement, puis de
 l'implémentation d'un nouvel ordonnanceur de notre choix. Après
 discussions, nous avons décidé de placer deux personnes sur l'étude du
 code de MPTCP car il nous semblait important d'avoir une bonne
 connaissance du fonctionnement du code et des principales structures
 pour pouvoir implémenter un nouvel algorithme d'ordonnancement.
 
-\subsection{Etude de  l'algorihme de MPTCP}
+\subsection{Etude de  l'algorithme de MPTCP}
  	\subsubsection{Explication de l'ordonnanceur}
  	Lors de l'étude du code de MPTCP, nous avons étudié l'ordonnanceur déjà implémenté. L'ordonnanceur de MPTCP tient dans la fonction get\_available\_subflow(), qui se trouve dans (\$SRC NOYAU)/net/mptcp/mptcp.output.c. Cela nous a été confirmé par Matthieu Coudron lorsqu'il a choisi l'ordonnanceur à implémenter. Cette fonction retourne la socket sur laquelle sera envoyée le prochain segment de données et définit la taille du Maximum Segment Size (MSS). Nous allons vous expliquer comment marche cet algorithme. Mais pour cela il faut connaitre d'avance les structures principales que nous allons vous expliquer avant de commenter l'ordonnanceur.\\
  	Tout d'abord la structure mptcp\_cb signifie \emph{MPTCP control block} c'est la pierre angulaire de MPTCP. Elle est utilisée dans pratiquement toutes les fonctions de MPTCP. Cette structure permet de superviser les différents sous-flots utilisés pour une connexion MPTCP. Elle permet aussi de décider s'il faut ouvrir ou fermer un sous-flot, elle réordonne les données reçues afin que l'application qui a besoin de ces données les obtienne dans le bon ordre.\\
@@ -146,5 +146,5 @@ meilleures sockets, on rajoute cette socket dans la liste. Pour cela,
 une insertion est effectuée en gardant la liste triée. Par contre, si
 le SRTT est plus grand que ceux de la liste chainée et qu'il y a déjà
 k sockets, on passe à la socket suivante.
-
-
+\subsection{Debug de l'ordonnanceur implémenté}
+On a implémenté un ordonnanceur mais il faut le tester dans les topologies virtualisées. Divers problèmes ont été rencontrés avec la machine virtuelle mininet lorsque l'on a voulu utiliser MPTCP. En effet, à cause de l'hétérogénéité de nos machines physiques, nous devions chacun faire nos propres corrections pour compiler le noyau (problèmes de drivers à la compilation, de machine virtuelle, de package openvswitch). Mais après les avoir corrigés, nous avons une implémentation pas encore fonctionnelle. En effet, lors de l'exécution du script python de test de MPTCP, on obtient un "kernel panic" sur la fonction d'ordonnancement. Cette fonction est toujours en correction, à l'aide de User Mode Linux (UML). Nous espérons qu'elle sera opérationnel d'ici la soutenance et que l'on pourra mener quelques tests de performances sur notre implémentation.
