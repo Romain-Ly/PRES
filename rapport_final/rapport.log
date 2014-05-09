@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.27)  10 MAY 2014 00:14
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.11.27)  10 MAY 2014 00:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -770,29 +770,34 @@ Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line
                                                   \fi \fi 
 l.134 
        <../gantt/romain.png (PNG copy)>]
-<../gantt/KevinQuentin.png, id=378, 1469.49pt x 167.62625pt>
-File: ../gantt/KevinQuentin.png Graphic file (type png)
+<../gantt/kevin.jpg, id=378, 1692.3225pt x 185.69376pt>
+File: ../gantt/kevin.jpg Graphic file (type jpg)
 
-<use ../gantt/KevinQuentin.png>
-Package pdftex.def Info: ../gantt/KevinQuentin.png used on input line 139.
-(pdftex.def)             Requested size: 546.2915pt x 62.31743pt.
+<use ../gantt/kevin.jpg>
+Package pdftex.def Info: ../gantt/kevin.jpg used on input line 139.
+(pdftex.def)             Requested size: 546.2915pt x 59.94173pt.
 
 Overfull \hbox (48.36829pt too wide) in paragraph at lines 139--140
  [] 
  []
 
 (./section/gant/kevin_quentin.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--4
+Underfull \hbox (badness 10000) in paragraph at lines 1--2
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--10
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--15
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
@@ -810,37 +815,49 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 15.
+(epstopdf)             \includegraphics on input line 18.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-15.
+18.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.15 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.3
-}) has been already used, duplicate ignored
+l.18 	   \item V
+                oir si l'utilisation du contrôle de congestion (mptcp\_olia....
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.15 
-      <../gantt/Simon.png (PNG copy)> <../gantt/KevinQuentin.png (PNG copy)>]))
-
-Overfull \hbox (54.98013pt too wide) in paragraph at lines 16--5
-\T1/cmr/m/n/12 Avec l'aide de Matthieu Coudron, mod-i-fi-ca-tion dans $(SRC_NOY
-AU)/net/mptcp/mptcp_output.c; 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--5
+l.18 	   \item V
+                oir si l'utilisation du contrôle de congestion (mptcp\_olia....
+ <../gantt/Simon.png (PNG copy)> <../gantt/kevin.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--20
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--23
+
+ []
+
+
+Overfull \hbox (84.4799pt too wide) in paragraph at lines 24--26
+[]\T1/cmr/m/n/12 Avec l'aide de Matthieu Coudron, mod-i-fi-ca-tion dans $(SRC_N
+OYAU)/net/mptcp/mptcp_output.c; 
+ []
+
+))
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
  Make it at least 70.65262pt.
@@ -909,19 +926,19 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 111.
+(epstopdf)             \includegraphics on input line 114.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-111.
+114.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.4}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.111 
+l.114 
        <../figures/mptcp_stack/mptcp_stack.png>]
 
 Package Fancyhdr Warning: \headheight is too small (56.9055pt): 
@@ -937,12 +954,12 @@ Package epstopdf Info: Source file: <UPMC_sorbonne.eps>
 (epstopdf)                    size: 16894 bytes
 (epstopdf)             Command: <repstopdf --outfile=UPMC_sorbonne-eps-converte
 d-to.pdf UPMC_sorbonne.eps>
-(epstopdf)             \includegraphics on input line 180.
+(epstopdf)             \includegraphics on input line 185.
 Package epstopdf Info: Output file is already uptodate.
 File: UPMC_sorbonne-eps-converted-to.pdf Graphic file (type pdf)
 <use UPMC_sorbonne-eps-converted-to.pdf>
 Package pdftex.def Info: UPMC_sorbonne-eps-converted-to.pdf used on input line 
-180.
+185.
 (pdftex.def)             Requested size: 85.35826pt x 28.60545pt.
  [12])
 
@@ -2073,7 +2090,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 157.
  ) 
 Here is how much of TeX's memory you used:
  8950 strings out of 495059
- 128577 string characters out of 3182029
+ 128542 string characters out of 3182029
  236861 words of memory out of 3000000
  11683 multiletter control sequences out of 15000+200000
  21946 words of font info for 58 fonts, out of 3000000 for 9000
@@ -2106,9 +2123,9 @@ st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
 /public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/symbols/msam10.pfb>
-Output written on rapport.pdf (46 pages, 978830 bytes).
+Output written on rapport.pdf (46 pages, 1007050 bytes).
 PDF statistics:
- 1470 PDF objects out of 1728 (max. 8388607)
+ 1472 PDF objects out of 1728 (max. 8388607)
  824 compressed objects within 9 object streams
  162 named destinations out of 1000 (max. 500000)
  576 words of extra memory for PDF output out of 10000 (max. 10000000)
